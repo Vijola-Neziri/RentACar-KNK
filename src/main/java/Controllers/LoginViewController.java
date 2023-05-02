@@ -33,7 +33,10 @@ public class LoginViewController implements Initializable {
         private TextField usernamelogin;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
+
+        usernamelogin.setStyle("-fx-text-inner-color:#a0a2ab;");
+        passwordlogin.setStyle("-fx-text-inner-color:#a0a2ab;");
 
     }
 }
