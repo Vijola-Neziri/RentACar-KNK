@@ -1,4 +1,4 @@
 package Controllers;
 
-public class LoginViewController {
+public class LoginViewController  {
 }
