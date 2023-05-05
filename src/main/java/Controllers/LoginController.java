@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoginViewController implements Initializable {
+public class LoginController implements Initializable {
     @FXML
     private Button login;
 
