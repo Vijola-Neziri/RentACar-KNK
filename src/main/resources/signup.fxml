@@ -30,27 +30,27 @@
         <Line endX="100.0" layoutX="264.0" layoutY="312.0" startX="-100.0" stroke="#a0a2ab" />
         <ImageView fx:id="usernamephoto" fitHeight="20.0" fitWidth="20.0" layoutX="125.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../Desktop/FototKNK/usersignup.png" />
+                <Image url="@../../../../../Desktop/FototKNK/usersignup.png" />
             </image>
         </ImageView>
         <ImageView fx:id="passwordphoto" fitHeight="20.0" fitWidth="20.0" layoutX="125.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../Desktop/FototKNK/passwordsignup.png" />
+                <Image url="@../../../../../Desktop/FototKNK/passwordsignup.png" />
             </image>
         </ImageView>
         <ImageView fx:id="genderphoto" fitHeight="20.0" fitWidth="20.0" layoutX="125.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../Desktop/FototKNK/gender.png" />
+                <Image url="@../../../../../Desktop/FototKNK/gender.png" />
             </image>
         </ImageView>
         <ImageView fx:id="locationphoto" fitHeight="20.0" fitWidth="20.0" layoutX="125.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../Desktop/FototKNK/location.png" />
+                <Image url="@../../../../../Desktop/FototKNK/location.png" />
             </image>
         </ImageView>
         <ImageView fx:id="carphoto" fitHeight="70.0" fitWidth="80.0" layoutX="214.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../Desktop/FototKNK/fkryesore.png" />
+                <Image url="@../../../../../Desktop/FototKNK/fkryesore.png" />
             </image>
         </ImageView>
         <CheckBox fx:id="malegender" layoutX="177.0" layoutY="239.0" mnemonicParsing="false" selected="true" text="Male" textFill="#a0a2ab" />
@@ -59,7 +59,7 @@
         <Button fx:id="login" layoutX="436.0" layoutY="45.0" mnemonicParsing="false" style="-fx-border-color: #a0a2ab; -fx-background-color: #2D3447;" text="Log in" textFill="#efe3e3" />
       <ImageView fx:id="loadingid" fitHeight="42.0" fitWidth="111.0" layoutX="243.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Desktop/FototKNK/epic-loading.gif" />
+            <Image url="@../../../../../Desktop/FototKNK/epic-loading.gif" />
          </image>
       </ImageView>
       <Label layoutX="204.0" layoutY="89.0" mouseTransparent="true" prefHeight="18.0" prefWidth="42.0" text="Car" textFill="#2196f3">

@@ -5,7 +5,8 @@ requires java.sql;
 
 
     opens com.example.rentacarknk to javafx.fxml;
-    opens Controllers to javafx.graphics;
+exports com.example.rentacarknk;
+    opens Controllers to javafx.fxml;
     exports Controllers to javafx.graphics;
 
 
