@@ -14,7 +14,7 @@ public class Main extends Application {
 
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/Login.fxml"));
             Pane pane = fxmlLoader.load();
-            Scene scene = new Scene(pane,600,600);
+            Scene scene = new Scene(pane,700,700);
             primaryStage.setScene(scene);
             primaryStage.show();
             primaryStage.setResizable(false);
