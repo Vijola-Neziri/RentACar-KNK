@@ -11,13 +11,18 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException{
-
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/Login.fxml"));
-            Pane pane = fxmlLoader.load();
-            Scene scene = new Scene(pane,650,500);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            primaryStage.setResizable(false);
+        {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/Login.fxml"));
+                Pane pane = fxmlLoader.load();
+                Scene scene = new Scene(pane, 650, 500);
+                primaryStage.setScene(scene);
+                primaryStage.show();
+                primaryStage.setResizable(false);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+            }
 
 
         }
