@@ -22,22 +22,22 @@
                 <Font size="14.0" />
             </font>
         </PasswordField>
-        <Button layoutX="525.0" layoutY="33.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="88.0" style="-fx-background-color: #151928; -fx-border-color: #a0a2ab;" styleClass="-" text="Sign Up" textFill="#1b0101" />
+        <Button layoutX="525.0" layoutY="33.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="88.0" style="-fx-background-color: #2D3447; -fx-border-color: #a0a2ab;" styleClass="-" text="Sign Up" textFill="#a0a2ab" />
         <Button layoutX="362.0" layoutY="277.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Login" textFill="#a0a2ab" />
         <Button cancelButton="true" layoutX="240.0" layoutY="335.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="166.0" style="-fx-background-color: #2D3447;" text="Forgot Your Password?" textFill="#a0a2ab" underline="true" />
         <ImageView fitHeight="39.0" fitWidth="52.0" layoutX="142.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@11.png" />
+                <Image url="@../../../../../Desktop/FototKNK/usersignup.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="142.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@22.png" />
+                <Image url="@../../../../../Desktop/FototKNK/passwordsignup.png" />
             </image>
         </ImageView>
-        <ImageView fitHeight="94.0" fitWidth="146.0" layoutX="226.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="94.0" fitWidth="146.0" layoutX="269.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@66.png" />
+                <Image url="@../../../../../Desktop/FototKNK/fkryesore.png" />
             </image>
         </ImageView>
         <Label layoutX="240.0" layoutY="126.0" style="-fx-background-color: #2196t3;" text="Rent" textFill="#2196f3">
