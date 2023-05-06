@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="paneid" prefHeight="509.0" prefWidth="495.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.SignupFormController">
+<AnchorPane fx:id="paneid" prefHeight="509.0" prefWidth="495.0" style="-fx-background-color: #2D3447;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignupFormController">
    <children>
       <TextField fx:id="usernameid" layoutX="212.0" layoutY="101.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your username.." />
       <CheckBox fx:id="female" layoutX="314.0" layoutY="227.0" mnemonicParsing="false" text="Female" textFill="#a0a2ab" />
