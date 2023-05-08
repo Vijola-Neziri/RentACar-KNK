@@ -8,12 +8,11 @@ public class DBHandler extends Configs {
     Connection dbconnection;
 
     public Connection getConnection() {
-        String connectionString = "jdbc:mysql://"+dbhost+":"+dbport+"/"+dbname;
+        String connectionString = "jdbc:mysql://"+dbhost+":"+dbport+"/"+dbname+"?autoReconnect=true&useSSL=false";
         try {
            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-
         }
         try {
             dbconnection = DriverManager.getConnection(connectionString,dbuser,dbpass);
