@@ -3,18 +3,18 @@ package ConnectionMysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.concurrent.Callable;
 
-public class ConnectionUnit {
+public  class ConnectionUnit {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/KNKRentCar","root","Rinesa123.");
+        System.out.println("Connected");
 
-    private static Connection connection;
-
-    public static Connection getConnection() throws SQLException {
-        if (connection == null || connection.isClosed()) {
-            String url = "jdbc:mysql://localhost:3306/knk2023";
-            String user = "root";
-            String password = "****";
-            connection = DriverManager.getConnection(url, user, password);
-        }
-        return connection;
     }
+
 }
+
+
+
+
