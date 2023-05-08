@@ -59,7 +59,13 @@
       </Label>
       <TextField fx:id="name" layoutX="218.0" layoutY="106.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your name..." />
       <TextField fx:id="phoneid" layoutX="218.0" layoutY="274.0" prefHeight="26.0" prefWidth="175.0" promptText="+38344111222" />
+      <TextField layoutX="218.0" layoutY="327.0" prefHeight="26.0" prefWidth="175.0" promptText="example@gmail.com" />
       <Label layoutX="84.0" layoutY="279.0" prefHeight="18.0" prefWidth="94.0" text="Phone" textFill="#d48d36">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="332.0" prefHeight="18.0" prefWidth="70.0" text="Email" textFill="#d48d36">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
