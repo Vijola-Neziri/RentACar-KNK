@@ -12,6 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import ConnectionMysql.DBHandler;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,9 +30,6 @@ import javafx.util.Duration;
 public class SignupFormController {
     @FXML
     private TextField addressid;
-
-    @FXML
-    private TextField emailid;
 
     @FXML
     private CheckBox female;
@@ -78,64 +79,39 @@ public class SignupFormController {
     void signupaction(ActionEvent event) {
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.seconds(3));
-        pt.setOnFinished( ev ->
-                {
-                });
+        pt.setOnFinished(ev -> {
+        });
 
-        String insert = "INSERT INTO klientet(klient_username, emri_i_klientit, telefoni_i_klientit, email_i_klientit, adresa_e_klientit, fjalekalimi_i_klientit, gjinia)"
-                + "VALUES(?,?,?,?,?,?,?)";
-        connection = handler.getConnection();
-        try {
-            pst = connection.prepareStatement(insert);
-        } catch (SQLException e1) {
-          e1.printStackTrace();
-        }
+        String insert = "INSERT INTO klientet(klient_username, emri_i_klientit, telefoni_i_klientit, adresa_e_klientit, fjalekalimi_i_klientit, gjinia)"
+                + "VALUES(?,?,?,?,?,?)";
 
+
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+
+// Fut të dhënat në databazë
+        handler = new DBHandler();
         try {
             connection = handler.getConnection();
             pst = connection.prepareStatement(insert);
-            pst.setString(1,usernameid.getText());
+            pst.setString(1, usernameid.getText());
             pst.setString(2, name.getText());
             pst.setString(3, phoneid.getText());
-            pst.setString(4, emailid.getText());
-            pst.setString(5, addressid.getText());
-            pst.setString(6, passwordid.getText());
-            pst.setString(7, getGender());
-            int result = pst.executeUpdate();
+            pst.setString(4, addressid.getText());
+            pst.setString(5, passwordid.getText());
+            pst.setString(6,getGender());
 
-            if (result == 1) {
-                System.out.println("Regjistrimi u krye me sukses!");
-            } else {
-                System.err.println("Regjistrimi dështoi. Ju lutemi provoni përsëri!");
-            }
-
+            pst.executeUpdate();
+            connection.close();
         } catch (SQLException e) {
-            System.err.println("Gabim në lidhjen me databazë: " + e.getMessage());
-        } finally {
-            try {
-                if (pst != null) {
-                    pst.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Gabim në mbylljen e lidhjes me databazë: " + e.getMessage());
-            }
+            e.printStackTrace();
         }
-
     }
 
-    public void initialize(URL args0, ResourceBundle arg1) throws SQLException {
+        public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
+            signupid.setOnAction(this::signupaction);
+            handler = new DBHandler();
 
-    handler = new DBHandler();
-    }
-
-
-
-
-
-
+        }
 
 
 
