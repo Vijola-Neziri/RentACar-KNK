@@ -12,7 +12,6 @@ public class ErrorPopupComponent {
         }
         show(message);
     }
-
     public static void show(String message) {
         show(message, "ERROR");
     }
