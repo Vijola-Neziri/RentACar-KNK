@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -43,7 +44,7 @@ public class LoginFormController implements Initializable {
         PauseTransition pt=new PauseTransition();
         pt.setDuration(Duration.seconds(3));
         pt.setOnFinished(ev->{
-            System.out.print("Login Succesfully");
+
         });
         pt.play();
 
@@ -64,7 +65,10 @@ public class LoginFormController implements Initializable {
             if(count==1){
                 System.out.println("Login Successful");
             }else{
-                System.out.println("Username and password is not correct");
+                Alert alert=new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText("Username and Password is not correct");
+                alert.show();
             }
         } catch (SQLException e1) {
             e1.printStackTrace();
