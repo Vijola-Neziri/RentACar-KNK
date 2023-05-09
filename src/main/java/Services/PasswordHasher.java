@@ -1,11 +1,11 @@
 package Services;
 
-        import java.security.MessageDigest;
-        import java.security.NoSuchAlgorithmException;
-        import java.security.SecureRandom;
-        import java.util.Base64;
-public class PasswordHasher {
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Base64;
 
+public class PasswordHasher {
     private static final int SALT_LENGTH = 32; // length of salt in bytes
     private static final int HASH_LENGTH = 256; // length of hash in bytes
     private static final String HASH_ALGORITHM = "SHA-256";
@@ -15,7 +15,7 @@ public class PasswordHasher {
         SecureRandom random = new SecureRandom();
         byte[] salt = new byte[SALT_LENGTH];
         random.nextBytes(salt);
-        return Base64.getEncoder().encodeToString(salt);
+        return new String(salt);
     }
 
     public static String generateSaltedHash(String password, String salt) {
@@ -24,7 +24,7 @@ public class PasswordHasher {
         // Combine salt and hash into a single string
         StringBuilder sb = new StringBuilder(SALT_LENGTH + HASH_LENGTH);
 
-        byte[] saltBytes = salt.getBytes();
+        byte [] saltBytes = salt.getBytes();
         for (int i = 0; i < saltBytes.length; i++) {
             sb.append(String.format("%02x", saltBytes[i]));
         }
@@ -35,13 +35,8 @@ public class PasswordHasher {
     }
 
     public static boolean compareSaltedHash(String password, String salt, String saltedHash) {
-        byte[] expectedHash = new byte[HASH_LENGTH];
-        for (int i = 0; i < HASH_LENGTH; i++) {
-            int index = (SALT_LENGTH + i) * 2;
-            expectedHash[i] = (byte) Integer.parseInt(saltedHash.substring(index, index + 2), 16);
-        }
-        byte[] actualHash = hashWithSalt(password, salt);
-        return MessageDigest.isEqual(expectedHash, actualHash);
+        String e = generateSaltedHash(password, salt);
+        return saltedHash.equals(e);
     }
 
     private static byte[] hashWithSalt(String password, String salt) {
