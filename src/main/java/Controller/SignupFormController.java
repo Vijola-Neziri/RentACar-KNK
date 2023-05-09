@@ -73,6 +73,7 @@ public class SignupFormController {
             Scene scene = new Scene(pane);
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Log in");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
