@@ -1,6 +1,5 @@
 package Controller;
 
-import app.LoginForm;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,12 +19,9 @@ import ConnectionMysql.DBHandler;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import ConnectionMysql.DBHandler;
 import javafx.util.Duration;
 
 public class SignupFormController {
@@ -69,7 +65,7 @@ public class SignupFormController {
     public void loginaction(ActionEvent event) throws IOException {
         signupid.getScene().getWindow().hide();
         Stage login = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/LogInForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/src/main/views/LogInForm.fxml"));
         Scene scene = new Scene(root);
         login.setScene(scene);
         login.show();

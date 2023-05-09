@@ -69,7 +69,7 @@ public class LoginFormController implements Initializable {
                 Stage home = new Stage();
 
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/HomePage.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/Dashboard.fxml"));
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
                     home.setScene(scene);

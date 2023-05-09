@@ -14,7 +14,7 @@ public class LoginForm  extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/LogInForm.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane,500,600);
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Log in");
         primaryStage.show();
