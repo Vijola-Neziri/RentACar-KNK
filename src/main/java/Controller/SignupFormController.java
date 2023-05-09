@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -82,46 +79,56 @@ public class SignupFormController {
 
     @FXML
     void signupaction(ActionEvent event) {
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.seconds(3));
-        pt.setOnFinished(ev -> {
-        });
+        // Kontrollo nese të gjitha fushat janë të mbushura
+        if (usernameid.getText().isEmpty() || name.getText().isEmpty() || phoneid.getText().isEmpty() || addressid.getText().isEmpty() || passwordid.getText().isEmpty()) {
+            // Trego një alert nëse nuk janë të gjitha fushat e mbushura
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all fields!");
+            alert.showAndWait();
+        } else {
+            // Vazhdo nëse të gjitha fushat janë të mbushura
+            PauseTransition pt = new PauseTransition();
+            pt.setDuration(Duration.seconds(3));
+            pt.setOnFinished(ev -> {
+            });
 
-        String insert = "INSERT INTO klientet(klient_username, emri_i_klientit, telefoni_i_klientit, adresa_e_klientit, fjalekalimi_i_klientit, gjinia)"
-                + "VALUES(?,?,?,?,?,?)";
+            String insert = "INSERT INTO klientet(klient_username, emri_i_klientit, telefoni_i_klientit, adresa_e_klientit, fjalekalimi_i_klientit, gjinia)"
+                    + "VALUES(?,?,?,?,?,?)";
 
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
 
-        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            // Fut të dhënat në databazë
+            handler = new DBHandler();
+            try {
+                connection = handler.getConnection();
+                pst = connection.prepareStatement(insert);
+                pst.setString(1, usernameid.getText());
+                pst.setString(2, name.getText());
+                pst.setString(3, phoneid.getText());
+                pst.setString(4, addressid.getText());
+                pst.setString(5, passwordid.getText());
+                pst.setString(6,getGender());
 
-        // Fut të dhënat në databazë
-        handler = new DBHandler();
-        try {
-            connection = handler.getConnection();
-            pst = connection.prepareStatement(insert);
-            pst.setString(1, usernameid.getText());
-            pst.setString(2, name.getText());
-            pst.setString(3, phoneid.getText());
-            pst.setString(4, addressid.getText());
-            pst.setString(5, passwordid.getText());
-            pst.setString(6,getGender());
+                pst.executeUpdate();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 
-            pst.executeUpdate();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Shto këtë kod për të hapur "Dashboard.fxml"
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
-            Pane pane = fxmlLoader.load();
-            Scene scene = new Scene(pane);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Dashboard");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            // Shto këtë kod për të hapur "Dashboard.fxml"
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                Pane pane = fxmlLoader.load();
+                Scene scene = new Scene(pane);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("Dashboard");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
