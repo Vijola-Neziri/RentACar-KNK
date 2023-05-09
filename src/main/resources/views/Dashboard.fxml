@@ -28,7 +28,7 @@
          <children>
             <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@resources/style/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../java/resources/style/dashboard.css" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../java/resources/style/dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -108,7 +108,7 @@
                                  </font>
                                  <stylesheets>
                                     <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../java/resources/style/dashboard.css" />
+                                    <URL value="@../../java/resources/style/dashboard.css" />
                                  </stylesheets>
                               </Button>
                            </children>
@@ -118,7 +118,7 @@
                            </styleClass>
                            <stylesheets>
                               <URL value="@resources/style/dashboard.css" />
-                              <URL value="@../java/resources/style/dashboard.css" />
+                              <URL value="@../../java/resources/style/dashboard.css" />
                            </stylesheets>
                         </AnchorPane>
                      </children>
@@ -204,7 +204,7 @@
                                  </children>
                                  <stylesheets>
                                     <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../java/resources/style/dashboard.css" />
+                                    <URL value="@../../java/resources/style/dashboard.css" />
                                  </stylesheets>
                               </AnchorPane>
                               <AnchorPane layoutX="12.0" layoutY="191.0" prefHeight="357.0" prefWidth="874.0">
@@ -248,7 +248,7 @@
                                  </children>
                                  <stylesheets>
                                     <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../java/resources/style/dashboard.css" />
+                                    <URL value="@../../java/resources/style/dashboard.css" />
                                  </stylesheets>
                               </AnchorPane>
                            </children>
