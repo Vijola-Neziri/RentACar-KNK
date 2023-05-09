@@ -4,16 +4,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="469.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomePageController">
+<AnchorPane prefHeight="563.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomePageController">
    <children>
-      <Pane prefHeight="469.0" prefWidth="141.0" style="-fx-background-color: #000075;">
+      <Pane prefHeight="563.0" prefWidth="146.0" style="-fx-background-color: #000075;">
          <children>
             <ImageView fitHeight="48.0" fitWidth="71.0" layoutX="45.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -34,18 +33,18 @@
             </AnchorPane>
             <AnchorPane layoutX="-1.0" layoutY="259.0" prefHeight="151.0" prefWidth="141.0">
                <children>
-                  <Label layoutX="35.0" layoutY="14.0" text="Dashboard" textFill="WHITE">
+                  <Label layoutX="35.0" layoutY="47.0" text="Dashboard" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="41.0" layoutY="42.0" mnemonicParsing="false" text="My Cars" />
-                  <Button layoutX="39.0" layoutY="76.0" mnemonicParsing="false" text="Add Cars" />
-                  <Button layoutX="44.0" layoutY="111.0" mnemonicParsing="false" text="History" />
+                  <Button layoutX="41.0" layoutY="89.0" mnemonicParsing="false" text="My Cars" />
+                  <Button layoutX="39.0" layoutY="138.0" mnemonicParsing="false" text="Add Cars" />
                </children>
             </AnchorPane>
-            <Button layoutX="35.0" layoutY="430.0" mnemonicParsing="false" style="-fx-border-color: #FFFFFF;" text="Contact us" />
-            <Line endX="76.33334350585938" layoutX="45.0" layoutY="418.0" startX="-27.666656494140625" stroke="#fff9f9" />
+            <Button layoutX="36.0" layoutY="511.0" mnemonicParsing="false" style="-fx-border-color: #FFFFFF;" text="Contact us" />
+            <Line endX="76.33334350585938" layoutX="48.0" layoutY="490.0" startX="-27.666656494140625" stroke="#fff9f9" />
+            <Button layoutX="43.0" layoutY="447.0" mnemonicParsing="false" text="History" />
          </children>
       </Pane>
       <Separator layoutX="141.0" layoutY="52.0" prefHeight="1.0" prefWidth="464.0" />
