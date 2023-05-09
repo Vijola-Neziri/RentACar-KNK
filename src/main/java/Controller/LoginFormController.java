@@ -69,7 +69,7 @@ public class LoginFormController implements Initializable {
                 Stage home = new Stage();
 
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/Dashboard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
                     home.setScene(scene);
@@ -99,8 +99,9 @@ finally {
    public void signupaction(ActionEvent event) throws IOException {
         loginid.getScene().getWindow().hide();
         Stage signup=new Stage();
-        Parent root= FXMLLoader.load(getClass().getResource("/SignUpForm.fxml"));
-        Scene scene=new Scene(root);
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/SignUpForm.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene=new Scene(pane);
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);

@@ -1,5 +1,6 @@
 package Controller;
 
+import app.LoginForm;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -64,10 +66,11 @@ public class SignupFormController {
     @FXML
     public void loginaction(ActionEvent event) throws IOException {
         signupid.getScene().getWindow().hide();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+        Scene pane = fxmlLoader.load();
         Stage login = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/src/main/views/LogInForm.fxml"));
-        Scene scene = new Scene(root);
-        login.setScene(scene);
+        login.setScene(pane);
         login.show();
         login.setResizable(false);
     }
@@ -85,7 +88,7 @@ public class SignupFormController {
 
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
 
-// Fut të dhënat në databazë
+        // Fut të dhënat në databazë
         handler = new DBHandler();
         try {
             connection = handler.getConnection();
@@ -103,9 +106,21 @@ public class SignupFormController {
             e.printStackTrace();
         }
 
+        // Shto këtë kod për të hapur "Dashboard.fxml"
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/LogInForm.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-        public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
+
+    public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
             signupid.setOnAction(this::signupaction);
             handler = new DBHandler();
 
