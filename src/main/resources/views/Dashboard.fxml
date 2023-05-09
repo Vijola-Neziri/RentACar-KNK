@@ -24,15 +24,15 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@resources/dashboard.css">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@css/dashboard.css">
          <children>
-            <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@resources/style/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <left>
-                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../../java/resources/style/dashboard.css" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../OneDrive/Desktop/user.png" />
+                              <Image url="@../resources/Fotot/user.png" />
                            </image>
                         </ImageView>
                         <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
@@ -41,7 +41,7 @@
                            </font>
                         </Label>
                         <Line endX="48.30000305175781" endY="-1.52587890625E-5" layoutX="125.0" layoutY="278.0" startX="-100.0" stroke="WHITE" />
-                        <Button fx:id="home_btn" layoutX="26.0" layoutY="307.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@resources/style/dashboard.css" text="Home" />
+                        <Button fx:id="home_btn" layoutX="26.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Home" />
                         <Label layoutX="60.0" layoutY="516.0" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -49,17 +49,17 @@
                         </Label>
                         <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../OneDrive/Desktop/home.png" />
+                              <Image url="@../resources/Fotot/Car-Login.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@resources/style/dashboard.css" text="Sign out" textFill="WHITE">
+                        <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@css/dashboard.css" text="Sign out" textFill="WHITE">
                            <styleClass>
                               <String fx:value="logout-btn" />
                               <String fx:value="logout-btn" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="availableCars_btn" layoutX="44.0" layoutY="341.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" styleClass="nav-btn" stylesheets="@resources/style/dashboard.css" text="Avaiable Cars" />
-                        <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@resources/style/dashboard.css" text="Rent a Car" />
+                        <Button fx:id="availableCars_btn" layoutX="44.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="109.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Avaiable Cars" />
+                        <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Rent a Car" />
                         <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                            <image>
 <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
@@ -67,7 +67,7 @@
                         </ImageView>
                         <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="26.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../OneDrive/Desktop/carlogo1.jpg" />
+                              <Image url="@../resources/Fotot/carlogo1.jpg" />
                            </image>
                         </ImageView>
                         <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="Admin" textFill="#fff7f7">
@@ -83,13 +83,13 @@
                   </AnchorPane>
                </left>
                <top>
-                  <AnchorPane prefHeight="35.0" prefWidth="1099.0" styleClass="top-form" stylesheets="@resources/style/dashboard.css" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="35.0" prefWidth="1099.0" styleClass="top-form" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <AnchorPane layoutX="92.0" layoutY="-86.0" prefHeight="114.4" prefWidth="1099.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../../OneDrive/Desktop/carlogo1.jpg" />
+                                    <Image url="@../resources/Fotot/carlogo1.jpg" />
                                  </image>
                               </ImageView>
                               <Label layoutX="44.0" layoutY="12.0" text="Car Rental Managament System">
@@ -97,7 +97,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="close" layoutX="1073.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@resources/style/dashboard.css" text="x">
+                              <Button fx:id="close" layoutX="1073.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@css/dashboard.css" text="x">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
                                  </font>
@@ -107,8 +107,8 @@
                                     <Font name="System Bold" size="13.0" />
                                  </font>
                                  <stylesheets>
-                                    <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../../java/resources/style/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
                                  </stylesheets>
                               </Button>
                            </children>
@@ -117,8 +117,8 @@
                               <String fx:value="shadow" />
                            </styleClass>
                            <stylesheets>
-                              <URL value="@resources/style/dashboard.css" />
-                              <URL value="@../../java/resources/style/dashboard.css" />
+                              <URL value="@css/dashboard.css" />
+                              <URL value="@css/dashboard.css" />
                            </stylesheets>
                         </AnchorPane>
                      </children>
@@ -127,9 +127,9 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane layoutY="14.0" prefHeight="164.0" prefWidth="874.0">
+                              <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="164.0" prefWidth="874.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
@@ -139,7 +139,7 @@
                                        <children>
                                           <ImageView fx:id="home_availableCars" fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../../../../../OneDrive/Desktop/carlogo1.jpg" />
+                                                <Image url="@../resources/Fotot/carlogo1.jpg" />
                                              </image>
                                           </ImageView>
                                           <Label layoutX="25.0" layoutY="106.0" text="Available Cars" textAlignment="CENTER" textFill="#fffcfc">
@@ -162,7 +162,7 @@
                                              <children>
                                                 <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../../../../OneDrive/Desktop/dollar.png" />
+                                                      <Image url="@../resources/Fotot/dollar.png" />
                                                    </image>
                                                 </ImageView>
                                                 <Label layoutX="25.0" layoutY="106.0" text="Total Income" textAlignment="CENTER" textFill="#fffcfc">
@@ -185,7 +185,7 @@
                                              <children>
                                                 <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
-                                                      <Image url="@../../../../../OneDrive/Desktop/users.png" />
+                                                      <Image url="@../resources/Fotot/Car-Login.png" />
                                                    </image>
                                                 </ImageView>
                                                 <Label layoutX="25.0" layoutY="106.0" text="Total Customers" textAlignment="CENTER" textFill="#fffcfc">
@@ -203,8 +203,8 @@
                                        </children></AnchorPane>
                                  </children>
                                  <stylesheets>
-                                    <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../../java/resources/style/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
                                  </stylesheets>
                               </AnchorPane>
                               <AnchorPane layoutX="12.0" layoutY="191.0" prefHeight="357.0" prefWidth="874.0">
@@ -247,8 +247,8 @@
                                     </AnchorPane>
                                  </children>
                                  <stylesheets>
-                                    <URL value="@resources/style/dashboard.css" />
-                                    <URL value="@../../java/resources/style/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
+                                    <URL value="@css/dashboard.css" />
                                  </stylesheets>
                               </AnchorPane>
                            </children>

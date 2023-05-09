@@ -23,12 +23,11 @@ public class DashboardForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/Dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane,1100,600);
-//        scene.getStylesheets().add(getClass().getResource("/css/dashboard.css").toExternalForm());
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Dashboard");
+        primaryStage.setTitle("Log in");
         primaryStage.show();
 
 
