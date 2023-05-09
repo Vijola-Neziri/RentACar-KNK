@@ -1,11 +1,13 @@
 package Controller;
 
+import app.LoginForm;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -37,7 +39,8 @@ public class HomePageController implements Initializable {
     }
     private void createPage() {
         try {
-            home = FXMLLoader.load(getClass().getResource("/FXML/HOME.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/HOME.fxml"));
+            home = fxmlLoader.load();
             setNode(home);
         }catch (IOException e){
             e.printStackTrace();
