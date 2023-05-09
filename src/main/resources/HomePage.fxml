@@ -49,9 +49,9 @@
       </Pane>
       <Separator layoutX="141.0" layoutY="52.0" prefHeight="1.0" prefWidth="464.0" />
       <Label contentDisplay="GRAPHIC_ONLY" layoutX="553.0" layoutY="14.0" nodeOrientation="LEFT_TO_RIGHT" text="Label" />
-      <ToolBar layoutX="145.0" layoutY="3.0" prefHeight="48.0" prefWidth="464.0">
+      <ToolBar layoutX="145.0" layoutY="-6.0" prefHeight="57.0" prefWidth="570.0">
          <items>
-            <Label text="Welcome" />
+            <Label text="  Welcome" />
          </items>
       </ToolBar>
       <ImageView fitHeight="23.0" fitWidth="17.0" layoutX="576.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">

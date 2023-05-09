@@ -1,5 +1,6 @@
 package Controller;
 
+import app.LoginForm;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -105,6 +106,7 @@ public class SignupFormController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 
         public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
