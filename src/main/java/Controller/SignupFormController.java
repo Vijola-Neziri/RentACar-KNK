@@ -66,13 +66,17 @@ public class SignupFormController {
     @FXML
     public void loginaction(ActionEvent event) throws IOException {
         signupid.getScene().getWindow().hide();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
-        Scene pane = fxmlLoader.load();
-        Stage login = new Stage();
-        login.setScene(pane);
-        login.show();
-        login.setResizable(false);
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/LogInForm.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -108,7 +112,7 @@ public class SignupFormController {
 
         // Shto këtë kod për të hapur "Dashboard.fxml"
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/LogInForm.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
             Pane pane = fxmlLoader.load();
             Scene scene = new Scene(pane);
             Stage stage = new Stage();
