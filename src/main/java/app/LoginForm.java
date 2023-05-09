@@ -18,8 +18,7 @@ public class LoginForm extends Application {
         Label primeDriveLabel = new Label("PrimeDrive");
         primeDriveLabel.setStyle("-fx-font-size: 36px; -fx-font-weight: bold; -fx-alignment: center;");
 
-
-
+        // Shtimi i nje Label
         pane.getChildren().add(primeDriveLabel);
         primeDriveLabel.setLayoutX(pane.getWidth() / 2 - primeDriveLabel.getWidth() / 2);
         primeDriveLabel.setLayoutY(pane.getHeight() / 2 - primeDriveLabel.getHeight() / 2);
