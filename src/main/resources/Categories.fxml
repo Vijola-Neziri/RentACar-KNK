@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:id="categorie" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CategoriesControllers">
+<AnchorPane fx:id="categorie" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="436.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CategoriesController">
    <children>
       <VBox prefHeight="436.0" prefWidth="90.0" style="-fx-background-color: #d48d36;" />
       <HBox layoutX="-4.0" prefHeight="82.0" prefWidth="602.0" style="-fx-background-color: #2D3447;">
@@ -54,12 +54,12 @@
          </font>
       </Label>
       <TextField fx:id="pricefordayid" layoutX="261.0" layoutY="229.0" prefHeight="26.0" prefWidth="194.0" promptText="Enter price ...." />
-      <Button fx:id="ctgnext" layoutX="409.0" layoutY="312.0" mnemonicParsing="false" onAction="#categorienextbutton" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #639bcc;" text="Next">
+      <Button fx:id="categorienext" layoutX="409.0" layoutY="312.0" mnemonicParsing="false" onAction="#categorienextbutton" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #639bcc;" text="Next">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="ctgback" layoutX="309.0" layoutY="312.0" mnemonicParsing="false" onAction="#categoriebackbutton" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #639bcc;" text="  Back">
+      <Button fx:id="categorieback" layoutX="309.0" layoutY="312.0" mnemonicParsing="false" onAction="#categoriebackbutton" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: #639bcc;" text="  Back">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

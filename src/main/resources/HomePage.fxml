@@ -17,7 +17,7 @@
          <children>
             <ImageView fitHeight="48.0" fitWidth="71.0" layoutX="45.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../carlogo.jpg" />
+
                </image>
             </ImageView>
             <Label layoutX="19.0" layoutY="82.0" text="Cars Review" textFill="WHITE">
@@ -57,7 +57,7 @@
       </ToolBar>
       <ImageView fitHeight="23.0" fitWidth="17.0" layoutX="576.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../dots.png" />
+
          </image>
       </ImageView>
    </children>
