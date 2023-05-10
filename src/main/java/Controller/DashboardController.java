@@ -212,6 +212,13 @@ private Label home_availableCars;
     private ResultSet result;
     private Statement statement;
     private Image image;
+
+
+    @FXML
+    private void handleLogoutButtonAction(ActionEvent event) {
+        Stage stage = (Stage) logoutBtn.getScene().getWindow();
+        stage.close();
+    }
     public void homeAvailableCars(){
 
         String sql = "SELECT COUNT(id) FROM car WHERE status = 'Available'";

@@ -13,7 +13,7 @@ public class SignupForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/SignUpForm.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(SignupForm.class.getResource("/views/SignUpForm.fxml"));
         Pane pane = fxmlLoader.load();
 
         Label primeDriveLabel = new Label("PrimeDrive");
@@ -24,7 +24,7 @@ public class SignupForm extends Application {
         primeDriveLabel.setLayoutY(pane.getHeight() / 2 - primeDriveLabel.getHeight() / 2);
 
 
-        Scene scene = new Scene(pane,450,500);
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Sign up");
         primaryStage.show();
