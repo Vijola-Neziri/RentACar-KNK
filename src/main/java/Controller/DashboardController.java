@@ -958,49 +958,49 @@ private String[] listStatus ={"Available","Not Available"};
     private double x = 0;
     private double y = 0;
 
-    public void logut(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Message");
-        alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to logout");
-        Optional<ButtonType> option = alert.showAndWait();
-
-        try {
-            if (option.get().equals(ButtonType.OK)) {
-                // HIDE YOUR DASHBOARD FORM
-                logoutBtn.getScene().getWindow().hide();
-
-                // LINK YOUR LOGIN FORM
-                Parent root = FXMLLoader.load(getClass().getResource("LogInForm.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
-
-                root.setOnMousePressed((MouseEvent event) -> {
-                    x = event.getSceneX();
-                    y = event.getSceneY();
-                });
-
-                root.setOnMouseDragged((MouseEvent event) -> {
-                    stage.setX(event.getScreenX() - x);
-                    stage.setY(event.getScreenY() - y);
-
-                    stage.setOpacity(.8);
-                });
-
-                root.setOnMouseReleased((MouseEvent event) -> {
-                    stage.setOpacity(1);
-                });
-
-                stage.initStyle(StageStyle.TRANSPARENT);
-
-                stage.setScene(scene);
-                stage.show();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    }
+//    public void logut(){
+//        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//        alert.setTitle("Confirmation Message");
+//        alert.setHeaderText(null);
+//        alert.setContentText("Are you sure you want to logout");
+//        Optional<ButtonType> option = alert.showAndWait();
+//
+//        try {
+//            if (option.get().equals(ButtonType.OK)) {
+//                // HIDE YOUR DASHBOARD FORM
+//                logoutBtn.getScene().getWindow().hide();
+//
+//                // LINK YOUR LOGIN FORM
+//                Parent root = FXMLLoader.load(getClass().getResource("LogInForm.fxml"));
+//                Stage stage = new Stage();
+//                Scene scene = new Scene(root);
+//
+//                root.setOnMousePressed((MouseEvent event) -> {
+//                    x = event.getSceneX();
+//                    y = event.getSceneY();
+//                });
+//
+//                root.setOnMouseDragged((MouseEvent event) -> {
+//                    stage.setX(event.getScreenX() - x);
+//                    stage.setY(event.getScreenY() - y);
+//
+//                    stage.setOpacity(.8);
+//                });
+//
+//                root.setOnMouseReleased((MouseEvent event) -> {
+//                    stage.setOpacity(1);
+//                });
+//
+//                stage.initStyle(StageStyle.TRANSPARENT);
+//
+//                stage.setScene(scene);
+//                stage.show();
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    }
 
     public void switchForm(ActionEvent event) {
 
