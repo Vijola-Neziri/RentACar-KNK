@@ -248,7 +248,7 @@ public class DashboardController implements Initializable {
 
         int countTC = 0;
 
-        connect = DBHandler.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             prepare = connect.prepareStatement(sql);
@@ -268,7 +268,7 @@ public class DashboardController implements Initializable {
 
         String sql = "SELECT date_rented, SUM(total) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
 
-        connect = DBHandler.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             XYChart.Series chart = new XYChart.Series();
@@ -328,7 +328,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "INSERT INTO car (car_id, brand, model, price, status, image, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
-        connect = DBHandler.connectDb();
+        connect = DBHandler.getConnection();
 
         try {
             Alert alert;
@@ -390,7 +390,7 @@ private String[] listStatus ={"Available","Not Available"};
                 + availableCars_price.getText() + "', image = '" + uri
                 + "' WHERE car_id = '" + availableCars_carid.getText() + "'";
 
-        connect = DBHandler.connectDb();
+        connect = DBHandler.getConnection();
 
         try {
             Alert alert;
@@ -469,7 +469,7 @@ private String[] listStatus ={"Available","Not Available"};
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
         String sql = "Select * from car";
-        connect = database.connectDB();
+        connect = DBHandler.getConnection();
         try {
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
@@ -577,7 +577,7 @@ private String[] listStatus ={"Available","Not Available"};
                 + ", model, total, date_rented, date_return) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             Alert alert;
@@ -655,7 +655,7 @@ private String[] listStatus ={"Available","Not Available"};
     public void rentCustomerId(){
         String sql = "SELECT id FROM customer";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             prepare = connect.prepareStatement(sql);
@@ -741,7 +741,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT price, model FROM car WHERE model = '"
                 +rent_model.getSelectionModel().getSelectedItem()+"'";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             prepare = connect.prepareStatement(sql);
@@ -780,7 +780,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "SELECT * FROM car WHERE status = 'Available'";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try {
             prepare = connect.prepareStatement(sql);
@@ -808,7 +808,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "SELECT * FROM car";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try {
             prepare = connect.prepareStatement(sql);
@@ -838,7 +838,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT * FROM car WHERE car_id = '"
                 + rent_carid.getSelectionModel().getSelectedItem() + "'";
 
-        connect = database.connectDb();
+        connect =DBHandler.getConnection();
 
         try {
             prepare = connect.prepareStatement(sql);
@@ -865,7 +865,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT * FROM car WHERE brand = '"
                 + rent_brand.getSelectionModel().getSelectedItem() + "'";
 
-        connect = database.connectDb();
+        connect =DBHandler.getConnection();
 
         try {
             prepare = connect.prepareStatement(sql);
@@ -905,7 +905,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "DELETE FROM car WHERE car_id = '" + availableCars_carid.getText() + "'";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try {
             Alert alert;
