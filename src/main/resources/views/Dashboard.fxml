@@ -127,7 +127,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="164.0" prefWidth="874.0">
                                  <styleClass>
@@ -137,7 +137,7 @@
                                  <children>
                                     <AnchorPane layoutX="14.0" layoutY="8.0" prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
                                        <children>
-                                          <ImageView fx:id="home_availableCars" fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../resources/Fotot/carlogo1.jpg" />
                                              </image>
@@ -147,7 +147,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">
+                                          <Label fx:id="home_availableCars" alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
@@ -158,7 +158,7 @@
                                           <Insets />
                                        </opaqueInsets>
                                        <children>
-                                          <AnchorPane fx:id="home_totalIncome" prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
+                                          <AnchorPane prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
                                              <children>
                                                 <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -170,7 +170,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="\$0.0" textAlignment="CENTER" textFill="#fffcfc">
+                                                <Label fx:id="home_totalIncome" alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="\$0.0" textAlignment="CENTER" textFill="#fffcfc">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -181,7 +181,7 @@
                                     </AnchorPane>
                                     <AnchorPane layoutX="604.0" layoutY="8.0" prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
                                        <children>
-                                          <AnchorPane fx:id="home_totalCustomers" layoutX="6.0" prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
+                                          <AnchorPane layoutX="6.0" prefHeight="147.0" prefWidth="255.0" styleClass="nav-form">
                                              <children>
                                                 <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -193,7 +193,7 @@
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Label>
-                                                <Label alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">
+                                                <Label fx:id="home_totalCustomers" alignment="CENTER_RIGHT" layoutX="154.0" layoutY="14.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -331,7 +331,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="rent_form" layoutX="320.0" layoutY="78.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="rent_form" layoutX="320.0" layoutY="78.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="10.0" layoutY="14.0" prefHeight="200.0" prefWidth="878.0">
                                  <styleClass>

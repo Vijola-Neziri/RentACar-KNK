@@ -99,8 +99,11 @@ public class DashboardController implements Initializable {
     @FXML
     private Button close;
 
-    @FXML
-    private ImageView home_availableCars;
+//    @FXML
+//    private ImageView home_availableCars;
+@FXML
+private Label home_availableCars;
+
 
     @FXML
     private Button home_btn;
@@ -111,11 +114,17 @@ public class DashboardController implements Initializable {
     @FXML
     private BarChart<?, ?> home_incomeChart;
 
-    @FXML
-    private AnchorPane home_totalCustomers;
+//    @FXML
+//    private AnchorPane home_totalCustomers;
+//
+//    @FXML
+//    private AnchorPane home_totalIncome;
 
     @FXML
-    private AnchorPane home_totalIncome;
+    private Label home_totalCustomers;
+
+    @FXML
+    private Label home_totalIncome;
 
     @FXML
     private Button logoutBtn;
@@ -257,7 +266,7 @@ public class DashboardController implements Initializable {
             while(result.next()){
                 countTC = result.getInt("COUNT(id)");
             }
-            home_totalCustomers.setText(String.valueOf(countTC));
+//            home_totalCustomers.setText(String.valueOf(countTC));
         }catch(Exception e){e.printStackTrace();}
 
     }
@@ -284,9 +293,7 @@ public class DashboardController implements Initializable {
 
         }catch(Exception e){e.printStackTrace();}
     }
-//    }THAT IS IT FOR THIS VIDEO, THANKS FOR WATCHING!
-//     DONT FORGET TO SUBSCRIBE OUR CHANNEL FOR MORE UNIQUE TUTORIALS : )
-//     THANKS FOR THE SUPPORT GUYS!
+
 
 
     public void homeCustomerChart(){
