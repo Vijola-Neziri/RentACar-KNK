@@ -422,7 +422,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label fx:id="rent_tableView" layoutX="18.0" layoutY="14.0" prefHeight="29.0" prefWidth="150.0" text="Available Cars">
+                                    <Label layoutX="18.0" layoutY="14.0" prefHeight="29.0" prefWidth="150.0" text="Available Cars">
                                        <font>
                                           <Font name="Arial Bold" size="18.0" />
                                        </font>
