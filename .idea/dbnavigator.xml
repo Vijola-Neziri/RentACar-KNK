@@ -29,9 +29,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="772b42ec-7729-433f-80b7-2c0a5ccfcdcd" object-ref="schemas/rent/tables/klientet_signup" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-actions connection-id="73cdb013-51cb-49bb-91f4-9a14d263ac22" dataset="knkrent.klientet_signup" active-filter-id="8ea333b2-fdbc-466e-8bf5-7b39e50cefe2">
