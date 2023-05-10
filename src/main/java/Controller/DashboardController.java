@@ -3,6 +3,7 @@ package Controller;
 import ConnectionMysql.DBHandler;
 import Services.carData;
 import Services.getData;
+import app.LoginForm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,12 +22,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -325,6 +328,25 @@ private Label home_availableCars;
         }catch(Exception e){e.printStackTrace();}
 
     }
+    @FXML
+    public void nextfoto(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
+
+    @FXML
+    public void backtoslide(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
 private String[] listStatus ={"Available","Not Available"};
     public void availableCarStatusList() {
 
@@ -392,6 +414,7 @@ private String[] listStatus ={"Available","Not Available"};
         }
 
     }
+
 
     public void availableCarUpdate() {
 

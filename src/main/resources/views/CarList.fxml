@@ -225,7 +225,7 @@
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="nextFotot" layoutX="841.0" layoutY="248.0" mnemonicParsing="false" onAction="#nextofotot" prefHeight="36.0" prefWidth="32.0" styleClass="nav-form" stylesheets="@css/dashboard.css" text="&gt;" textFill="WHITE">
+                                    <Button fx:id="nextFotot" layoutX="841.0" layoutY="248.0" mnemonicParsing="false" onAction="#nextfoto" prefHeight="36.0" prefWidth="32.0" styleClass="nav-form" stylesheets="@css/dashboard.css" text="&gt;" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
