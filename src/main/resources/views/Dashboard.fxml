@@ -344,19 +344,19 @@
                                           <Font name="Tahoma" size="13.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../../java/css/dashboard.css" />
+                                    <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
                                     <Label layoutX="25.0" layoutY="62.0" text="Brand:">
                                        <font>
                                           <Font name="Tahoma" size="13.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../../java/css/dashboard.css" />
+                                    <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
                                     <Label layoutX="25.0" layoutY="104.0" text="Model:">
                                        <font>
                                           <Font name="Tahoma" size="13.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../../java/css/dashboard.css" />
+                                    <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
                                     <Label layoutX="269.0" layoutY="25.0" text="First Name:">
                                        <font>
                                           <Font name="Tahoma" size="13.0" />
