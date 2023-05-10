@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBHandler extends Configs {
-    Connection dbconnection;
+    static Connection dbconnection;
 
-    public Connection getConnection () {
+    public static Connection getConnection () {
         String connectionString = "jdbc:mysql://"+dbhost+":"+dbport+"/"+dbname+"?autoReconnect=true&useSSL=false";
         try {
            Class.forName("com.mysql.cj.jdbc.Driver");

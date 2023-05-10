@@ -1,5 +1,6 @@
 package Controller;
 
+import ConnectionMysql.DBHandler;
 import Services.carData;
 import Services.getData;
 import javafx.collections.FXCollections;
@@ -206,7 +207,7 @@ public class DashboardController implements Initializable {
 
         String sql = "SELECT COUNT(id) FROM car WHERE status = 'Available'";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
         int countAC = 0;
         try{
             prepare = connect.prepareStatement(sql);
@@ -227,7 +228,7 @@ public class DashboardController implements Initializable {
 
         double sumIncome = 0;
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             prepare = connect.prepareStatement(sql);
@@ -247,7 +248,7 @@ public class DashboardController implements Initializable {
 
         int countTC = 0;
 
-        connect = database.connectDb();
+        connect = DBHandler.connectDb();
 
         try{
             prepare = connect.prepareStatement(sql);
@@ -267,7 +268,7 @@ public class DashboardController implements Initializable {
 
         String sql = "SELECT date_rented, SUM(total) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
 
-        connect = database.connectDb();
+        connect = DBHandler.connectDb();
 
         try{
             XYChart.Series chart = new XYChart.Series();
@@ -293,7 +294,7 @@ public class DashboardController implements Initializable {
 
         String sql = "SELECT date_rented, COUNT(id) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
-        connect = database.connectDb();
+        connect = DBHandler.getConnection();
 
         try{
             XYChart.Series chart = new XYChart.Series();
@@ -327,7 +328,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "INSERT INTO car (car_id, brand, model, price, status, image, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
-        connect = database.connectDb();
+        connect = DBHandler.connectDb();
 
         try {
             Alert alert;
@@ -389,7 +390,7 @@ private String[] listStatus ={"Available","Not Available"};
                 + availableCars_price.getText() + "', image = '" + uri
                 + "' WHERE car_id = '" + availableCars_carid.getText() + "'";
 
-        connect = database.connectDb();
+        connect = DBHandler.connectDb();
 
         try {
             Alert alert;
