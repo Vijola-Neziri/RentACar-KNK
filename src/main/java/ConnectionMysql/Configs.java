@@ -6,6 +6,6 @@ public class Configs {
     protected static String dbport ="3306";
     protected static String dbuser = "root";
     protected static String dbpass = "Rinesa123.";
-    protected static String  dbname = "KNKRentCar";
+    protected static String  dbname ="RENT";
 
 }

@@ -51,7 +51,7 @@ public class LoginFormController implements Initializable {
         pt.play();
 
         connection = handler.getConnection();
-        String query1 = "SELECT * FROM klientet where klient_username=? and fjalekalimi_i_klientit=?";
+        String query1 = "SELECT * FROM klientet_signup where klient_username=? and fjalekalimi_i_klientit=?";
 
         try {
             pst = connection.prepareStatement(query1);

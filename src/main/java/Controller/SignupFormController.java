@@ -27,6 +27,7 @@ public class SignupFormController {
     @FXML
     private TextField addressid;
 
+
     @FXML
     private CheckBox female;
 
@@ -94,44 +95,46 @@ public class SignupFormController {
             pt.setOnFinished(ev -> {
             });
 
-            String insert = "INSERT INTO klientet(klient_username, emri_i_klientit, telefoni_i_klientit, adresa_e_klientit, fjalekalimi_i_klientit, gjinia)"
-                    + "VALUES(?,?,?,?,?,?)";
-
             ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
 
             // Fut të dhënat në databazë
             handler = new DBHandler();
             try {
                 connection = handler.getConnection();
+                String insert = "INSERT INTO klientet_signup ( emri_i_klientit, klient_username, fjalekalimi_i_klientit ,telefoni_i_klientit ,adresa_e_klientit, gjinia) " +
+                        "VALUES(?,?,?,?,?,?)";
                 pst = connection.prepareStatement(insert);
-                pst.setString(1, usernameid.getText());
-                pst.setString(2, name.getText());
-                pst.setString(3, phoneid.getText());
-                pst.setString(4, addressid.getText());
-                pst.setString(5, passwordid.getText());
-                pst.setString(6,getGender());
+                pst.setString(1, name.getText());
+                pst.setString(2, usernameid.getText());
+                pst.setString(3, passwordid.getText());
+                pst.setString(4, phoneid.getText());
+                pst.setString(5, addressid.getText());
+                pst.setString(6, getGender());
 
                 pst.executeUpdate();
                 connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
 
-            // Shto këtë kod për të hapur "Dashboard.fxml"
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
-                Pane pane = fxmlLoader.load();
-                Scene scene = new Scene(pane);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Dashboard");
-                stage.show();
-            } catch (IOException e) {
+                // Shto këtë kod për të hapur "Dashboard.fxml"
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                    Pane pane = fxmlLoader.load();
+                    Scene scene = new Scene(pane);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.setTitle("Dashboard");
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Mbyll dritaren e regjistrimit
+                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
     }
-
 
     public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
             signupid.setOnAction(this::signupaction);

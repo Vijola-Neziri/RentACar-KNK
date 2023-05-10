@@ -221,7 +221,7 @@ private Label home_availableCars;
     }
     public void homeAvailableCars(){
 
-        String sql = "SELECT COUNT(id_makina) FROM makina WHERE statusiMakines = 'Available'";
+        String sql = "SELECT COUNT(makina_id) FROM makina WHERE statusiMakina = 'Available'";
 
         connect = DBHandler.getConnection();
         int countAC = 0;
@@ -230,7 +230,7 @@ private Label home_availableCars;
             result = prepare.executeQuery();
 
             while(result.next()){
-                countAC = result.getInt("COUNT(id_makina)");
+                countAC = result.getInt("COUNT(makina_id)");
             }
 
             home_availableCars.setText(String.valueOf(countAC));
@@ -240,7 +240,7 @@ private Label home_availableCars;
     }
 
     public void homeTotalIncome(){
-        String sql = "SELECT SUM(total) FROM klientet";
+        String sql = "SELECT SUM(total) FROM klientet ";
 
         double sumIncome = 0;
 
@@ -306,7 +306,7 @@ private Label home_availableCars;
     public void homeCustomerChart(){
         home_customerChart.getData().clear();
 
-        String sql = "SELECT date_rented, COUNT(id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+        String sql = "SELECT date_rented, COUNT(klient_id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
         connect = DBHandler.getConnection();
 
@@ -339,7 +339,7 @@ private String[] listStatus ={"Available","Not Available"};
     }
     public void availableCarAdd() {
 
-        String sql = "INSERT INTO makina (id_makina, brand_makina, modeli_makina, cmimi_makina, statusiMakines, foto_makina, date) "
+        String sql = "INSERT INTO makina(makina_id, brand_makina, model_makina, cmimi_makina, statusiMakines, foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -588,7 +588,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "INSERT INTO klientet "
                 + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
-                + ", model_makina, total, date_rented, date_return) "
+                + ", model_makina, total, date_rented, date_returned) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -792,7 +792,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarCarId() {
 
-        String sql = "SELECT * FROM makina WHERE status = 'Available'";
+        String sql = "SELECT * FROM makina WHERE statusiMakina = 'Available'";
 
         connect = DBHandler.getConnection();
 
@@ -876,7 +876,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarModel() {
 
-        String sql = "SELECT * FROM makina WHERE brand = '"
+        String sql = "SELECT * FROM makina WHERE brand_makina = '"
                 + rent_brand.getSelectionModel().getSelectedItem() + "'";
 
         connect =DBHandler.getConnection();
@@ -908,7 +908,7 @@ private String[] listStatus ={"Available","Not Available"};
         rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
         rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status_makina"));
+        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
 
         rent_tableView.setItems(rentCarList);
     }

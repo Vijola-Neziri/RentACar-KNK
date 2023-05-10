@@ -71,13 +71,7 @@
       </Label>
       <TextField fx:id="name" layoutX="544.0" layoutY="96.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your name..." />
       <TextField fx:id="phoneid" layoutX="544.0" layoutY="276.0" prefHeight="26.0" prefWidth="175.0" promptText="+38344111222" />
-      <TextField layoutX="544.0" layoutY="339.0" prefHeight="26.0" prefWidth="175.0" promptText="example@gmail.com" />
       <Label layoutX="447.0" layoutY="279.0" prefHeight="18.0" prefWidth="94.0" text="Phone" textFill="#e7ebfc">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="444.0" layoutY="342.0" prefHeight="18.0" prefWidth="70.0" text="Email" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
