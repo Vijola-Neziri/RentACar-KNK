@@ -957,10 +957,10 @@ private String[] listStatus ={"Available","Not Available"};
 
 
 
-    public void displayUsername() {
-        String user = getData.username; //first letter to uppercase
-        username.setText(user.substring(0,1).toUpperCase() + user.substring(1));
-    }
+   // public void displayUsername() {
+      //  String user = getData.username; //first letter to uppercase
+       // username.setText(user.substring(0,1).toUpperCase() + user.substring(1));
+    //}
 
     private double x = 0;
     private double y = 0;
@@ -1070,7 +1070,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        displayUsername();
+        //displayUsername();
         availableCarShowListData(); //to display the data on the tableview
         availableCarStatusList();
         availableCarSearch();
