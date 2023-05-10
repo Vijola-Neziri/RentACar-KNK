@@ -2,10 +2,10 @@ package ConnectionMysql;
 
 public class Configs {
 
-    protected  String dbhost ="localhost";
-    protected String dbport ="3306";
-    protected  String dbuser = "root";
-    protected String dbpass = "Rinesa123.";
-    protected  String  dbname = "KNKRentCar";
+    protected static String dbhost ="localhost";
+    protected static String dbport ="3306";
+    protected static String dbuser = "root";
+    protected static String dbpass = "Rinesa123.";
+    protected static String  dbname = "KNKRentCar";
 
 }

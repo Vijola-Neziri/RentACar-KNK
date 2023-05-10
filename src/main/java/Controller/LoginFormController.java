@@ -59,6 +59,8 @@ public class LoginFormController implements Initializable {
             pst.setString(2,passwordid.getText());
             ResultSet rst = pst.executeQuery();
 
+
+
             int count=0;
 
             while(rst.next()){
@@ -105,7 +107,6 @@ finally {
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
-
     }
 
     @Override
