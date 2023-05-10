@@ -221,7 +221,7 @@ private Label home_availableCars;
     }
     public void homeAvailableCars(){
 
-        String sql = "SELECT COUNT(id) FROM car WHERE status = 'Available'";
+        String sql = "SELECT COUNT(id_makina) FROM makina WHERE statusiMakines = 'Available'";
 
         connect = DBHandler.getConnection();
         int countAC = 0;
@@ -230,7 +230,7 @@ private Label home_availableCars;
             result = prepare.executeQuery();
 
             while(result.next()){
-                countAC = result.getInt("COUNT(id)");
+                countAC = result.getInt("COUNT(id_makina)");
             }
 
             home_availableCars.setText(String.valueOf(countAC));
@@ -240,7 +240,7 @@ private Label home_availableCars;
     }
 
     public void homeTotalIncome(){
-        String sql = "SELECT SUM(total) FROM customer";
+        String sql = "SELECT SUM(total) FROM klientet";
 
         double sumIncome = 0;
 
@@ -260,7 +260,7 @@ private Label home_availableCars;
 
     public void homeTotalCustomers(){
 
-        String sql = "SELECT COUNT(id) FROM customer";
+        String sql = "SELECT COUNT(klient_id) FROM klientet";
 
         int countTC = 0;
 
@@ -271,7 +271,7 @@ private Label home_availableCars;
             result = prepare.executeQuery();
 
             while(result.next()){
-                countTC = result.getInt("COUNT(id)");
+                countTC = result.getInt("COUNT(klient_id)");
             }
 //            home_totalCustomers.setText(String.valueOf(countTC));
         }catch(Exception e){e.printStackTrace();}
@@ -282,7 +282,7 @@ private Label home_availableCars;
 
         home_incomeChart.getData().clear();
 
-        String sql = "SELECT date_rented, SUM(total) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
+        String sql = "SELECT date_rented, SUM(total) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
 
         connect = DBHandler.getConnection();
 
@@ -306,7 +306,7 @@ private Label home_availableCars;
     public void homeCustomerChart(){
         home_customerChart.getData().clear();
 
-        String sql = "SELECT date_rented, COUNT(id) FROM customer GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+        String sql = "SELECT date_rented, COUNT(id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
         connect = DBHandler.getConnection();
 
@@ -339,7 +339,7 @@ private String[] listStatus ={"Available","Not Available"};
     }
     public void availableCarAdd() {
 
-        String sql = "INSERT INTO car (car_id, brand, model, price, status, image, date) "
+        String sql = "INSERT INTO makina (id_makina, brand_makina, modeli_makina, cmimi_makina, statusiMakines, foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -398,11 +398,11 @@ private String[] listStatus ={"Available","Not Available"};
         String uri = getData.path;
         uri = uri.replace("\\", "\\\\");
 
-        String sql = "UPDATE car SET brand = '" + availableCars_brand.getText() + "', model = '"
-                + availableCars_model.getText() + "', status ='"
-                + availableCars_status.getSelectionModel().getSelectedItem() + "', price = '"
-                + availableCars_price.getText() + "', image = '" + uri
-                + "' WHERE car_id = '" + availableCars_carid.getText() + "'";
+        String sql = "UPDATE makina SET brand_makina = '" + availableCars_brand.getText() + "', model_makina = '"
+                + availableCars_model.getText() + "', statusiMakina ='"
+                + availableCars_status.getSelectionModel().getSelectedItem() + "', cmimi_makina = '"
+                + availableCars_price.getText() + "', foto_makina = '" + uri
+                + "' WHERE  = '" + availableCars_carid.getText() + "'";
 
         connect = DBHandler.getConnection();
 
@@ -482,7 +482,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
-        String sql = "Select * from car";
+        String sql = "Select * from makina";
         connect = DBHandler.getConnection();
         try {
             prepare = connect.prepareStatement(sql);
@@ -491,12 +491,12 @@ private String[] listStatus ={"Available","Not Available"};
             carData carD;
 
             while (result.next()){
-                carD = new carData(result.getInt("car_id"),
-                        result.getString("brand"),
-                        result.getString("model"),
-                        result.getDouble("price"),
-                        result.getString("status"),
-                        result.getString("image"),
+                carD = new carData(result.getInt("makina_id"),
+                        result.getString("brand_makina"),
+                        result.getString("model_makina"),
+                        result.getDouble("cmimi_makina"),
+                        result.getString("statusiMakina"),
+                        result.getString("foto_makina"),
                         result.getDate("date"));
 
                 listData.add(carD);
@@ -514,11 +514,11 @@ private String[] listStatus ={"Available","Not Available"};
     public void availableCarShowListData() {
         availableCarList = availableCarListData();
 
-        availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("carId"));
-        availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model"));
-        availableCars_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        availableCars_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+        availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+        availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+        availableCars_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+        availableCars_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
 
         availableCars_tableView.setItems(availableCarList);
     }
@@ -586,9 +586,9 @@ private String[] listStatus ={"Available","Not Available"};
     public void rentPay(){
         rentCustomerId();
 
-        String sql = "INSERT INTO customer "
-                + "(customer_id, firstName, lastName, gender, car_id, brand"
-                + ", model, total, date_rented, date_return) "
+        String sql = "INSERT INTO klientet "
+                + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
+                + ", model_makina, total, date_rented, date_return) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -631,7 +631,7 @@ private String[] listStatus ={"Available","Not Available"};
                     prepare.executeUpdate();
 
                     // SET THE  STATUS OF CAR TO NOT AVAILABLE
-                    String updateCar = "UPDATE car SET status = 'Not Available' WHERE car_id = '"
+                    String updateCar = "UPDATE makina SET status = 'Not Available' WHERE makina_id = '"
                             +rent_carid.getSelectionModel().getSelectedItem()+"'";
 
                     statement = connect.createStatement();
@@ -667,7 +667,7 @@ private String[] listStatus ={"Available","Not Available"};
 
 //    private int customerId;
     public void rentCustomerId(){
-        String sql = "SELECT id FROM customer";
+        String sql = "SELECT klient_id FROM klientet";
 
         connect = DBHandler.getConnection();
 
@@ -677,7 +677,7 @@ private String[] listStatus ={"Available","Not Available"};
 
             while(result.next()){
                 // GET THE LAST id and add + 1
-                customerId = result.getInt("id") + 1;
+                customerId = result.getInt("klient_id") + 1;
             }
 
         }catch(Exception e){e.printStackTrace();}
@@ -752,7 +752,7 @@ private String[] listStatus ={"Available","Not Available"};
     public void rentDisplayTotal(){
         rentDate();
         double price = 0;
-        String sql = "SELECT price, model FROM car WHERE model = '"
+        String sql = "SELECT cmimi_makina, model_makina FROM makina WHERE model_makina = '"
                 +rent_model.getSelectionModel().getSelectedItem()+"'";
 
         connect = DBHandler.getConnection();
@@ -762,7 +762,7 @@ private String[] listStatus ={"Available","Not Available"};
             result = prepare.executeQuery();
 
             if(result.next()){
-                price = result.getDouble("price");
+                price = result.getDouble("cmimi_makina");
             }
             // price * the count day you want to use the car
             totalP = (price * countDate);
@@ -792,7 +792,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarCarId() {
 
-        String sql = "SELECT * FROM car WHERE status = 'Available'";
+        String sql = "SELECT * FROM makina WHERE status = 'Available'";
 
         connect = DBHandler.getConnection();
 
@@ -803,7 +803,7 @@ private String[] listStatus ={"Available","Not Available"};
             ObservableList listData = FXCollections.observableArrayList();
 
             while (result.next()) {
-                listData.add(result.getString("car_id"));
+                listData.add(result.getString("makina_id"));
             }
 
             rent_carid.setItems(listData);
@@ -820,7 +820,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         ObservableList<carData> listData = FXCollections.observableArrayList();
 
-        String sql = "SELECT * FROM car";
+        String sql = "SELECT * FROM makina";
 
         connect = DBHandler.getConnection();
 
@@ -831,10 +831,10 @@ private String[] listStatus ={"Available","Not Available"};
             carData carD;
 
             while (result.next()) {
-                carD = new carData(result.getInt("car_id"), result.getString("brand"),
-                        result.getString("model"), result.getDouble("price"),
-                        result.getString("status"),
-                        result.getString("image"),
+                carD = new carData(result.getInt("makina_id"), result.getString("brand_makina"),
+                        result.getString("model_makina"), result.getDouble("cmimi_makina"),
+                        result.getString("statusiMakina"),
+                        result.getString("foto_makina"),
                         result.getDate("date"));
 
                 listData.add(carD);
@@ -849,7 +849,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarBrand() {
 
-        String sql = "SELECT * FROM car WHERE car_id = '"
+        String sql = "SELECT * FROM makina WHERE makina_id = '"
                 + rent_carid.getSelectionModel().getSelectedItem() + "'";
 
         connect =DBHandler.getConnection();
@@ -861,7 +861,7 @@ private String[] listStatus ={"Available","Not Available"};
             ObservableList listData = FXCollections.observableArrayList();
 
             while (result.next()) {
-                listData.add(result.getString("brand"));
+                listData.add(result.getString("brand_makina"));
             }
 
             rent_brand.setItems(listData);
@@ -876,7 +876,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarModel() {
 
-        String sql = "SELECT * FROM car WHERE brand = '"
+        String sql = "SELECT * FROM makina WHERE brand = '"
                 + rent_brand.getSelectionModel().getSelectedItem() + "'";
 
         connect =DBHandler.getConnection();
@@ -888,7 +888,7 @@ private String[] listStatus ={"Available","Not Available"};
             ObservableList listData = FXCollections.observableArrayList();
 
             while (result.next()) {
-                listData.add(result.getString("model"));
+                listData.add(result.getString("model_makina"));
             }
 
             rent_model.setItems(listData);
@@ -904,11 +904,11 @@ private String[] listStatus ={"Available","Not Available"};
     public void rentCarShowListData() {
         rentCarList = rentCarListData();
 
-        rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("carId"));
-        rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model"));
-        rent_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+        rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+        rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+        rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status_makina"));
 
         rent_tableView.setItems(rentCarList);
     }
@@ -917,7 +917,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void availableCarDelete() {
 
-        String sql = "DELETE FROM car WHERE car_id = '" + availableCars_carid.getText() + "'";
+        String sql = "DELETE FROM makina WHERE makina_id = '" + availableCars_carid.getText() + "'";
 
         connect = DBHandler.getConnection();
 
