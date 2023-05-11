@@ -3,7 +3,6 @@ package Controller;
 import ConnectionMysql.DBHandler;
 import Services.carData;
 import Services.getData;
-import app.LoginForm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,14 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -224,7 +221,7 @@ private Label home_availableCars;
     }
     public void homeAvailableCars(){
 
-        String sql = "SELECT COUNT(makina_id) FROM makina WHERE statusiMakina = 'Available'";
+        String sql = "SELECT COUNT(id_makina) FROM makina WHERE statusiMakines = 'Available'";
 
         connect = DBHandler.getConnection();
         int countAC = 0;
@@ -233,7 +230,7 @@ private Label home_availableCars;
             result = prepare.executeQuery();
 
             while(result.next()){
-                countAC = result.getInt("COUNT(makina_id)");
+                countAC = result.getInt("COUNT(id_makina)");
             }
 
             home_availableCars.setText(String.valueOf(countAC));
@@ -243,7 +240,7 @@ private Label home_availableCars;
     }
 
     public void homeTotalIncome(){
-        String sql = "SELECT SUM(total) FROM klientet ";
+        String sql = "SELECT SUM(total) FROM klientet";
 
         double sumIncome = 0;
 
@@ -309,7 +306,7 @@ private Label home_availableCars;
     public void homeCustomerChart(){
         home_customerChart.getData().clear();
 
-        String sql = "SELECT date_rented, COUNT(klient_id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+        String sql = "SELECT date_rented, COUNT(id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
         connect = DBHandler.getConnection();
 
@@ -328,25 +325,6 @@ private Label home_availableCars;
         }catch(Exception e){e.printStackTrace();}
 
     }
-    @FXML
-    public void nextfoto(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
-    }
-
-    @FXML
-    public void backtoslide(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
-    }
 private String[] listStatus ={"Available","Not Available"};
     public void availableCarStatusList() {
 
@@ -361,7 +339,7 @@ private String[] listStatus ={"Available","Not Available"};
     }
     public void availableCarAdd() {
 
-        String sql = "INSERT INTO makina(makina_id, brand_makina, model_makina, cmimi_makina, statusiMakines, foto_makina, date) "
+        String sql = "INSERT INTO makina (id_makina, brand_makina, modeli_makina, cmimi_makina, statusiMakines, foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -414,7 +392,6 @@ private String[] listStatus ={"Available","Not Available"};
         }
 
     }
-
 
     public void availableCarUpdate() {
 
@@ -611,7 +588,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "INSERT INTO klientet "
                 + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
-                + ", model_makina, total, date_rented, date_returned) "
+                + ", model_makina, total, date_rented, date_return) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connect = DBHandler.getConnection();
@@ -815,7 +792,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarCarId() {
 
-        String sql = "SELECT * FROM makina WHERE statusiMakina = 'Available'";
+        String sql = "SELECT * FROM makina WHERE status = 'Available'";
 
         connect = DBHandler.getConnection();
 
@@ -899,7 +876,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarModel() {
 
-        String sql = "SELECT * FROM makina WHERE brand_makina = '"
+        String sql = "SELECT * FROM makina WHERE brand = '"
                 + rent_brand.getSelectionModel().getSelectedItem() + "'";
 
         connect =DBHandler.getConnection();
@@ -931,7 +908,7 @@ private String[] listStatus ={"Available","Not Available"};
         rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
         rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
+        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status_makina"));
 
         rent_tableView.setItems(rentCarList);
     }
