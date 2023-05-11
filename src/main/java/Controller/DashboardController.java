@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.w3c.dom.events.MouseEvent;
 
+import javax.xml.transform.Result;
 import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
@@ -207,12 +208,16 @@ private Label home_availableCars;
     @FXML
     private TableView<carData> rent_tableView;
 
-    private Connection connect;
-    private PreparedStatement prepare;
+
+    private DBHandler handler;
+    private Connection connection;
+    private PreparedStatement pst;
+
+   // private Connection connect;
+//    private PreparedStatement prepare;
     private ResultSet result;
     private Statement statement;
     private Image image;
-
 
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) {
@@ -223,11 +228,11 @@ private Label home_availableCars;
 
         String sql = "SELECT COUNT(id_makina) FROM makina WHERE statusiMakines = 'Available'";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
         int countAC = 0;
         try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
 
             while(result.next()){
                 countAC = result.getInt("COUNT(id_makina)");
@@ -244,11 +249,11 @@ private Label home_availableCars;
 
         double sumIncome = 0;
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
 
             while(result.next()){
                 sumIncome = result.getDouble("SUM(total)");
@@ -264,11 +269,11 @@ private Label home_availableCars;
 
         int countTC = 0;
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
 
             while(result.next()){
                 countTC = result.getInt("COUNT(klient_id)");
@@ -284,13 +289,13 @@ private Label home_availableCars;
 
         String sql = "SELECT date_rented, SUM(total) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
             XYChart.Series chart = new XYChart.Series();
 
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            ResultSet  result = pst.executeQuery();
 
             while(result.next()){
                 chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
@@ -308,13 +313,13 @@ private Label home_availableCars;
 
         String sql = "SELECT date_rented, COUNT(id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
             XYChart.Series chart = new XYChart.Series();
 
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+          ResultSet  result = pst.executeQuery();
 
             while(result.next()){
                 chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
@@ -342,7 +347,7 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "INSERT INTO makina (id_makina, brand_makina, modeli_makina, cmimi_makina, statusiMakines, foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try {
             Alert alert;
@@ -359,24 +364,24 @@ private String[] listStatus ={"Available","Not Available"};
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-                prepare = connect.prepareStatement(sql);
-                prepare.setString(1, availableCars_carid.getText());
-                prepare.setString(2, availableCars_brand.getText());
-                prepare.setString(3, availableCars_model.getText());
-                prepare.setString(4, availableCars_price.getText());
-                prepare.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+                pst = connection.prepareStatement(sql);
+                pst.setString(1, availableCars_carid.getText());
+                pst.setString(2, availableCars_brand.getText());
+                pst.setString(3, availableCars_model.getText());
+                pst.setString(4, availableCars_price.getText());
+                pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
 
                 String uri = getData.path;
                 uri = uri.replace("\\", "\\\\");
 
-                prepare.setString(6, uri);
+                pst.setString(6, uri);
 
                 Date date = new Date();
                 java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                prepare.setString(7, String.valueOf(sqlDate));
+                pst.setString(7, String.valueOf(sqlDate));
 
-                prepare.executeUpdate();
+                pst.executeUpdate();
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Information Message");
@@ -404,7 +409,7 @@ private String[] listStatus ={"Available","Not Available"};
                 + availableCars_price.getText() + "', foto_makina = '" + uri
                 + "' WHERE  = '" + availableCars_carid.getText() + "'";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try {
             Alert alert;
@@ -428,7 +433,7 @@ private String[] listStatus ={"Available","Not Available"};
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
+                   Statement statement = connection.createStatement();
                     statement.executeUpdate(sql);
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -483,10 +488,10 @@ private String[] listStatus ={"Available","Not Available"};
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
         String sql = "Select * from makina";
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
         try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+          ResultSet  result = pst.executeQuery();
 
             carData carD;
 
@@ -591,7 +596,7 @@ private String[] listStatus ={"Available","Not Available"};
                 + ", model_makina, total, date_rented, date_return) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
             Alert alert;
@@ -616,25 +621,25 @@ private String[] listStatus ={"Available","Not Available"};
 
                 if(option.get().equals(ButtonType.OK)){
 
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1, String.valueOf(customerId));
-                    prepare.setString(2, rent_firstName.getText());
-                    prepare.setString(3, rent_lastName.getText());
-                    prepare.setString(4, (String)rent_gender.getSelectionModel().getSelectedItem());
-                    prepare.setString(5, (String)rent_carid.getSelectionModel().getSelectedItem());
-                    prepare.setString(6, (String)rent_brand.getSelectionModel().getSelectedItem());
-                    prepare.setString(7, (String)rent_model.getSelectionModel().getSelectedItem());
-                    prepare.setString(8, String.valueOf(totalP));
-                    prepare.setString(9, String.valueOf(rent_dateRented.getValue()));
-                    prepare.setString(10, String.valueOf(rent_dateReturn.getValue()));
+                    pst = connection.prepareStatement(sql);
+                    pst.setString(1, String.valueOf(customerId));
+                    pst.setString(2, rent_firstName.getText());
+                    pst.setString(3, rent_lastName.getText());
+                    pst.setString(4, (String)rent_gender.getSelectionModel().getSelectedItem());
+                    pst.setString(5, (String)rent_carid.getSelectionModel().getSelectedItem());
+                    pst.setString(6, (String)rent_brand.getSelectionModel().getSelectedItem());
+                    pst.setString(7, (String)rent_model.getSelectionModel().getSelectedItem());
+                    pst.setString(8, String.valueOf(totalP));
+                    pst.setString(9, String.valueOf(rent_dateRented.getValue()));
+                    pst.setString(10, String.valueOf(rent_dateReturn.getValue()));
 
-                    prepare.executeUpdate();
+                    pst.executeUpdate();
 
                     // SET THE  STATUS OF CAR TO NOT AVAILABLE
                     String updateCar = "UPDATE makina SET status = 'Not Available' WHERE makina_id = '"
                             +rent_carid.getSelectionModel().getSelectedItem()+"'";
 
-                    statement = connect.createStatement();
+                  Statement  statement = connection.createStatement();
                     statement.executeUpdate(updateCar);
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -669,11 +674,11 @@ private String[] listStatus ={"Available","Not Available"};
     public void rentCustomerId(){
         String sql = "SELECT klient_id FROM klientet";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
 
             while(result.next()){
                 // GET THE LAST id and add + 1
@@ -755,11 +760,11 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT cmimi_makina, model_makina FROM makina WHERE model_makina = '"
                 +rent_model.getSelectionModel().getSelectedItem()+"'";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try{
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            result = pst.executeQuery();
 
             if(result.next()){
                 price = result.getDouble("cmimi_makina");
@@ -794,11 +799,11 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "SELECT * FROM makina WHERE status = 'Available'";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            result = pst.executeQuery();
 
             ObservableList listData = FXCollections.observableArrayList();
 
@@ -822,11 +827,11 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "SELECT * FROM makina";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            result = pst.executeQuery();
 
             carData carD;
 
@@ -852,11 +857,11 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT * FROM makina WHERE makina_id = '"
                 + rent_carid.getSelectionModel().getSelectedItem() + "'";
 
-        connect =DBHandler.getConnection();
+        connection =handler.getConnection();
 
         try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            result = pst.executeQuery();
 
             ObservableList listData = FXCollections.observableArrayList();
 
@@ -879,11 +884,11 @@ private String[] listStatus ={"Available","Not Available"};
         String sql = "SELECT * FROM makina WHERE brand = '"
                 + rent_brand.getSelectionModel().getSelectedItem() + "'";
 
-        connect =DBHandler.getConnection();
+        connection =handler.getConnection();
 
         try {
-            prepare = connect.prepareStatement(sql);
-            result = prepare.executeQuery();
+            pst = connection.prepareStatement(sql);
+            result = pst.executeQuery();
 
             ObservableList listData = FXCollections.observableArrayList();
 
@@ -919,7 +924,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "DELETE FROM makina WHERE makina_id = '" + availableCars_carid.getText() + "'";
 
-        connect = DBHandler.getConnection();
+        connection = handler.getConnection();
 
         try {
             Alert alert;
@@ -942,7 +947,7 @@ private String[] listStatus ={"Available","Not Available"};
                 Optional<ButtonType> option = alert.showAndWait();
 
                 if (option.get().equals(ButtonType.OK)) {
-                    statement = connect.createStatement();
+                    statement = connection.createStatement();
                     statement.executeUpdate(sql);
 
                     alert = new Alert(Alert.AlertType.INFORMATION);

@@ -127,6 +127,7 @@
 
 .table-view .table-column{
     -fx-alignemnt: CENTER;
+    -fx-text-fill:##000000;
 }
 
 .table-view .column-header-background{
@@ -141,6 +142,6 @@
 }
 
 .table-view .column-header .label{
-    -fx-text-fill:#fff;
+    -fx-text-fill:##000000;
     -fx-font-family:"Arial";
 }
