@@ -3,6 +3,7 @@ package Controller;
 import ConnectionMysql.DBHandler;
 import Services.carData;
 import Services.getData;
+import app.LoginForm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,6 +30,7 @@ import org.w3c.dom.events.MouseEvent;
 
 import javax.xml.transform.Result;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -218,6 +221,25 @@ private Label home_availableCars;
     private ResultSet result;
     private Statement statement;
     private Image image;
+
+    @FXML
+    public void nextofotot(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
+    @FXML
+    public void backtoslide(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
 
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) {
@@ -518,14 +540,17 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void availableCarShowListData() {
         availableCarList = availableCarListData();
+        for (carData car:availableCarList
+             ) {
+            availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+            availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+            availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+            availableCars_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+            availableCars_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
 
-        availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
-        availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
-        availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-        availableCars_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-        availableCars_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
+            availableCars_tableView.setItems(availableCarList);
+        }
 
-        availableCars_tableView.setItems(availableCarList);
     }
 
     public void availableCarSearch() {
@@ -908,14 +933,17 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarShowListData() {
         rentCarList = rentCarListData();
+        for (carData car:rentCarList
+             ) {
+            rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("carId"));
+            rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+            rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model"));
+            rent_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+            rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status "));
 
-        rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
-        rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
-        rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-        rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina "));
+            rent_tableView.setItems(rentCarList);
+        }
 
-        rent_tableView.setItems(rentCarList);
     }
 
 
