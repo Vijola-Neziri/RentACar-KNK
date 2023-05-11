@@ -226,7 +226,7 @@ private Label home_availableCars;
     }
     public void homeAvailableCars(){
 
-        String sql = "SELECT COUNT(id_makina) FROM makina WHERE statusiMakines = 'Available'";
+        String sql = "SELECT COUNT(makina_id) FROM makina WHERE statusiMakina  = 'Available'";
 
         connection = handler.getConnection();
         int countAC = 0;
@@ -235,7 +235,7 @@ private Label home_availableCars;
             ResultSet result = pst.executeQuery();
 
             while(result.next()){
-                countAC = result.getInt("COUNT(id_makina)");
+                countAC = result.getInt("COUNT(makina_id)");
             }
 
             home_availableCars.setText(String.valueOf(countAC));
@@ -311,7 +311,7 @@ private Label home_availableCars;
     public void homeCustomerChart(){
         home_customerChart.getData().clear();
 
-        String sql = "SELECT date_rented, COUNT(id) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+        String sql = "SELECT date_rented, COUNT(klient_id ) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
         connection = handler.getConnection();
 
@@ -344,7 +344,7 @@ private String[] listStatus ={"Available","Not Available"};
     }
     public void availableCarAdd() {
 
-        String sql = "INSERT INTO makina (id_makina, brand_makina, modeli_makina, cmimi_makina, statusiMakines, foto_makina, date) "
+        String sql = "INSERT INTO makina (makina_id , brand_makina, model_makina , cmimi_makina , statusiMakina , foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
         connection = handler.getConnection();
@@ -593,7 +593,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "INSERT INTO klientet "
                 + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
-                + ", model_makina, total, date_rented, date_return) "
+                + ", model_makina, total, date_rented, date_returned ) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connection = handler.getConnection();
@@ -636,7 +636,7 @@ private String[] listStatus ={"Available","Not Available"};
                     pst.executeUpdate();
 
                     // SET THE  STATUS OF CAR TO NOT AVAILABLE
-                    String updateCar = "UPDATE makina SET status = 'Not Available' WHERE makina_id = '"
+                    String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = '"
                             +rent_carid.getSelectionModel().getSelectedItem()+"'";
 
                   Statement  statement = connection.createStatement();
@@ -797,7 +797,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarCarId() {
 
-        String sql = "SELECT * FROM makina WHERE status = 'Available'";
+        String sql = "SELECT * FROM makina WHERE statusiMakina  = 'Available'";
 
         connection = handler.getConnection();
 
@@ -913,7 +913,7 @@ private String[] listStatus ={"Available","Not Available"};
         rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
         rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status_makina"));
+        rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina "));
 
         rent_tableView.setItems(rentCarList);
     }
@@ -1083,15 +1083,22 @@ private String[] listStatus ={"Available","Not Available"};
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //displayUsername();
-        availableCarShowListData(); //to display the data on the tableview
+        homeAvailableCars();
+        homeTotalIncome();
+        homeTotalCustomers();
+        homeIncomeChart();
+        homeCustomerChart();
+
+
+        // TO DISPLAY THE DATA ON THE TABLEVIEW
+        availableCarShowListData();
         availableCarStatusList();
         availableCarSearch();
+
         rentCarShowListData();
         rentCarCarId();
         rentCarBrand();
         rentCarModel();
         rentCarGender();
-homeTotalIncome();
-homeTotalCustomers();
-homeAvailableCars();}
+    }
 }
