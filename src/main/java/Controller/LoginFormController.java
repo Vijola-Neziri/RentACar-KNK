@@ -21,8 +21,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import ConnectionMysql.DBHandler;
+import models.User;
 
 public class LoginFormController implements Initializable {
     @FXML
@@ -35,11 +38,19 @@ public class LoginFormController implements Initializable {
     private Button signupid;
 
     @FXML
+    private Button close;
+    @FXML
     private TextField usernameid;
 
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
+
+
+    public void close(){
+        System.exit(0);
+    }
+
 
     @FXML
     void loginaction(ActionEvent event) {
@@ -96,6 +107,7 @@ finally {
             }
         }
     }
+
 
     @FXML
    public void signupaction(ActionEvent event) throws IOException {

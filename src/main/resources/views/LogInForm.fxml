@@ -56,15 +56,16 @@
          <children>
             <ImageView fitHeight="152.0" fitWidth="331.0" layoutX="51.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Fotot/Car-Login.png" />
+                  <Image url="@../resources/Images/Car-Login.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
       <ImageView fitHeight="50.0" fitWidth="81.0" layoutX="441.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Fotot/LogIn.png" />
+            <Image url="@../resources/Images/LogIn.png" />
          </image>
       </ImageView>
+      <Button fx:id="close" layoutX="732.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@../css/dashboard.css" text="X" />
    </children>
 </AnchorPane>

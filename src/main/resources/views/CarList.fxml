@@ -20,15 +20,15 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@css/dashboard.css">
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@../css/dashboard.css">
             <children>
-                <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <left>
-                        <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
+                        <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
                                 <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../resources/Fotot/user.png" />
+                                        <Image url="@../resources/Images/user.png" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
@@ -37,7 +37,7 @@
                                     </font>
                                 </Label>
                                 <Line endX="48.30000305175781" endY="-1.52587890625E-5" layoutX="125.0" layoutY="278.0" startX="-100.0" stroke="WHITE" />
-                                <Button fx:id="home_btn" layoutX="26.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Home" />
+                                <Button fx:id="home_btn" layoutX="26.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Home" />
                                 <Label layoutX="60.0" layoutY="516.0" textFill="WHITE">
                                     <font>
                                         <Font size="14.0" />
@@ -45,17 +45,17 @@
                                 </Label>
                                 <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../resources/Fotot/Car-Login.png" />
+                                        <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
                                     </styleClass>
                                 </Button>
-                                <Button fx:id="availableCars_btn" layoutX="44.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="109.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Avaiable Cars" />
-                                <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@css/dashboard.css" text="Rent a Car" />
+                                <Button fx:id="availableCars_btn" layoutX="44.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="109.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Avaiable Cars" />
+                                <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
                                 <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
@@ -63,7 +63,7 @@
                                 </ImageView>
                                 <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="26.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../resources/Fotot/carlogo1.jpg" />
+                                        <Image url="@../resources/Images/carlogo1.jpg" />
                                     </image>
                                 </ImageView>
                                 <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="Admin" textFill="#fcfcfc">
@@ -79,13 +79,13 @@
                         </AnchorPane>
                     </left>
                     <top>
-                        <AnchorPane prefHeight="35.0" prefWidth="1099.0" styleClass="top-form" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
+                        <AnchorPane prefHeight="35.0" prefWidth="1099.0" styleClass="top-form" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
                                 <AnchorPane layoutX="92.0" layoutY="-86.0" prefHeight="114.4" prefWidth="1099.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
                                         <ImageView fitHeight="44.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../resources/Fotot/carlogo1.jpg" />
+                                                <Image url="@../resources/Images/carlogo1.jpg" />
                                             </image>
                                         </ImageView>
                                         <Label layoutX="44.0" layoutY="12.0" text="Car Rental Managament System">
@@ -93,7 +93,7 @@
                                                 <Font size="14.0" />
                                             </font>
                                         </Label>
-                                        <Button fx:id="close" layoutX="1073.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@css/dashboard.css" text="x">
+                                        <Button fx:id="close" layoutX="1073.0" layoutY="8.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@../css/dashboard.css" text="x">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
@@ -103,8 +103,8 @@
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
                                             <stylesheets>
-                                                <URL value="@css/dashboard.css" />
-                                                <URL value="@css/dashboard.css" />
+                                                <URL value="@../css/dashboard.css" />
+                                                <URL value="@../css/dashboard.css" />
                                             </stylesheets>
                                         </Button>
                                     </children>
@@ -113,8 +113,8 @@
                                         <String fx:value="shadow" />
                                     </styleClass>
                                     <stylesheets>
-                                        <URL value="@css/dashboard.css" />
-                                        <URL value="@css/dashboard.css" />
+                                        <URL value="@../css/dashboard.css" />
+                                        <URL value="@../css/dashboard.css" />
                                     </stylesheets>
                                 </AnchorPane>
                             </children>
@@ -131,21 +131,21 @@
                                                 <String fx:value="shadow" />
                                             </styleClass>
                                             <stylesheets>
-                                                <URL value="@css/dashboard.css" />
-                                                <URL value="@css/dashboard.css" />
+                                                <URL value="@../css/dashboard.css" />
+                                                <URL value="@../css/dashboard.css" />
                                             </stylesheets>
                                  <children>
-                                    <Button layoutX="24.0" layoutY="18.0" mnemonicParsing="false" prefHeight="235.0" prefWidth="234.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
-                                    <Button layoutX="581.0" layoutY="18.0" mnemonicParsing="false" prefHeight="236.0" prefWidth="246.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
-                                    <Button layoutX="24.0" layoutY="269.0" mnemonicParsing="false" prefHeight="228.0" prefWidth="239.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
-                                    <Button layoutX="292.0" layoutY="269.0" mnemonicParsing="false" prefHeight="230.0" prefWidth="262.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
-                                    <Button layoutX="574.0" layoutY="266.0" mnemonicParsing="false" prefHeight="235.0" prefWidth="251.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
+                                    <Button layoutX="24.0" layoutY="18.0" mnemonicParsing="false" prefHeight="235.0" prefWidth="234.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
+                                    <Button layoutX="581.0" layoutY="18.0" mnemonicParsing="false" prefHeight="236.0" prefWidth="246.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
+                                    <Button layoutX="24.0" layoutY="269.0" mnemonicParsing="false" prefHeight="228.0" prefWidth="239.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
+                                    <Button layoutX="292.0" layoutY="269.0" mnemonicParsing="false" prefHeight="230.0" prefWidth="262.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
+                                    <Button layoutX="574.0" layoutY="266.0" mnemonicParsing="false" prefHeight="235.0" prefWidth="251.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
                                     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="44.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
                                     <Pane layoutX="33.0" layoutY="42.0" prefHeight="158.0" prefWidth="215.0" style="-fx-background-color: #fcfcfc;">
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="8.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                 <Image url="@../resources/Fotot/BMW11.jpg" />
+                                                 <Image url="@../resources/Images/BMW11.jpg" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -154,7 +154,7 @@
                                        <children>
                                           <ImageView fitHeight="118.0" fitWidth="200.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                 <Image url="@../resources/Fotot/Audi111.jpg" />
+                                                 <Image url="@../resources/Images/Audi111.jpg" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -163,7 +163,7 @@
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="188.0" layoutX="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                 <Image url="@../resources/Fotot/golf11.jpg" />
+                                                 <Image url="@../resources/Images/golf11.jpg" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -172,7 +172,7 @@
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="17.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                 <Image url="@../resources/Fotot/ferrari11.jpg " />
+                                                 <Image url="@../resources/Images/ferrari11.jpg " />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -181,7 +181,7 @@
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="206.0" layoutX="44.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                 <Image url="@../resources/Fotot/porche.jpg" />
+                                                 <Image url="@../resources/Images/porche.jpg" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -210,12 +210,12 @@
                                        <font>
                                           <Font name="System Bold" size="24.0" />
                                        </font></Label>
-                                    <Button layoutX="294.0" layoutY="20.0" mnemonicParsing="false" prefHeight="234.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@css/dashboard.css" />
+                                    <Button layoutX="294.0" layoutY="20.0" mnemonicParsing="false" prefHeight="234.0" prefWidth="258.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" />
                                     <Pane layoutX="310.0" layoutY="36.0" prefHeight="170.0" prefWidth="228.0" style="-fx-background-color: #fcfcfc;">
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../resources/Fotot/Mercedes11.jpg" />
+                                                <Image url="@../resources/Images/Mercedes11.jpg" />
                                              </image>
                                           </ImageView>
                                        </children>
@@ -225,7 +225,7 @@
                                           <Font name="System Bold" size="24.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="nextFotot" layoutX="841.0" layoutY="248.0" mnemonicParsing="false" onAction="#nextofotot" prefHeight="36.0" prefWidth="32.0" styleClass="nav-form" stylesheets="@css/dashboard.css" text="&gt;" textFill="WHITE">
+                                    <Button fx:id="nextFotot" layoutX="841.0" layoutY="248.0" mnemonicParsing="false" onAction="#nextofotot" prefHeight="36.0" prefWidth="32.0" styleClass="nav-form" stylesheets="@../css/dashboard.css" text="&gt;" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
@@ -325,19 +325,19 @@
                                                         <Font name="Tahoma" size="13.0" />
                                                     </font>
                                                 </Label>
-                                                <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
+                                                <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
                                                 <Label layoutX="25.0" layoutY="62.0" text="Brand:">
                                                     <font>
                                                         <Font name="Tahoma" size="13.0" />
                                                     </font>
                                                 </Label>
-                                                <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
+                                                <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
                                                 <Label layoutX="25.0" layoutY="104.0" text="Model:">
                                                     <font>
                                                         <Font name="Tahoma" size="13.0" />
                                                     </font>
                                                 </Label>
-                                                <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@css/dashboard.css" />
+                                                <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
                                                 <Label layoutX="269.0" layoutY="25.0" text="First Name:">
                                                     <font>
                                                         <Font name="Tahoma" size="13.0" />

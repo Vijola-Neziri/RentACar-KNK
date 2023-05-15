@@ -129,7 +129,7 @@
     -fx-background-color:#b13048;
 }
 .table-view{
-    -fx-background-color:transparent;
+
     -fx-border-color:linear-gradient(to bottom right, #444750, #696d72);
     -fx-border-width:2px;
     -fx-border-radius:8px;
@@ -144,7 +144,7 @@
     -fx-background-insets: 0 0 0 0;
 }
 .table-view .column-header, .filter{
-    -fx-background-color:transparent;
+   // -fx-background-color:transparent;
     -fx-size:40px;
 }
 .table-view .column-header .label{

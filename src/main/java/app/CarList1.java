@@ -11,7 +11,7 @@ import java.io.IOException;
 public class CarList1 extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(CarList1.class.getResource("/views/CarList1.fxml"));
         Pane pane = fxmlLoader.load();
 
         Scene scene = new Scene(pane);
