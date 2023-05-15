@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Transmission {
-    Auto(1) ,
+    Auto(1),
     Manual(2);
     private int value;
     private static Map map = new HashMap<>();

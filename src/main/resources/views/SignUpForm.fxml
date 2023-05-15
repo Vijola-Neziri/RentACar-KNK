@@ -80,14 +80,14 @@
          <children>
             <ImageView fitHeight="313.0" fitWidth="384.0" layoutX="51.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/Fotot/Car-Login.png" />
+                  <Image url="@../resources/Images/Car-Login.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
       <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="482.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/Fotot/LogIn.png" />
+            <Image url="@../resources/Images/LogIn.png" />
          </image>
       </ImageView>
    </children>

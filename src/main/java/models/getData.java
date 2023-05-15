@@ -1,4 +1,4 @@
-package Services;
+package models;
 
 public class getData {
     public static String username;
