@@ -1,7 +1,4 @@
 package models;
-
-import Utils.PasswordHasher;
-
 public class AdminUser extends User {
 
     private String Admin_emri;
