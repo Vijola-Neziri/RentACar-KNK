@@ -81,6 +81,18 @@ public class CarList2Controller  implements Initializable{
         signup.show();
         signup.setResizable(false);
     }
+    @FXML
+    public void RentCar(ActionEvent event) throws IOException {
+        rentCar_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+
+    }
 
     @FXML
     void close(ActionEvent event) {
@@ -94,8 +106,15 @@ public class CarList2Controller  implements Initializable{
     }
 
     @FXML
-    void switchForm(ActionEvent event) {
-
+    void switchForm(ActionEvent event) throws  IOException{
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {

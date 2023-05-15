@@ -68,17 +68,25 @@ public class CarListController implements Initializable {
 
     @FXML
     void close(ActionEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
     void minimize(ActionEvent event) {
-
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
-    void switchForm(ActionEvent event) {
-
+    void switchForm(ActionEvent event) throws  IOException{
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
@@ -92,7 +100,7 @@ public class CarListController implements Initializable {
     }
 
     @FXML
-    public void CarList(ActionEvent event) throws  IOException {
+    public void CarList(ActionEvent event) throws IOException {
         carlist.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
@@ -104,5 +112,17 @@ public class CarListController implements Initializable {
 
     }
 
+    @FXML
+    public void RentCar(ActionEvent event) throws IOException {
+        rentCar_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
 
+
+    }
 }
