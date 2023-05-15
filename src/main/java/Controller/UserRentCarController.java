@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -21,10 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-public class CarList2Controller  implements Initializable{
-
-    @FXML
-    private Button backFoto;
+public class UserRentCarController implements Initializable {
 
     @FXML
     private Button carlist;
@@ -33,10 +27,10 @@ public class CarList2Controller  implements Initializable{
     private Button close;
 
     @FXML
-    private Button home_btn;
+    private DatePicker ent_dateRented;
 
     @FXML
-    private AnchorPane home_form;
+    private Button home_btn;
 
     @FXML
     private Button logoutBtn;
@@ -48,44 +42,86 @@ public class CarList2Controller  implements Initializable{
     private Button minimize;
 
     @FXML
+    private Button rentBtn;
+
+    @FXML
     private Button rentCar_btn;
+
+    @FXML
+    private TextField rent_amount;
+
+    @FXML
+    private Label rent_balance;
+
+    @FXML
+    private ComboBox<?> rent_brand;
+
+    @FXML
+    private ComboBox<?> rent_carid;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_brand;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_carid;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_model;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_price;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_status;
+
+    @FXML
+    private DatePicker rent_dateReturn;
+
+    @FXML
+    private TextField rent_firstName;
+
+    @FXML
+    private AnchorPane rent_form;
+
+    @FXML
+    private ComboBox<?> rent_gender;
+
+    @FXML
+    private TextField rent_lastName;
+
+    @FXML
+    private ComboBox<?> rent_model;
+
+    @FXML
+    private TableView<?> rent_tableView;
+
+    @FXML
+    private Label rent_tableView1;
+
+    @FXML
+    private Label rent_total;
 
     @FXML
     private Label user;
 
     @FXML
     private Label username;
+
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
 
+
     @FXML
-    public void backtoslide(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
+    void RentCar(ActionEvent event) {
+
     }
 
-
     @FXML
-    void carlist(ActionEvent event) throws  IOException{
+    public void carlist(ActionEvent event) throws  IOException{
         carlist.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
-    }
-    @FXML
-    public void RentCar(ActionEvent event) throws IOException {
-        rentCar_btn.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         signup.setScene(scene);
@@ -99,12 +135,54 @@ public class CarList2Controller  implements Initializable{
         System.exit(0);
     }
 
+
     @FXML
     void minimize(ActionEvent event) {
         Stage stage = (Stage)main_form.getScene().getWindow();
         stage.setIconified(true);
     }
 
+    @FXML
+    void rentAmount(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rentCarBrand(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rentCarCarId(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rentCarGender(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rentDisplayTotal(ActionEvent event) {
+
+    }
+
+    @FXML
+    void rentPay(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void switchform(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
     @FXML
     void switchForm(ActionEvent event) throws  IOException{
         home_btn.getScene().getWindow().hide();
@@ -116,8 +194,10 @@ public class CarList2Controller  implements Initializable{
         signup.show();
         signup.setResizable(false);
     }
-    @Override
+
+@Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
     }
 }
+
