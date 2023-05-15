@@ -1,7 +1,6 @@
 package Controller;
 
 import ConnectionMysql.DBHandler;
-import models.carData;
 import models.getData;
 import app.LoginForm;
 import javafx.collections.FXCollections;
@@ -24,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import models.makina;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,19 +49,19 @@ public class DashboardController implements Initializable {
     private Button availableCars_clearBtn;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_brand;
+    private TableColumn<makina, String> availableCars_col_brand;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_carid;
+    private TableColumn<makina, String> availableCars_col_carid;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_model;
+    private TableColumn<makina, String> availableCars_col_model;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_price;
+    private TableColumn<makina, String> availableCars_col_price;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_status;
+    private TableColumn<makina, String> availableCars_col_status;
 
     @FXML
     private Button availableCars_deleteBtn;
@@ -91,7 +91,7 @@ public class DashboardController implements Initializable {
     private ComboBox<?> availableCars_status;
 
     @FXML
-    private TableView<carData> availableCars_tableView;
+    private TableView<makina> availableCars_tableView;
 
     @FXML
     private Button availableCars_updateBtn;
@@ -157,16 +157,16 @@ private Label home_availableCars;
     private TableColumn<?, ?> rent_col_brand;
 
     @FXML
-    private TableColumn<carData, String> rent_col_carid;
+    private TableColumn<makina, String> rent_col_carid;
 
     @FXML
-    private TableColumn<carData, String> rent_col_model;
+    private TableColumn<makina, String> rent_col_model;
 
     @FXML
-    private TableColumn<carData, String> rent_col_price;
+    private TableColumn<makina, String> rent_col_price;
 
     @FXML
-    private TableColumn<carData, String> rent_col_status;
+    private TableColumn<makina, String> rent_col_status;
 
     @FXML
     private DatePicker rent_dateRented;
@@ -205,7 +205,7 @@ private Label home_availableCars;
     private Label username;
 
     @FXML
-    private TableView<carData> rent_tableView;
+    private TableView<makina> rent_tableView;
 
 
     private DBHandler handler;
@@ -503,18 +503,18 @@ private String[] listStatus ={"Available","Not Available"};
 
     }
 
-    public ObservableList<carData> availableCarListData() {
-        ObservableList<carData> listData = FXCollections.observableArrayList();
+    public ObservableList<makina> availableCarListData() {
+        ObservableList<makina> listData = FXCollections.observableArrayList();
         String sql = "Select * from makina";
         connection = handler.getConnection();
         try {
             pst = connection.prepareStatement(sql);
           ResultSet  result = pst.executeQuery();
 
-            carData carD;
+            makina carD;
 
             while (result.next()){
-                carD = new carData(result.getInt("makina_id"),
+                carD = new makina(result.getInt("makina_id"),
                         result.getString("brand_makina"),
                         result.getString("model_makina"),
                         result.getDouble("cmimi_makina"),
@@ -532,11 +532,11 @@ private String[] listStatus ={"Available","Not Available"};
     }
 
 
-    private ObservableList<carData> availableCarList;
+    private ObservableList<makina> availableCarList;
 
     public void availableCarShowListData() {
         availableCarList = availableCarListData();
-        for (carData car:availableCarList
+        for (makina car:availableCarList
              ) {
             availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
             availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
@@ -551,7 +551,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void availableCarSearch() {
 
-        FilteredList<carData> filter = new FilteredList<>(availableCarList, e -> true);
+        FilteredList<makina> filter = new FilteredList<>(availableCarList, e -> true);
 
         availableCars_search.textProperty().addListener((Observable, oldValue, newValue) -> {
 
@@ -563,22 +563,22 @@ private String[] listStatus ={"Available","Not Available"};
 
                 String searchKey = newValue.toLowerCase();
 
-                if (predicateCarData.getCarId().toString().contains(searchKey)) {
+                if (predicateCarData.getmakina_id().toString().contains(searchKey)) {
                     return true;
-                } else if (predicateCarData.getBrand().toLowerCase().contains(searchKey)) {
+                } else if (predicateCarData.getbrand_makina().toLowerCase().contains(searchKey)) {
                     return true;
-                } else if (predicateCarData.getModel().toLowerCase().contains(searchKey)) {
+                } else if (predicateCarData.getmodel_makina().toLowerCase().contains(searchKey)) {
                     return true;
-                } else if (predicateCarData.getPrice().toString().contains(searchKey)) {
+                } else if (predicateCarData.getcmimi_makina().toString().contains(searchKey)) {
                     return true;
-                } else if (predicateCarData.getStatus().toLowerCase().contains(searchKey)) {
+                } else if (predicateCarData.getstatusiMakina().toLowerCase().contains(searchKey)) {
                     return true;
                 } else {
                     return false;
                 }
             });
         });
-        SortedList<carData> sortList = new SortedList<>(filter);
+        SortedList<makina> sortList = new SortedList<>(filter);
 
         sortList.comparatorProperty().bind(availableCars_tableView.comparatorProperty());
         availableCars_tableView.setItems(sortList);
@@ -587,21 +587,21 @@ private String[] listStatus ={"Available","Not Available"};
 
 
         public void availableCarSelect() {
-        carData carD = availableCars_tableView.getSelectionModel().getSelectedItem();
+            makina carD = availableCars_tableView.getSelectionModel().getSelectedItem();
         int num = availableCars_tableView.getSelectionModel().getSelectedIndex();
 
         if ((num - 1) < - 1) {
             return;
         }
 
-        availableCars_carid.setText(String.valueOf(carD.getCarId()));
-        availableCars_brand.setText(carD.getBrand());
-        availableCars_model.setText(carD.getModel());
-        availableCars_price.setText(String.valueOf(carD.getPrice()));
+        availableCars_carid.setText(String.valueOf(carD.getmakina_id()));
+        availableCars_brand.setText(carD.getbrand_makina());
+        availableCars_model.setText(carD.getmodel_makina());
+        availableCars_price.setText(String.valueOf(carD.getcmimi_makina()));
 
-        getData.path = carD.getImage();
+        getData.path = carD.getfoto_makina();
 
-        String uri = "file:" + carD.getImage();
+        String uri = "file:" + carD.getfoto_makina();
 
         image = new Image(uri, 116, 153, false, true);
         availableCars_imageView.setImage(image);
@@ -842,9 +842,9 @@ private String[] listStatus ={"Available","Not Available"};
 
     }
 
-    public ObservableList<carData> rentCarListData() {
+    public ObservableList<makina> rentCarListData() {
 
-        ObservableList<carData> listData = FXCollections.observableArrayList();
+        ObservableList<makina> listData = FXCollections.observableArrayList();
 
         String sql = "SELECT * FROM makina";
 
@@ -854,10 +854,10 @@ private String[] listStatus ={"Available","Not Available"};
             pst = connection.prepareStatement(sql);
             result = pst.executeQuery();
 
-            carData carD;
+            makina carD;
 
             while (result.next()) {
-                carD = new carData(result.getInt("makina_id"), result.getString("brand_makina"),
+                carD = new makina(result.getInt("makina_id"), result.getString("brand_makina"),
                         result.getString("model_makina"), result.getDouble("cmimi_makina"),
                         result.getString("statusiMakina"),
                         result.getString("foto_makina"),
@@ -925,11 +925,11 @@ private String[] listStatus ={"Available","Not Available"};
 
     }
 
-    private ObservableList<carData> rentCarList;
+    private ObservableList<makina> rentCarList;
 
     public void rentCarShowListData() {
         rentCarList = rentCarListData();
-        for (carData car:rentCarList
+        for (makina car:rentCarList
              ) {
             rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("carId"));
             rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
