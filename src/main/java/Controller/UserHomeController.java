@@ -21,22 +21,33 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
-public class CarList2Controller  implements Initializable{
-
+public class UserHomeController implements Initializable {
     @FXML
-    private Button backFoto;
-
-    @FXML
-    private Button carlist;
+    private Button availableCars_btn;
 
     @FXML
     private Button close;
 
     @FXML
+    private Label home_availableCars;
+
+    @FXML
     private Button home_btn;
 
     @FXML
+    private LineChart<?, ?> home_customerChart;
+
+    @FXML
     private AnchorPane home_form;
+
+    @FXML
+    private BarChart<?, ?> home_incomeChart;
+
+    @FXML
+    private Label home_totalCustomers;
+
+    @FXML
+    private Label home_totalIncome;
 
     @FXML
     private Button logoutBtn;
@@ -60,19 +71,27 @@ public class CarList2Controller  implements Initializable{
     private PreparedStatement pst;
 
     @FXML
-    public void backtoslide(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
+    void close(ActionEvent event) {
+
+    }
+
+    @FXML
+    void minimize(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchForm(ActionEvent event) {
     }
 
 
     @FXML
-    void carlist(ActionEvent event) throws  IOException{
-        carlist.getScene().getWindow().hide();
+    void CarList(ActionEvent event) {
+
+    }
+    @FXML
+    public void RentCar(ActionEvent event) throws IOException {
+        rentCar_btn.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
         Pane pane = fxmlLoader.load();
@@ -80,24 +99,10 @@ public class CarList2Controller  implements Initializable{
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
-    }
-
-    @FXML
-    void close(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    void switchForm(ActionEvent event) {
 
     }
-    @Override
+
+        @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
     }

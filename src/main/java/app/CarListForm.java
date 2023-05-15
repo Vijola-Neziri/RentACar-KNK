@@ -14,25 +14,15 @@ import java.io.IOException;
 public class CarListForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CarListForm.class.getResource("/views/CarList.fxml"));
-   Pane root = new Pane();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
+        Pane pane = fxmlLoader.load();
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Car List");
+        primaryStage.setTitle("Log in");
         primaryStage.show();
     }
 
-
-    @FXML
-    public void nextofotot(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
-    }
     @FXML
     public void backtoslide(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));

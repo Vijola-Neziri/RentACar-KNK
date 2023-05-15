@@ -3,12 +3,7 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +13,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CarListController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@../css/dashboard.css">
             <children>
@@ -54,8 +49,7 @@
                                         <String fx:value="logout-btn" />
                                     </styleClass>
                                 </Button>
-                                <Button fx:id="availableCars_btn" layoutX="44.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="109.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Avaiable Cars" />
-                                <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
+                                <Button fx:id="rentCar_btn" layoutX="25.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
                                 <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
@@ -66,11 +60,12 @@
                                         <Image url="@../resources/Images/carlogo1.jpg" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="Admin" textFill="#fcfcfc">
+                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="User" textFill="#fcfcfc">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
+                        <Button fx:id="carlist" layoutX="66.0" layoutY="381.0" mnemonicParsing="false" onAction="#CarList" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -231,193 +226,6 @@
                                        </font>
                                     </Button>
                                  </children>
-                                        </AnchorPane>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="availableCars_form" layoutX="82.0" layoutY="39.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="206.0" prefWidth="875.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="25.0" layoutY="30.0" text="Car ID:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableCars_carid" layoutX="75.0" layoutY="24.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
-                                                <Label layoutX="25.0" layoutY="74.0" text="Brand:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableCars_brand" layoutX="75.0" layoutY="68.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
-                                                <Label layoutX="26.0" layoutY="120.0" text="Model:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableCars_model" layoutX="75.0" layoutY="114.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
-                                                <Label layoutX="30.0" layoutY="168.0" text="Type:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="availableCars_status" layoutX="75.0" layoutY="163.0" onAction="#availableCarStatusList" prefWidth="150.0" styleClass="textfield" />
-                                                <AnchorPane layoutX="468.0" layoutY="17.0" prefHeight="171.0" prefWidth="139.0">
-                                                    <styleClass>
-                                                        <String fx:value="white-bg" />
-                                                        <String fx:value="shadow" />
-                                                    </styleClass>
-                                                    <children>
-                                                        <ImageView fx:id="availableCars_imageView" fitHeight="170.0" fitWidth="140.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" styleClass="add-btn" />
-                                                        <Button fx:id="availableCars_importBtn" layoutX="-1.0" layoutY="133.0" mnemonicParsing="false" onAction="#availableCarImportImage" prefHeight="37.0" prefWidth="143.0" styleClass="add-btn" text="Import" />
-                                                    </children>
-                                                </AnchorPane>
-                                                <Button fx:id="availableCars_updateBtn" layoutX="623.0" layoutY="77.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="38.0" prefWidth="117.0" styleClass="update-btn" text="Update" />
-                                                <Button fx:id="availableCars_clearBtn" layoutX="625.0" layoutY="149.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="38.0" prefWidth="113.0" styleClass="clear-btn" text="Clear" />
-                                                <Button fx:id="availableCars_insertBtn" layoutX="748.0" layoutY="77.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="37.0" prefWidth="115.0" styleClass="add-btn" text="Insert" />
-                                                <Button fx:id="availableCars_deleteBtn" layoutX="747.0" layoutY="149.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="117.0" styleClass="delete-btn" text="Delete" />
-                                                <Label layoutX="245.0" layoutY="30.0" text="Price:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="availableCars_price" layoutX="290.0" layoutY="24.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="14.0" layoutY="239.0" prefHeight="305.0" prefWidth="875.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="column-header" />
-                                                <String fx:value="nav-form" />
-                                                <String fx:value="column-header-background" />
-                                                <String fx:value="textfield" />
-                                                <String fx:value="label" />
-                                            </styleClass>
-                                            <children>
-                                                <TableView fx:id="availableCars_tableView" layoutX="14.0" layoutY="54.0" onMouseClicked="#availableCarSelect" prefHeight="238.0" prefWidth="843.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="availableCars_col_carid" prefWidth="164.0" text="Car ID" />
-                                                        <TableColumn fx:id="availableCars_col_brand" prefWidth="160.00006103515625" text="Brand" />
-                                                        <TableColumn fx:id="availableCars_col_model" prefWidth="155.199951171875" text="Model" />
-                                                        <TableColumn fx:id="availableCars_col_price" prefWidth="175.20001220703125" text="Price" />
-                                                        <TableColumn fx:id="availableCars_col_status" prefWidth="191.199951171875" text="Status" />
-                                                    </columns>
-                                                </TableView>
-                                                <TextField fx:id="availableCars_search" layoutX="14.0" layoutY="16.0" onKeyTyped="#availableCarSearch" prefHeight="30.0" prefWidth="198.0" promptText="Search" />
-                                            </children>
-                                        </AnchorPane>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane fx:id="rent_form" layoutX="320.0" layoutY="78.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <children>
-                                        <AnchorPane layoutX="10.0" layoutY="14.0" prefHeight="200.0" prefWidth="878.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="25.0" layoutY="24.0" text="Car ID:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="25.0" layoutY="62.0" text="Brand:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="25.0" layoutY="104.0" text="Model:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="269.0" layoutY="25.0" text="First Name:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="269.0" layoutY="62.0" text="Last Name:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="289.0" layoutY="104.0" text="Gender:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_gender" layoutX="342.0" layoutY="100.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
-                                                <TextField fx:id="rent_firstName" layoutX="343.0" layoutY="21.0" promptText="Username" styleClass="textfield" />
-                                                <TextField fx:id="rent_lastName" layoutX="343.0" layoutY="57.0" promptText="LastName" styleClass="textfield" />
-                                                <Label layoutX="26.0" layoutY="156.0" text="Date Rented:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="ent_dateRented" layoutX="113.0" layoutY="151.0" prefHeight="26.0" prefWidth="143.0" />
-                                                <Label layoutX="302.0" layoutY="156.0" text="Date Returned:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="rent_dateReturn" layoutX="402.0" layoutY="151.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="143.0" />
-                                                <Button fx:id="rentBtn" layoutX="759.0" layoutY="144.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" styleClass="add-btn" text="Rent" />
-                                                <Label layoutX="677.0" layoutY="25.0" text="Total:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="rent_total" layoutX="720.0" layoutY="25.0" text="\$0.0">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="661.0" layoutY="63.0" text="Amount:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="rent_amount" layoutX="720.0" layoutY="58.0" onAction="#rentAmount" prefWidth="114.0" />
-                                                <Label layoutX="661.0" layoutY="104.0" text="Balance:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="rent_balance" layoutX="720.0" layoutY="104.0" text="\$0.0">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="12.0" layoutY="227.0" prefHeight="314.0" prefWidth="874.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <Label fx:id="rent_tableView1" layoutX="18.0" layoutY="14.0" prefHeight="29.0" prefWidth="150.0" text="Available Cars">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TableView fx:id="rent_tableView" layoutX="18.0" layoutY="57.0" prefHeight="231.0" prefWidth="838.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="rent_col_carid" prefWidth="133.60000610351562" text="Car ID" />
-                                                        <TableColumn fx:id="rent_col_brand" prefWidth="162.4000244140625" text="Brand" />
-                                                        <TableColumn fx:id="rent_col_model" prefWidth="163.20001220703125" text="Model" />
-                                                        <TableColumn fx:id="rent_col_price" prefWidth="181.5999755859375" text="Price" />
-                                                        <TableColumn fx:id="rent_col_status" prefWidth="199.2000732421875" text="Status" />
-                                                    </columns>
-                                                </TableView>
-                                            </children>
                                         </AnchorPane>
                                     </children>
                                 </AnchorPane>
