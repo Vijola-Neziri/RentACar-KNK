@@ -223,6 +223,25 @@ private Label home_availableCars;
     private Image image;
 
     @FXML
+    public void nextofotot(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
+    @FXML
+    public void backtoslide(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene carList1Scene = new Scene(pane);
+        Stage carList1Stage = new Stage();
+        carList1Stage.setScene(carList1Scene);
+        carList1Stage.show();
+    }
+
+    @FXML
     private void handleLogoutButtonAction(ActionEvent event) {
         Stage stage = (Stage) logoutBtn.getScene().getWindow();
         stage.close();
@@ -268,7 +287,7 @@ private Label home_availableCars;
 
     public void homeTotalCustomers(){
 
-        String sql = "SELECT COUNT(*) FROM klientet";
+        String sql = "SELECT COUNT(klient_id) FROM klientet";
 
         int countTC = 0;
 
@@ -279,7 +298,7 @@ private Label home_availableCars;
             ResultSet result = pst.executeQuery();
 
             while(result.next()){
-                countTC = result.getInt("COUNT(*)");
+                countTC = result.getInt("COUNT(klient_id)");
             }
 //            home_totalCustomers.setText(String.valueOf(countTC));
         }catch(Exception e){e.printStackTrace();}
@@ -314,7 +333,7 @@ private Label home_availableCars;
     public void homeCustomerChart(){
         home_customerChart.getData().clear();
 
-        String sql = "SELECT date_rented, COUNT(* ) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
+        String sql = "SELECT date_rented, COUNT(klient_id ) FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
 
         connection = handler.getConnection();
 
@@ -490,7 +509,7 @@ private String[] listStatus ={"Available","Not Available"};
 
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
-        String sql = "Select * FROM makina";
+        String sql = "Select * from makina";
         connection = handler.getConnection();
         try {
             pst = connection.prepareStatement(sql);
@@ -521,7 +540,8 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void availableCarShowListData() {
         availableCarList = availableCarListData();
-        {
+        for (carData car:availableCarList
+             ) {
             availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
             availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
             availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
@@ -557,9 +577,9 @@ private String[] listStatus ={"Available","Not Available"};
                     return true;
                 } else if (predicateCarData.getStatus().toLowerCase().contains(searchKey)) {
                     return true;
-                } else
+                } else {
                     return false;
-                
+                }
             });
         });
         SortedList<carData> sortList = new SortedList<>(filter);
@@ -598,8 +618,7 @@ private String[] listStatus ={"Available","Not Available"};
 
         String sql = "INSERT INTO klientet "
                 + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
-                + ", model_makina, total, " +
-                "date_rented, date_returned ) "
+                + ", model_makina, total, date_rented, date_returned ) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         connection = handler.getConnection();
@@ -914,12 +933,13 @@ private String[] listStatus ={"Available","Not Available"};
 
     public void rentCarShowListData() {
         rentCarList = rentCarListData();
-        {
-            rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
-            rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
-            rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-            rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-            rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina "));
+        for (carData car:rentCarList
+             ) {
+            rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("carId"));
+            rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+            rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model"));
+            rent_col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+            rent_col_status.setCellValueFactory(new PropertyValueFactory<>("status "));
 
             rent_tableView.setItems(rentCarList);
         }
@@ -1108,6 +1128,5 @@ private String[] listStatus ={"Available","Not Available"};
         rentCarBrand();
         rentCarModel();
         rentCarGender();
-
     }
 }

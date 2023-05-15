@@ -3,42 +3,42 @@ package Services;
 import java.util.Date;
 
 public class carData {
-    private Integer makina_id;
-    private String brand_makina;
-    private String model_makina;
-    private Double cmimi_makina;
-    private String statusiMakina;
+    private Integer carId;
+    private String brand;
+    private String model;
+    private Double price;
+    private String status;
     private Date date;
-    private String foto_makina;
+    private String image;
 
     public carData(Integer carId, String brand, String model, Double price, String status, String image, Date date) {
-        this.makina_id = carId;
-        this.brand_makina = brand;
-        this.model_makina = model;
-        this.cmimi_makina = price;
-        this.statusiMakina = status;
+        this.carId = carId;
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+        this.status = status;
         this.date = date;
-        this.foto_makina = image;
+        this.image = image;
     }
 
     public Integer getCarId() {
-        return makina_id;
+        return carId;
     }
 
     public String getBrand() {
-        return brand_makina;
+        return brand;
     }
 
     public String getModel() {
-        return model_makina;
+        return model;
     }
 
     public Double getPrice() {
-        return cmimi_makina;
+        return price;
     }
 
     public String getStatus() {
-        return statusiMakina;
+        return status;
     }
 
     public Date getDate() {
@@ -46,6 +46,6 @@ public class carData {
     }
 
     public String getImage() {
-        return foto_makina;
+        return image;
     }
 }
