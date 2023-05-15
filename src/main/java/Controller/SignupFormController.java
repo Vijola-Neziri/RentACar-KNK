@@ -5,28 +5,23 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import javafx.util.Duration;
 import ConnectionMysql.DBHandler;
-
+import repository.UserRepository;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
+import repository.UserRepository;
 
-import javafx.util.Duration;
-
-public class SignupFormController {
+public class SignupFormController implements Initializable {
     @FXML
     private TextField addressid;
-
 
     @FXML
     private CheckBox female;
@@ -41,9 +36,6 @@ public class SignupFormController {
     private TextField name;
 
     @FXML
-    private AnchorPane paneid;
-
-    @FXML
     private PasswordField passwordid;
 
     @FXML
@@ -55,10 +47,8 @@ public class SignupFormController {
     @FXML
     private TextField usernameid;
 
-    private Connection connection;
     private DBHandler handler;
-
-    private PreparedStatement pst;
+    private UserRepository userRepository;
 
 
     @FXML
@@ -79,80 +69,70 @@ public class SignupFormController {
     }
 
     @FXML
-    void signupaction(ActionEvent event) {
-        // Kontrollo nese të gjitha fushat janë të mbushura
-        if (usernameid.getText().isEmpty() || name.getText().isEmpty() || phoneid.getText().isEmpty() || addressid.getText().isEmpty() || passwordid.getText().isEmpty()) {
-            // Trego një alert nëse nuk janë të gjitha fushat e mbushura
+    public void signupaction(ActionEvent event) {
+        if (usernameid.getText().isEmpty() || name.getText().isEmpty() || phoneid.getText().isEmpty()
+                || addressid.getText().isEmpty() || passwordid.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText(null);
             alert.setContentText("Please fill all fields!");
             alert.showAndWait();
         } else {
-            // Vazhdo nëse të gjitha fushat janë të mbushura
-            PauseTransition pt = new PauseTransition();
-            pt.setDuration(Duration.seconds(3));
-            pt.setOnFinished(ev -> {
-            });
+            String username = usernameid.getText();
+            String name = this.name.getText();
+            String phone = phoneid.getText();
+            String address = addressid.getText();
+            String password = passwordid.getText();
+            String gender = getGender();
 
-            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+            boolean registrationSuccessful = userRepository.signup(username, name, phone, address, password, gender);
 
-            // Fut të dhënat në databazë
-            handler = new DBHandler();
-            try {
-                connection = handler.getConnection();
-                String insert = "INSERT INTO klientet_signup ( emri_i_klientit, klient_username, fjalekalimi_i_klientit ,telefoni_i_klientit ,adresa_e_klientit, gjinia) " +
-                        "VALUES(?,?,?,?,?,?)";
-                pst = connection.prepareStatement(insert);
-                pst.setString(1, name.getText());
-                pst.setString(2, usernameid.getText());
-                pst.setString(3, passwordid.getText());
-                pst.setString(4, phoneid.getText());
-                pst.setString(5, addressid.getText());
-                pst.setString(6, getGender());
+            if (registrationSuccessful) {
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Registration successful!");
+                successAlert.showAndWait();
 
-                pst.executeUpdate();
-                connection.close();
+                // Close the signup window
+                Stage stage = (Stage) signupid.getScene().getWindow();
+                stage.close();
 
-                // Shto këtë kod për të hapur "Dashboard.fxml"
+                // Open the UserHome.fxml page
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
                     Pane pane = fxmlLoader.load();
                     Scene scene = new Scene(pane);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.setTitle("Dashboard");
-                    stage.show();
+                    Stage userHomeStage = new Stage();
+                    userHomeStage.setScene(scene);
+                    userHomeStage.setTitle("User Home");
+                    userHomeStage.show();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
-                // Mbyll dritaren e regjistrimit
-                ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
-
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } else {
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Registration failed. Please try again.");
+                errorAlert.showAndWait();
             }
         }
     }
 
-    public void initialize (URL args0, ResourceBundle arg1) throws SQLException {
-            signupid.setOnAction(this::signupaction);
-            handler = new DBHandler();
-
-        }
-
-
-
-    public String getGender() {
-        String gen = "";
-
-        if (male.isSelected()) {
-            gen = "Male";
-        }  if(female.isSelected()) {
-            gen = "Female";
-
-        }
-        return  gen;
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        signupid.setOnAction(this::signupaction);
+        userRepository = new UserRepository();
     }
-}
+
+        public String getGender() {
+            if (male.isSelected()) {
+                return "Male";
+            } else if (female.isSelected()) {
+                return "Female";
+            } else {
+                return "";
+            }
+        }
+    }

@@ -1,4 +1,5 @@
 package Controller;
+import repository.UserRepository;
 
 import app.LoginForm;
 import javafx.animation.PauseTransition;
@@ -45,6 +46,8 @@ public class LoginFormController implements Initializable {
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
+    private UserRepository userRepository = new UserRepository();
+
 
 
     public void close(){
@@ -54,57 +57,36 @@ public class LoginFormController implements Initializable {
 
     @FXML
     void loginaction(ActionEvent event) {
-        PauseTransition pt=new PauseTransition();
+        PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.seconds(3));
-        pt.setOnFinished(ev->{
+        pt.setOnFinished(ev -> {
 
         });
         pt.play();
 
-        connection = handler.getConnection();
-        String query1 = "SELECT * FROM klientet_signup where klient_username=? and fjalekalimi_i_klientit=?";
+        String username = usernameid.getText();
+        String password = passwordid.getText();
 
-        try {
-            pst = connection.prepareStatement(query1);
-            pst.setString(1,usernameid.getText());
-            pst.setString(2,passwordid.getText());
-            ResultSet rst = pst.executeQuery();
+        User user = userRepository.getUserByUsernameAndPassword(username, password);
 
+        if (user != null) {
+            loginid.getScene().getWindow().hide();
+            Stage home = new Stage();
 
-
-            int count=0;
-
-            while(rst.next()){
-                count=count+1;
-            }
-            if(count==1){
-                loginid.getScene().getWindow().hide();
-                Stage home = new Stage();
-
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Scene scene = new Scene(root);
-                    home.setScene(scene);
-                    home.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }else{
-                Alert alert=new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText(null);
-                alert.setContentText("Username and Password is not correct");
-                alert.show();
-            }
-        } catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-finally {
             try {
-                connection.close();
-            } catch (SQLException e) {
+                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                home.setScene(scene);
+                home.show();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Username and Password are not correct");
+            alert.show();
         }
     }
 
