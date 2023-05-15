@@ -61,7 +61,7 @@
                   <Image url="@../resources/Images/Car-Login.png" />
                </image>
             </ImageView>
-            <SplitMenuButton fx:id="langEnum" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#Al" text="Language">
+            <SplitMenuButton fx:id="langEnum" layoutX="14.0" layoutY="456.0" mnemonicParsing="false"  text="Language">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
                 <MenuItem mnemonicParsing="false" text="Action 2" />
