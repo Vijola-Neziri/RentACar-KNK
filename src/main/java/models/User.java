@@ -1,43 +1,17 @@
 package models;
 
 public class User {
-    private int id;
-    private String username;
-    private String saltedPassword;
+    private int klient_id;
+    private String emri_klient;
+    private String mbiemri_klient;
+    private String gjinia;
+    private String makina_id;
+    private String model_makina;
+    private int total;
+    private String date_rented;
+    private String date_returned;
     private String salt;
+    private boolean is_admin;
 
-    public User(int id, String username, String saltedPassword, String salt) {
-        this.id = id;
-        this.username = username;
-        this.saltedPassword = saltedPassword;
-        this.salt = salt;
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getSaltedPassword() {
-        return saltedPassword;
-    }
-
-    public void setSaltedPassword(String saltedPassword) {
-        this.saltedPassword = saltedPassword;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
 }
