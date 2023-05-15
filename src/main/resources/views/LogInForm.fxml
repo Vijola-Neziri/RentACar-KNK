@@ -3,7 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -59,6 +61,12 @@
                   <Image url="@../resources/Fotot/Car-Login.png" />
                </image>
             </ImageView>
+            <SplitMenuButton fx:id="langEnum" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" onAction="#Al" text="Language">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
          </children>
       </Pane>
       <ImageView fitHeight="50.0" fitWidth="81.0" layoutX="441.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
