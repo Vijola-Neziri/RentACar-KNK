@@ -21,6 +21,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.DashboardController">
     <children>
+
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@../css/dashboard.css">
             <children>
                 <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
