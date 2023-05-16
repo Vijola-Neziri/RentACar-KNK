@@ -222,24 +222,7 @@ private Label home_availableCars;
     private Statement statement;
     private Image image;
 
-    @FXML
-    public void nextofotot(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
-    }
-    @FXML
-    public void backtoslide(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList1.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene carList1Scene = new Scene(pane);
-        Stage carList1Stage = new Stage();
-        carList1Stage.setScene(carList1Scene);
-        carList1Stage.show();
-    }
+
 
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) {

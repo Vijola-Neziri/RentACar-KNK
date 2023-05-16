@@ -20,15 +20,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import ConnectionMysql.DBHandler;
 import models.User;
-import models.Car;
-import models.LangEnum;
 
 
 public class LoginFormController implements Initializable {
@@ -77,7 +71,7 @@ public class LoginFormController implements Initializable {
             Stage home = new Stage();
 
             try {
-                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 home.setScene(scene);

@@ -64,7 +64,7 @@
                                         <Image url="@../resources/Images/carlogo1.jpg" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="Admin" textFill="#fff7f7">
+                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="User" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

@@ -1,7 +1,10 @@
 package Controller;
 
+import models.User;
 import ConnectionMysql.DBHandler;
+import Services.carData;
 import app.LoginForm;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,13 +14,21 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import repository.CarRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
-
+import repository.CarRepository;
+import models.Car;
+import models.User;
+import repository.CarRepository;
 public class UserRentCarController implements Initializable {
 
     @FXML
@@ -54,25 +65,28 @@ public class UserRentCarController implements Initializable {
     private Label rent_balance;
 
     @FXML
-    private ComboBox<?> rent_brand;
+    private ComboBox<String> rent_brand;
 
     @FXML
-    private ComboBox<?> rent_carid;
+    private ComboBox<String> rent_carid;
 
     @FXML
-    private TableColumn<?, ?> rent_col_brand;
+    private TableColumn<carData, String> rent_col_brand;
 
     @FXML
-    private TableColumn<?, ?> rent_col_carid;
+    private TableColumn<carData, Integer> rent_col_carid;
 
     @FXML
-    private TableColumn<?, ?> rent_col_model;
+    private TableColumn<carData, String> rent_col_model;
 
     @FXML
-    private TableColumn<?, ?> rent_col_price;
+    private TableColumn<carData, Double> rent_col_price;
 
     @FXML
-    private TableColumn<?, ?> rent_col_status;
+    private TableColumn<carData, String> rent_col_status;
+
+    @FXML
+    private TableColumn<carData, Date> rent_col_date;
 
     @FXML
     private DatePicker rent_dateReturn;
@@ -84,16 +98,16 @@ public class UserRentCarController implements Initializable {
     private AnchorPane rent_form;
 
     @FXML
-    private ComboBox<?> rent_gender;
+    private ComboBox<String> rent_gender;
 
     @FXML
     private TextField rent_lastName;
 
     @FXML
-    private ComboBox<?> rent_model;
+    private ComboBox<String> rent_model;
 
     @FXML
-    private TableView<?> rent_tableView;
+    private TableView<carData> rent_tableView;
 
     @FXML
     private Label rent_tableView1;
@@ -111,93 +125,78 @@ public class UserRentCarController implements Initializable {
     private Connection connection;
     private PreparedStatement pst;
 
+    private CarRepository carRepository;
+    public UserRentCarController(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @FXML
     void RentCar(ActionEvent event) {
+        // Get selected car information
+        carData selectedCar = rent_tableView.getSelectionModel().getSelectedItem();
+        if (selectedCar != null) {
+            LocalDate dateRented = ent_dateRented.getValue();
+            LocalDate dateReturn = rent_dateReturn.getValue();
+            String firstName = rent_firstName.getText();
+            String lastName = rent_lastName.getText();
+            String gender = rent_gender.getValue();
+            double amount = Double.parseDouble(rent_amount.getText());
 
-    }
+            // Perform the rental and update the car status
+            carRepository.rentCar(selectedCar.getCarId(), firstName, lastName, gender, dateRented, dateReturn, amount);
 
-    @FXML
-    public void carlist(ActionEvent event) throws  IOException{
-        carlist.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
+            // Rental successful, display a confirmation message
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Car Rental");
+            alert.setHeaderText(null);
+            alert.setContentText("Car rented successfully!");
+            alert.showAndWait();
 
-    }
-
-    @FXML
-    void close(ActionEvent event) {
-        System.exit(0);
-    }
-
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
-    @FXML
-    void rentAmount(ActionEvent event) {
-
+            // Clear the form
+            rent_carid.setValue(null);
+            ent_dateRented.setValue(null);
+            rent_firstName.clear();
+            rent_lastName.clear();
+            rent_gender.setValue(null);
+            rent_amount.clear();
+        } else {
+            // No car selected, display an error message
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Car Rental");
+            alert.setHeaderText(null);
+            alert.setContentText("Please select a car to rent.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     void rentCarBrand(ActionEvent event) {
-
+        String brand = rent_brand.getValue();
+        if (brand != null) {
+            ObservableList<String> carModels = (ObservableList<String>) carRepository.getCarModelsByBrand(brand);
+            rent_model.setItems(carModels);
+        }
     }
 
     @FXML
     void rentCarCarId(ActionEvent event) {
-
+        String carId = rent_carid.getValue();
+        if (carId != null) {
+            Car selectedCar = carRepository.getCarById(Integer.parseInt(carId));
+            if (selectedCar != null) {
+                rent_brand.setValue(selectedCar.getBrandMakina());
+                rent_model.setValue(selectedCar.getModelMakina());
+                rent_amount.setText("");
+            }
+        }
     }
 
-    @FXML
-    void rentCarGender(ActionEvent event) {
+    // ... remaining methods ...
 
-    }
-
-    @FXML
-    void rentDisplayTotal(ActionEvent event) {
-
-    }
-
-    @FXML
-    void rentPay(ActionEvent event) {
-
-    }
-
-    @FXML
-    public void switchform(ActionEvent event) throws IOException {
-        home_btn.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
-    }
-    @FXML
-    void switchForm(ActionEvent event) throws  IOException{
-        home_btn.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
-    }
-
-@Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
+        connection = handler.getConnection(); // Get the database connection
+        carRepository = new CarRepository(connection); // Initialize the CarRepository with the connection
     }
 }
-
