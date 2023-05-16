@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class SignupForm extends Application {
     @Override
+
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/SignupForm.fxml"));
         Pane pane = fxmlLoader.load();
