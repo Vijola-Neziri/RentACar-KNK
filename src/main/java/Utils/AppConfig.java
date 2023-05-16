@@ -47,13 +47,13 @@ public class AppConfig {
     }
 
     public LangEnum getLanguage() {
-        LangEnum lang = props.getProperty("lang", "en").equals("en") ? LangEnum.EN : LangEnum.AL;
+        LangEnum lang = props.getProperty("lang", "en").equals("en") ? LangEnum.ENGLISH : LangEnum.ALBANIAN;
         return lang;
     }
 
     public void setLanguage(LangEnum lang) throws Exception {
         URI confPath = getClass().getResource("../resources/config.properties").toURI();
-        String langStr = lang == LangEnum.EN ? "en" : "al";
+        String langStr = lang == LangEnum.ENGLISH ? "en" : "al";
         props.setProperty("lang", langStr);
         props.store(new FileOutputStream(new File(confPath)), "");
     }

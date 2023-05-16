@@ -24,13 +24,13 @@ public class SignupFormController implements Initializable {
     private TextField addressid;
 
     @FXML
-    private CheckBox female;
+    private RadioButton female;
 
     @FXML
     private Button loginid;
 
     @FXML
-    private CheckBox male;
+    private RadioButton male;
 
     @FXML
     private TextField name;
@@ -49,6 +49,22 @@ public class SignupFormController implements Initializable {
 
     private DBHandler handler;
     private UserRepository userRepository;
+    @FXML
+    private Label myLabel;
+    @FXML
+    private RadioButton Male,Female;
+    public void getMale(ActionEvent event) {
+        if (Male.isSelected()) {
+            myLabel.setText(Male.getText());
+        } else if (Female.isSelected()) {
+
+
+        }
+    }
+
+
+
+
 
 
     @FXML

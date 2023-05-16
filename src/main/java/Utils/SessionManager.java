@@ -11,7 +11,7 @@ public class SessionManager {
 
     public static Locale getLocale() {
         LangEnum lang = AppConfig.get().getLanguage();
-        return lang == LangEnum.EN ? new Locale("en", "US") :
+        return lang == LangEnum.ENGLISH ? new Locale("en", "US") :
                 new Locale("al", "AL");
     }
 }
