@@ -1,12 +1,11 @@
 package Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
@@ -40,6 +39,7 @@ public class ChartsDemoUIController implements Initializable {
         data.getData().add(new XYChart.Data<>("Product C", 100));
 
         barChart.getData().add(data);
+        barChart.setLegendVisible(false);
 
         // Add bar chart to BorderPane
         borderPane.setCenter(barChart);
@@ -47,7 +47,21 @@ public class ChartsDemoUIController implements Initializable {
 
     @FXML
     private void handleShowPieChart(ActionEvent event) {
-        // Handle the action to show the pie chart
+        //Create Data
+        ObservableList<PieChart.Data> pieCharDAta= FXCollections.observableArrayList(
+                new PieChart.Data("Product A",3000),
+                new PieChart.Data("Product B",1500),
+                new PieChart.Data("Product C",100)
+        );
+        //Create PieChart object
+        PieChart pieChart=new PieChart(pieCharDAta);
+        pieChart.setTitle("Products sold");
+        pieChart.setClockwise(true);
+        pieChart.setLabelLineLength(50);
+        pieChart.setLabelsVisible(true);
+        pieChart.setStartAngle(180);
+
+        borderPane.setCenter(pieChart);
     }
 
     @FXML
