@@ -5,6 +5,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -82,8 +83,11 @@
             <Image url="@../resources/Images/LogIn.png" />
          </image>
       </ImageView>
-      <RadioButton fx:id="Male" layoutX="524.0" layoutY="453.0" mnemonicParsing="false" onAction="#getMale" text="Male" textFill="#f4f2f2" />
-      <RadioButton fx:id="Female" layoutX="605.0" layoutY="453.0" mnemonicParsing="false" onAction="#getMale" text="Female" textFill="#f7f6f6" />
+      <RadioButton fx:id="Male" layoutX="524.0" layoutY="453.0" mnemonicParsing="false" onAction="#getMale" selected="true" text="Male" textFill="#f4f2f2">
+         <toggleGroup>
+            <ToggleGroup fx:id="gjinia" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="Female" layoutX="605.0" layoutY="453.0" mnemonicParsing="false" onAction="#getMale" selected="true" text="Female" textFill="#f7f6f6" toggleGroup="$gjinia" />
 
    </children>
 </AnchorPane>

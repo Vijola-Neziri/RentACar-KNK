@@ -57,6 +57,7 @@ public class SignupFormController implements Initializable {
         if (Male.isSelected()) {
             myLabel.setText(Male.getText());
         } else if (Female.isSelected()) {
+            myLabel.setText(Female.getText());
 
 
         }
