@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ChartsDemoUIController implements Initializable {
-
     @FXML
     private BorderPane borderPane;
 
