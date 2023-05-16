@@ -27,7 +27,8 @@
                     <left>
                         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView
+                                        fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../resources/Images/user.png" />
                                     </image>

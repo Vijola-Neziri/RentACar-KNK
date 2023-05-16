@@ -429,6 +429,8 @@
                                     </Label>
                                     <TableView fx:id="rent_tableView" layoutX="18.0" layoutY="49.0" prefHeight="231.0" prefWidth="838.0">
                                        <columns>
+
+
                                           <TableColumn fx:id="rent_col_carid" prefWidth="133.60000610351562" text="Car ID" />
                                           <TableColumn fx:id="rent_col_brand" prefWidth="162.4000244140625" text="Brand" />
                                           <TableColumn fx:id="rent_col_model" prefWidth="163.20001220703125" text="Model" />
