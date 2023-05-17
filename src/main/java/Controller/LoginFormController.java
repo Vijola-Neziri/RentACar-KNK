@@ -127,7 +127,7 @@ public class LoginFormController implements Initializable {
             MenuItem selectedItem = (MenuItem) event.getTarget();
             String languageCode = selectedItem.getUserData().toString();
 
-            // Load the resource bundle for the selected language
+
             ResourceBundle bundle = ResourceBundle.getBundle("Controller.Bundle", new Locale(languageCode));
 
             // Example usage: retrieving a localized string
