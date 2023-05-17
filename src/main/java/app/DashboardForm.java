@@ -30,8 +30,7 @@ public class DashboardForm extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Dashboard");
         primaryStage.show();
-
-
+        
     }
     public static void main(String[] args){
         launch(args);

@@ -1,6 +1,6 @@
 package Controller;
 
-import models.User;
+import javafx.collections.FXCollections;
 import ConnectionMysql.DBHandler;
 import Services.carData;
 import app.LoginForm;
@@ -18,17 +18,15 @@ import repository.CarRepository;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import repository.CarRepository;
+
 import models.Car;
-import models.User;
-import repository.CarRepository;
+
 public class UserRentCarController implements Initializable {
 
     @FXML
@@ -43,20 +41,12 @@ public class UserRentCarController implements Initializable {
     @FXML
     private Button home_btn;
 
-    @FXML
-    private Button logoutBtn;
+
 
     @FXML
     private AnchorPane main_form;
 
-    @FXML
-    private Button minimize;
 
-    @FXML
-    private Button rentBtn;
-
-    @FXML
-    private Button rentCar_btn;
 
     @FXML
     private TextField rent_amount;
@@ -70,32 +60,12 @@ public class UserRentCarController implements Initializable {
     @FXML
     private ComboBox<String> rent_carid;
 
-    @FXML
-    private TableColumn<carData, String> rent_col_brand;
-
-    @FXML
-    private TableColumn<carData, Integer> rent_col_carid;
-
-    @FXML
-    private TableColumn<carData, String> rent_col_model;
-
-    @FXML
-    private TableColumn<carData, Double> rent_col_price;
-
-    @FXML
-    private TableColumn<carData, String> rent_col_status;
-
-    @FXML
-    private TableColumn<carData, Date> rent_col_date;
 
     @FXML
     private DatePicker rent_dateReturn;
 
     @FXML
     private TextField rent_firstName;
-
-    @FXML
-    private AnchorPane rent_form;
 
     @FXML
     private ComboBox<String> rent_gender;
@@ -109,26 +79,23 @@ public class UserRentCarController implements Initializable {
     @FXML
     private TableView<carData> rent_tableView;
 
-    @FXML
-    private Label rent_tableView1;
 
     @FXML
     private Label rent_total;
 
-    @FXML
-    private Label user;
 
-    @FXML
-    private Label username;
 
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
 
     private CarRepository carRepository;
+
     public UserRentCarController(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
+
+    // ... existing code ...
 
     @FXML
     void RentCar(ActionEvent event) {
@@ -169,14 +136,7 @@ public class UserRentCarController implements Initializable {
         }
     }
 
-    @FXML
-    void rentCarBrand(ActionEvent event) {
-        String brand = rent_brand.getValue();
-        if (brand != null) {
-            ObservableList<String> carModels = (ObservableList<String>) carRepository.getCarModelsByBrand(brand);
-            rent_model.setItems(carModels);
-        }
-    }
+
 
     @FXML
     void rentCarCarId(ActionEvent event) {

@@ -1,6 +1,8 @@
 package repository;
+import javafx.collections.ObservableList;
 import models.Car;
-
+import ConnectionMysql.DBHandler;
+import ConnectionMysql.Configs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,6 +99,7 @@ public class CarRepository {
 
         return models;
     }
+
 
     public Car getCarById(int carId) {
         Car car = null;

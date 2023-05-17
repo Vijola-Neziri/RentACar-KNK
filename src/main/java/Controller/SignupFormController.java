@@ -1,7 +1,5 @@
 package Controller;
-
 import app.LoginForm;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,14 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import ConnectionMysql.DBHandler;
 import repository.UserRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import repository.UserRepository;
 
 public class SignupFormController implements Initializable {
     @FXML
@@ -52,21 +48,23 @@ public class SignupFormController implements Initializable {
     @FXML
     private Label myLabel;
     @FXML
-    private RadioButton Male,Female;
+    private RadioButton Male, Female;
+
     public void getMale(ActionEvent event) {
         if (Male.isSelected()) {
             myLabel.setText(Male.getText());
         } else if (Female.isSelected()) {
             myLabel.setText(Female.getText());
-
-
         }
     }
 
-
-
-
-
+    public void getFemale(ActionEvent event) {
+        if (Female.isSelected()) {
+            myLabel.setText(Female.getText());
+        } else if (Male.isSelected()) {
+            myLabel.setText(Male.getText());
+        }
+    }
 
     @FXML
     public void loginaction(ActionEvent event) throws IOException {
@@ -137,19 +135,20 @@ public class SignupFormController implements Initializable {
         }
     }
 
+    private String getGender() {
+        if (Male.isSelected()) {
+            return Male.getText();
+        } else if (Female.isSelected()) {
+            return Female.getText();
+        } else {
+            return ""; // Return an empty string if no gender is selected
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         signupid.setOnAction(this::signupaction);
         userRepository = new UserRepository();
     }
+}
 
-        public String getGender() {
-            if (male.isSelected()) {
-                return "Male";
-            } else if (female.isSelected()) {
-                return "Female";
-            } else {
-                return "";
-            }
-        }
-    }

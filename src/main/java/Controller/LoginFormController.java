@@ -1,4 +1,6 @@
 package Controller;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import repository.UserRepository;
 
 import app.LoginForm;
@@ -51,9 +53,19 @@ public class LoginFormController implements Initializable {
         System.exit(0);
     }
 
+    @FXML
+    void showKeyword(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            handleLogin();
+        }
+    }
 
     @FXML
     void loginaction(ActionEvent event) {
+        handleLogin();
+    }
+
+    private void handleLogin() {
         PauseTransition pt = new PauseTransition();
         pt.setDuration(Duration.seconds(3));
         pt.setOnFinished(ev -> {
@@ -86,7 +98,6 @@ public class LoginFormController implements Initializable {
             alert.show();
         }
     }
-
 
     @FXML
    public void signupaction(ActionEvent event) throws IOException {

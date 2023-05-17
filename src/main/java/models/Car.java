@@ -6,12 +6,12 @@ public class Car {
     private int makina_id;
     private String brand_makina;
     private String model_makina;
-    private float cmimi_makina;
+    private double cmimi_makina;
     private String statusiMakina;
     private String foto_makina;
     private LocalDate date;
 
-    public Car(int makina_id, String brand_makina, String model_makina, float cmimi_makina, String statusiMakina, String foto_makina, LocalDate date) {
+    public Car(int makina_id, String brand_makina, String model_makina, double cmimi_makina, String statusiMakina, String foto_makina, LocalDate date) {
         this.makina_id = makina_id;
         this.brand_makina = brand_makina;
         this.model_makina = model_makina;
@@ -45,7 +45,7 @@ public class Car {
         this.model_makina = model_makina;
     }
 
-    public float getCmimiMakina() {
+    public double getCmimiMakina() {
         return cmimi_makina;
     }
 

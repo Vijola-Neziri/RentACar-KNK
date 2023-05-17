@@ -1,10 +1,11 @@
-package Controller;
-
+package  Controller;
 import ConnectionMysql.DBHandler;
 import Services.carData;
 import app.LoginForm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
@@ -32,16 +32,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.*;
 
-public class AdminAvailibileCarController implements Initializable {
-
+public class AdminAvailibleCarController  implements Initializable {
     @FXML
     private TextField availableCars_brand;
 
-
+    @FXML
+    private Button availableCars_btn;
 
     @FXML
     private TextField availableCars_carid;
 
+    @FXML
+    private Button availableCars_clearBtn;
 
     @FXML
     private TableColumn<carData, String> availableCars_col_brand;
@@ -58,13 +60,20 @@ public class AdminAvailibileCarController implements Initializable {
     @FXML
     private TableColumn<carData, String> availableCars_col_status;
 
+    @FXML
+    private Button availableCars_deleteBtn;
 
-
+    @FXML
+    private AnchorPane availableCars_form;
 
     @FXML
     private ImageView availableCars_imageView;
 
+    @FXML
+    private Button availableCars_importBtn;
 
+    @FXML
+    private Button availableCars_insertBtn;
 
     @FXML
     private TextField availableCars_model;
@@ -72,6 +81,8 @@ public class AdminAvailibileCarController implements Initializable {
     @FXML
     private TextField availableCars_price;
 
+    @FXML
+    private TextField availableCars_search;
 
     @FXML
     private ComboBox<?> availableCars_status;
@@ -79,20 +90,120 @@ public class AdminAvailibileCarController implements Initializable {
     @FXML
     private TableView<carData> availableCars_tableView;
 
+    @FXML
+    private Button availableCars_updateBtn;
 
     @FXML
     private Button close;
 
+    //    @FXML
+//    private ImageView home_availableCars;
+    @FXML
+    private Label home_availableCars;
 
 
     @FXML
     private Button home_btn;
 
+    @FXML
+    private LineChart<?, ?> home_customerChart;
 
+    @FXML
+    private BarChart<?, ?> home_incomeChart;
 
+//    @FXML
+//    private AnchorPane home_totalCustomers;
+//
+//    @FXML
+//    private AnchorPane home_totalIncome;
+
+    @FXML
+    private Label home_totalCustomers;
+
+    @FXML
+    private Label home_totalIncome;
+
+    @FXML
+    private Button logoutBtn;
 
     @FXML
     private AnchorPane main_form;
+
+    @FXML
+    private Button minimize;
+
+    @FXML
+    private Button rentBtn;
+
+    @FXML
+    private Button rentCar_btn;
+
+    @FXML
+    private TextField rent_amount;
+
+    @FXML
+    private Label rent_balance;
+
+    @FXML
+    private ComboBox<?> rent_brand;
+
+    @FXML
+    private ComboBox<?> rent_carid;
+
+    @FXML
+    private TableColumn<?, ?> rent_col_brand;
+
+    @FXML
+    private TableColumn<carData, String> rent_col_carid;
+
+    @FXML
+    private TableColumn<carData, String> rent_col_model;
+
+    @FXML
+    private TableColumn<carData, String> rent_col_price;
+
+    @FXML
+    private TableColumn<carData, String> rent_col_status;
+
+    @FXML
+    private DatePicker rent_dateRented;
+
+    @FXML
+    private DatePicker rent_dateReturn;
+
+    @FXML
+    private TextField rent_firstName;
+
+    @FXML
+    private AnchorPane home_form;
+
+    @FXML
+    private AnchorPane rent_form;
+
+    @FXML
+    private ComboBox<?> rent_gender;
+
+    @FXML
+    private TextField rent_lastName;
+
+    @FXML
+    private ComboBox<?> rent_model;
+
+//    @FXML
+//    private Label rent_tableView;
+
+    @FXML
+    private Label rent_total;
+
+    @FXML
+    private Label user;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private TableView<carData> rent_tableView;
+
 
     private DBHandler handler;
     private Connection connection;
@@ -103,40 +214,28 @@ public class AdminAvailibileCarController implements Initializable {
     private ResultSet result;
     private Statement statement;
     private Image image;
+    private String[] listStatus ={"Available","Not Available"};
+    public void availableCarStatusList() {
 
+        List<String> listS = new ArrayList<>();
 
-    @FXML
-    void close(ActionEvent event) {
-        System.exit(0);
+        for (String data : listStatus) {
+            listS.add(data);
+        }
+
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        availableCars_status.setItems(listData);
     }
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
+    public void availableCarAdd() {
 
-
-    @FXML
-    void switchForm(ActionEvent event) throws  IOException{
-        home_btn.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
-    }
-
-    public void availableCarDelete() {
-
-        String sql = "DELETE FROM makina WHERE makina_id = '" + availableCars_carid.getText() + "'";
-
+        String sql = "INSERT INTO makina (makina_id , brand_makina, model_makina , cmimi_makina , statusiMakina , foto_makina, date) "
+                + "VALUES(?,?,?,?,?,?,?)";
 
         connection = handler.getConnection();
 
         try {
             Alert alert;
+
             if (availableCars_carid.getText().isEmpty()
                     || availableCars_brand.getText().isEmpty()
                     || availableCars_model.getText().isEmpty()
@@ -149,26 +248,33 @@ public class AdminAvailibileCarController implements Initializable {
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-                alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                pst = connection.prepareStatement(sql);
+                pst.setString(1, availableCars_carid.getText());
+                pst.setString(2, availableCars_brand.getText());
+                pst.setString(3, availableCars_model.getText());
+                pst.setString(4, availableCars_price.getText());
+                pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+
+                String uri = getData.path;
+                uri = uri.replace("\\", "\\\\");
+
+                pst.setString(6, uri);
+
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                pst.setString(7, String.valueOf(sqlDate));
+
+                pst.executeUpdate();
+
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Are you sure you want to DELETE Car ID: " + availableCars_carid.getText() + "?");
-                Optional<ButtonType> option = alert.showAndWait();
+                alert.setContentText("Successfully Added!");
+                alert.showAndWait();
 
-                if (option.get().equals(ButtonType.OK)) {
-                    statement = connection.createStatement();
-                    statement.executeUpdate(sql);
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Deleted!");
-                    alert.showAndWait();
-
-                    availableCarShowListData();
-                    availableCarClear();
-                }
-
+                availableCarShowListData();
+                availableCarClear();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,12 +286,12 @@ public class AdminAvailibileCarController implements Initializable {
 
         String uri = getData.path;
         uri = uri.replace("\\", "\\\\");
+
         String sql = "UPDATE makina SET brand_makina = '" + availableCars_brand.getText() + "', model_makina = '"
                 + availableCars_model.getText() + "', statusiMakina ='"
                 + availableCars_status.getSelectionModel().getSelectedItem() + "', cmimi_makina = '"
                 + availableCars_price.getText() + "', foto_makina = '" + uri
-                + "' WHERE makina_id = '" + availableCars_carid.getText() + "'";
-
+                + "' WHERE  = '" + availableCars_carid.getText() + "'";
 
         connection = handler.getConnection();
 
@@ -230,6 +336,7 @@ public class AdminAvailibileCarController implements Initializable {
         }
 
     }
+
     public void availableCarClear() {
         availableCars_carid.setText("");
         availableCars_brand.setText("");
@@ -242,6 +349,7 @@ public class AdminAvailibileCarController implements Initializable {
         availableCars_imageView.setImage(null);
 
     }
+
     public void availableCarImportImage() {
 
         FileChooser open = new FileChooser();
@@ -260,6 +368,7 @@ public class AdminAvailibileCarController implements Initializable {
         }
 
     }
+
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
         String sql = "Select * from makina";
@@ -305,12 +414,49 @@ public class AdminAvailibileCarController implements Initializable {
         }
 
     }
+
+    public void availableCarSearch() {
+
+        FilteredList<carData> filter = new FilteredList<>(availableCarList, e -> true);
+
+        availableCars_search.textProperty().addListener((Observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateCarData -> {
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String searchKey = newValue.toLowerCase();
+
+                if (predicateCarData.getCarId().toString().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getBrand().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getModel().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getPrice().toString().contains(searchKey)) {
+                    return true;
+                } else if (predicateCarData.getStatus().toLowerCase().contains(searchKey)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<carData> sortList = new SortedList<>(filter);
+
+        sortList.comparatorProperty().bind(availableCars_tableView.comparatorProperty());
+        availableCars_tableView.setItems(sortList);
+
+    }
+
+
     public void availableCarSelect() {
         carData carD = availableCars_tableView.getSelectionModel().getSelectedItem();
         int num = availableCars_tableView.getSelectionModel().getSelectedIndex();
 
-
-        if (carD == null) {
+        if ((num - 1) < - 1) {
             return;
         }
 
@@ -327,76 +473,80 @@ public class AdminAvailibileCarController implements Initializable {
         availableCars_imageView.setImage(image);
 
     }
-    private String[] listStatus ={"Available","Not Available"};
-    public void availableCarStatusList() {
 
-        List<String> listS = new ArrayList<>();
-
-        for (String data : listStatus) {
-            listS.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listS);
-        availableCars_status.setItems(listData);
+    @FXML
+    void close(ActionEvent event) {
+        System.exit(0);
     }
-    public void availableCarAdd() {
-        String sql = "INSERT INTO makina (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage)main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
+
+
+    @FXML
+    void switchForm(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+    public void availableCarDelete() {
+
+        String sql = "DELETE FROM makina WHERE makina_id = '" + availableCars_carid.getText() + "'";
 
         connection = handler.getConnection();
 
         try {
             Alert alert;
-
             if (availableCars_carid.getText().isEmpty()
                     || availableCars_brand.getText().isEmpty()
                     || availableCars_model.getText().isEmpty()
-                    || availableCars_status.getSelectionModel().isEmpty()
+                    || availableCars_status.getSelectionModel().getSelectedItem() == null
                     || availableCars_price.getText().isEmpty()
-                    || getData.path == null || getData.path.isEmpty()) {
+                    || getData.path == null || getData.path == "") {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill in all required fields");
+                alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
-                pst = connection.prepareStatement(sql);
-                pst.setString(1, availableCars_carid.getText());
-                pst.setString(2, availableCars_brand.getText());
-                pst.setString(3, availableCars_model.getText());
-                pst.setString(4, availableCars_price.getText());
-                pst.setString(5, availableCars_status.getSelectionModel().getSelectedItem().toString());
-
-                String uri = getData.path;
-                uri = uri.replace("\\", "\\\\");
-
-                pst.setString(6, uri);
-
-                Date date = new Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-
-                pst.setDate(7, sqlDate);
-
-                pst.executeUpdate();
-
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Successfully Added!");
-                alert.showAndWait();
+                alert.setContentText("Are you sure you want to DELETE Car ID: " + availableCars_carid.getText() + "?");
+                Optional<ButtonType> option = alert.showAndWait();
 
-                availableCarShowListData();
-                availableCarClear();
+                if (option.get().equals(ButtonType.OK)) {
+                    statement = connection.createStatement();
+                    statement.executeUpdate(sql);
+
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Deleted!");
+                    alert.showAndWait();
+
+                    availableCarShowListData();
+                    availableCarClear();
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        availableCarStatusList();
         availableCarShowListData();
+        availableCarStatusList();
+        availableCarSearch();
     }
-
 }

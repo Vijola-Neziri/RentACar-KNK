@@ -24,7 +24,6 @@ public class AdminAvailible extends Application {
     }
 
 
-
     public static void main(String[] args) {
         launch(args);
     }

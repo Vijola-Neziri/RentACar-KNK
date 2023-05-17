@@ -70,10 +70,7 @@ public class CarListController {
 
     }
 
-    @FXML
-    void RentCar(ActionEvent event) {
 
-    }
 
 
     @FXML
@@ -108,6 +105,17 @@ public class CarListController {
         signup.show();
         signup.setResizable(false);
     }
+    @FXML
+    public void RentCar(ActionEvent event) throws IOException {
+        rentCar_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
 
+    }
 
 }
