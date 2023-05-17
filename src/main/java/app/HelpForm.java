@@ -11,12 +11,12 @@ import java.io.IOException;
 public class HelpForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelpForm.class.getResource("/views/Help.fxml"));
         Pane pane = fxmlLoader.load();
 
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Log in");
+        primaryStage.setTitle("Help");
         primaryStage.show();
     }
     public static void main(String[] args) {
