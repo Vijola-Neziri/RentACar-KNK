@@ -1,6 +1,11 @@
 package Controller;
 
-import ConnectionMysql.DBHandler;
+import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import repository.AdminRepository;
+import repository.UserRepository;
+
 import app.LoginForm;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -9,28 +14,26 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import models.User;
-import repository.UserRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.util.Locale;
 import java.util.ResourceBundle;
+import ConnectionMysql.DBHandler;
+import models.Admin;
+import models.User;
 
 public class LoginFormController implements Initializable {
     @FXML
-    private SplitMenuButton langEnum;
-
-    @FXML
     private Button loginid;
+
     @FXML
     private TextField passwordid;
 
@@ -39,13 +42,18 @@ public class LoginFormController implements Initializable {
 
     @FXML
     private Button close;
+
     @FXML
     private TextField usernameid;
+
+    @FXML
+    private ComboBox<String> comboBox;
 
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
     private UserRepository userRepository = new UserRepository();
+    private AdminRepository adminRepository = new AdminRepository();
 
     public void close() {
         System.exit(0);
@@ -57,6 +65,10 @@ public class LoginFormController implements Initializable {
             handleLogin();
         }
     }
+    @FXML
+    void selectUser(ActionEvent event) {
+
+    }
 
     @FXML
     void loginaction(ActionEvent event) {
@@ -64,43 +76,54 @@ public class LoginFormController implements Initializable {
     }
 
     private void handleLogin() {
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.seconds(3));
-        pt.setOnFinished(ev -> {
-
-        });
-        pt.play();
-
         String username = usernameid.getText();
         String password = passwordid.getText();
 
-        User user = userRepository.getUserByUsernameAndPassword(username, password);
-
-        if (user != null) {
-            loginid.getScene().getWindow().hide();
-            Stage home = new Stage();
-
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
-                Parent root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                home.setScene(scene);
-                home.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setContentText("Username and Password are not correct");
-            alert.show();
+        String selectedOption = comboBox.getSelectionModel().getSelectedItem();
+        if (selectedOption == null) {
+            showAlert(Alert.AlertType.ERROR, "Login Error", "Please select a role.");
+            return;
         }
-    }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Set the default language to English
+        if (selectedOption.equals("User")) {
+            User user = userRepository.getUserByUsernameAndPassword(username, password);
 
+            if (user != null) {
+                loginid.getScene().getWindow().hide();
+                Stage home = new Stage();
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    home.setScene(scene);
+                    home.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Login Error", "Username and Password are not correct.");
+            }
+        } else if (selectedOption.equals("Admin")) {
+            Admin admin = adminRepository.getAdminByUsernameAndPassword(username, password);
+
+            if (admin != null) {
+                loginid.getScene().getWindow().hide();
+                Stage home = new Stage();
+
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Dashboard.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    home.setScene(scene);
+                    home.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                showAlert(Alert.AlertType.ERROR, "Login Error", "Username and Password are not correct.");
+            }
+        }
     }
 
     @FXML
@@ -115,37 +138,17 @@ public class LoginFormController implements Initializable {
         signup.setResizable(false);
     }
 
-    @FXML
-    void close(ActionEvent event) {
-        // Add your login action logic here
-        // This method will be called when the login button is clicked
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        comboBox.getItems().addAll("Admin", "User"); // Add options to the comboBox
+        handler = new DBHandler();
     }
 
-    @FXML
-    void changeLanguage(ActionEvent event) {
-        if (event.getTarget() instanceof MenuItem) {
-            MenuItem selectedItem = (MenuItem) event.getTarget();
-            String languageCode = selectedItem.getUserData().toString();
-
-            // Load the resource bundle for the selected language
-            ResourceBundle bundle = ResourceBundle.getBundle("Controller.Bundle", new Locale(languageCode));
-
-            // Example usage: retrieving a localized string
-            String loginButtonLabel = bundle.getString("loginButtonLabel");
-            loginid.setText(loginButtonLabel);
-
-            // Apply the same approach to other UI elements that need localization
-            String closeButtonLabel = bundle.getString("closeButtonLabel");
-            close.setText(closeButtonLabel);
-
-            // Show an alert with localized strings
-            String languageChangeHeader = bundle.getString("languageChangeHeader");
-            String languageChangeMessage = bundle.getString("languageChangeMessage");
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(languageChangeHeader);
-            alert.setContentText(languageChangeMessage);
-            alert.show();
-        }
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.show();
     }
 }
-

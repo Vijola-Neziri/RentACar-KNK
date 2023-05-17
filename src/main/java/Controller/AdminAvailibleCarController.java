@@ -227,11 +227,8 @@ public class AdminAvailibleCarController  implements Initializable {
         availableCars_status.setItems(listData);
     }
     public void availableCarAdd() {
-
-        String sql = "INSERT INTO makina (makina_id , brand_makina, model_makina , cmimi_makina , statusiMakina , foto_makina, date) "
-                + "VALUES(?,?,?,?,?,?,?)";
-
-        connection = handler.getConnection();
+        String sql = "INSERT INTO makina (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
+                + "VALUES(?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Alert alert;
@@ -241,13 +238,14 @@ public class AdminAvailibleCarController  implements Initializable {
                     || availableCars_model.getText().isEmpty()
                     || availableCars_status.getSelectionModel().getSelectedItem() == null
                     || availableCars_price.getText().isEmpty()
-                    || getData.path == null || getData.path == "") {
+                    || getData.path == null || getData.path.isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
                 alert.setContentText("Please fill all blank fields");
                 alert.showAndWait();
             } else {
+                connection = handler.getConnection();
                 pst = connection.prepareStatement(sql);
                 pst.setString(1, availableCars_carid.getText());
                 pst.setString(2, availableCars_brand.getText());
@@ -260,10 +258,10 @@ public class AdminAvailibleCarController  implements Initializable {
 
                 pst.setString(6, uri);
 
-                Date date = new Date();
+                java.util.Date date = new java.util.Date();
                 java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                pst.setString(7, String.valueOf(sqlDate));
+                pst.setDate(7, sqlDate);
 
                 pst.executeUpdate();
 
@@ -279,8 +277,9 @@ public class AdminAvailibleCarController  implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+
+
 
     public void availableCarUpdate() {
 
@@ -547,6 +546,6 @@ public class AdminAvailibleCarController  implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         availableCarShowListData();
         availableCarStatusList();
-        availableCarSearch();
+
     }
 }
