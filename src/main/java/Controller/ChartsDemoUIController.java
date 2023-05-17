@@ -18,6 +18,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 
 
 
@@ -77,20 +80,20 @@ public class ChartsDemoUIController implements Initializable {
     }
     private BarChart buildBarChart(){
         CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Product");
+        xAxis.setLabel("Cars");
 
         NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Quantity Sold");
+        yAxis.setLabel("Quantity Sold of Cars");
 
         BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
 
         XYChart.Series<String, Number> data = new XYChart.Series<>();
-        data.setName("Product Sold");
+        data.setName("Cars Sold");
 
         // Provide data
-        data.getData().add(new XYChart.Data<>("Product A", 3000));
-        data.getData().add(new XYChart.Data<>("Product B", 1500));
-        data.getData().add(new XYChart.Data<>("Product C", 100));
+        data.getData().add(new XYChart.Data<>("Viti 2021", 3000));
+        data.getData().add(new XYChart.Data<>("Viti 2022", 2500));
+        data.getData().add(new XYChart.Data<>("Viti 2023", 2000));
 
         barChart.getData().add(data);
         barChart.setLegendVisible(false);
@@ -102,15 +105,15 @@ public class ChartsDemoUIController implements Initializable {
     private void handleShowPieChart(ActionEvent event) {
         //Create Data
         ObservableList<PieChart.Data> pieCharDAta= FXCollections.observableArrayList(
-                new PieChart.Data("Product A",3000),
-                new PieChart.Data("Product B",1500),
-                new PieChart.Data("Product C",100)
+                new PieChart.Data("Viti 2021",3000),
+                new PieChart.Data("Viti 2022",2500),
+                new PieChart.Data("Viti 2023",2000)
         );
 
 
         //Create PieChart object
         PieChart pieChart=new PieChart(pieCharDAta);
-        pieChart.setTitle("Products sold");
+        pieChart.setTitle("Cars sold");
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(50);
         pieChart.setLabelsVisible(true);
@@ -150,6 +153,19 @@ public class ChartsDemoUIController implements Initializable {
 
         }
     }
+
+// ...
+
+    @FXML
+    private void handleAbout(ActionEvent event) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("About");
+        alert.setHeaderText("Charts Cars Demo Application");
+        alert.setContentText("This charts shows car sales in the last three years.");
+
+        alert.showAndWait();
+    }
+
 
 
 

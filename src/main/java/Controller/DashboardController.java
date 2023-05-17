@@ -309,6 +309,7 @@ private Label home_availableCars;
             home_incomeChart.getData().add(chart);
 
         }catch(Exception e){e.printStackTrace();}
+
     }
 
 
