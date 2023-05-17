@@ -1,13 +1,6 @@
 package Controller;
 
-import javafx.scene.control.ComboBox;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import repository.AdminRepository;
-import repository.UserRepository;
-
 import app.LoginForm;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,19 +9,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import repository.AdminRepository;
+import repository.UserRepository;
+import ConnectionMysql.DBHandler;
+import models.Admin;
+import models.User;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
-import ConnectionMysql.DBHandler;
-import models.Admin;
-import models.User;
 
 public class LoginFormController implements Initializable {
     @FXML
@@ -65,8 +62,14 @@ public class LoginFormController implements Initializable {
             handleLogin();
         }
     }
+
     @FXML
-    void selectUser(ActionEvent event) {
+    public void changeLanguage() {
+
+    }
+
+    @FXML
+    public void selectUser() {
 
     }
 
