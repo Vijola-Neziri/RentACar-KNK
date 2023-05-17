@@ -1,8 +1,6 @@
 package Controller;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import repository.UserRepository;
 
+import ConnectionMysql.DBHandler;
 import app.LoginForm;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -11,26 +9,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import models.User;
+import repository.UserRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Locale;
 import java.util.ResourceBundle;
-import ConnectionMysql.DBHandler;
-import models.User;
-
 
 public class LoginFormController implements Initializable {
     @FXML
-    private Button loginid;
+    private SplitMenuButton langEnum;
 
+    @FXML
+    private Button loginid;
     @FXML
     private TextField passwordid;
 
@@ -47,9 +47,7 @@ public class LoginFormController implements Initializable {
     private PreparedStatement pst;
     private UserRepository userRepository = new UserRepository();
 
-
-
-    public void close(){
+    public void close() {
         System.exit(0);
     }
 
@@ -99,21 +97,55 @@ public class LoginFormController implements Initializable {
         }
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // Set the default language to English
+
+    }
+
     @FXML
-   public void signupaction(ActionEvent event) throws IOException {
+    public void signupaction(ActionEvent event) throws IOException {
         loginid.getScene().getWindow().hide();
-        Stage signup=new Stage();
+        Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/SignUpForm.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene=new Scene(pane);
+        Scene scene = new Scene(pane);
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-handler = new DBHandler();
+    @FXML
+    void close(ActionEvent event) {
+        // Add your login action logic here
+        // This method will be called when the login button is clicked
+    }
+
+    @FXML
+    void changeLanguage(ActionEvent event) {
+        if (event.getTarget() instanceof MenuItem) {
+            MenuItem selectedItem = (MenuItem) event.getTarget();
+            String languageCode = selectedItem.getUserData().toString();
+
+            // Load the resource bundle for the selected language
+            ResourceBundle bundle = ResourceBundle.getBundle("Controller.Bundle", new Locale(languageCode));
+
+            // Example usage: retrieving a localized string
+            String loginButtonLabel = bundle.getString("loginButtonLabel");
+            loginid.setText(loginButtonLabel);
+
+            // Apply the same approach to other UI elements that need localization
+            String closeButtonLabel = bundle.getString("closeButtonLabel");
+            close.setText(closeButtonLabel);
+
+            // Show an alert with localized strings
+            String languageChangeHeader = bundle.getString("languageChangeHeader");
+            String languageChangeMessage = bundle.getString("languageChangeMessage");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(languageChangeHeader);
+            alert.setContentText(languageChangeMessage);
+            alert.show();
+        }
     }
 }
 
