@@ -1,0 +1,4 @@
+welcome.message=Welcome!
+username.label=Username:
+password.label=Password:
+login.button=Login

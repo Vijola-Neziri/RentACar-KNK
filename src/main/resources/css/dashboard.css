@@ -128,4 +128,13 @@
 .delete-btn:hover{
     -fx-background-color:#b13048;
 }
+src
+└── main
+    └── java
+    |   └── Controller
+    |       └── LoginFormController.java
+    └── resources
+        └── lang.properties
+        └── lang_al.properties
+
 
