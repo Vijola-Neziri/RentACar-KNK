@@ -122,113 +122,93 @@
                     <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="rent_form" layoutX="320.0" layoutY="78.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="rent_form" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <children>
-                                        <AnchorPane layoutX="10.0" layoutY="14.0" prefHeight="200.0" prefWidth="878.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <Label layoutX="25.0" layoutY="24.0" text="Car ID:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_carid" layoutX="75.0" layoutY="20.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="25.0" layoutY="62.0" text="Brand:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_brand" layoutX="75.0" layoutY="58.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="25.0" layoutY="104.0" text="Model:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_model" layoutX="75.0" layoutY="100.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
-                                                <Label layoutX="269.0" layoutY="25.0" text="First Name:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="269.0" layoutY="62.0" text="Last Name:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="289.0" layoutY="104.0" text="Gender:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="rent_gender" layoutX="342.0" layoutY="100.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
-                                                <TextField fx:id="rent_firstName" layoutX="343.0" layoutY="21.0" promptText="Username" styleClass="textfield" />
-                                                <TextField fx:id="rent_lastName" layoutX="343.0" layoutY="57.0" promptText="LastName" styleClass="textfield" />
-                                                <Label layoutX="26.0" layoutY="156.0" text="Date Rented:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="ent_dateRented" layoutX="113.0" layoutY="151.0" prefHeight="26.0" prefWidth="143.0" />
-                                                <Label layoutX="302.0" layoutY="156.0" text="Date Returned:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <DatePicker fx:id="rent_dateReturn" layoutX="402.0" layoutY="151.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="143.0" />
-                                                <Button fx:id="rentBtn" layoutX="759.0" layoutY="144.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" styleClass="add-btn" text="Rent" />
-                                                <Label layoutX="677.0" layoutY="25.0" text="Total:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="rent_total" layoutX="720.0" layoutY="25.0" text="\$0.0">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label layoutX="661.0" layoutY="63.0" text="Amount:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="rent_amount" layoutX="720.0" layoutY="58.0" onAction="#rentAmount" prefWidth="114.0" />
-                                                <Label layoutX="661.0" layoutY="104.0" text="Balance:">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label fx:id="rent_balance" layoutX="720.0" layoutY="104.0" text="\$0.0">
-                                                    <font>
-                                                        <Font name="Tahoma" size="13.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </AnchorPane>
-                                        <AnchorPane layoutX="12.0" layoutY="227.0" prefHeight="314.0" prefWidth="874.0">
-                                            <styleClass>
-                                                <String fx:value="white-bg" />
-                                                <String fx:value="shadow" />
-                                            </styleClass>
-                                            <children>
-                                                <Label fx:id="rent_tableView1" layoutX="18.0" layoutY="14.0" prefHeight="29.0" prefWidth="150.0" text="Available Cars">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TableView fx:id="rent_tableView" layoutX="18.0" layoutY="49.0" prefHeight="231.0" prefWidth="838.0">
-                                                    <columns>
-                                                        <TableColumn fx:id="rent_col_carid" prefWidth="133.60000610351562" text="Car ID" />
-                                                        <TableColumn fx:id="rent_col_brand" prefWidth="162.4000244140625" text="Brand" />
-                                                        <TableColumn fx:id="rent_col_model" prefWidth="163.20001220703125" text="Model" />
-                                                        <TableColumn fx:id="rent_col_price" prefWidth="181.5999755859375" text="Price" />
-                                                        <TableColumn fx:id="rent_col_status" prefWidth="199.2000732421875" text="Status" />
-                                                    </columns>
-                                                </TableView>
-                                            </children>
-                                        </AnchorPane>
+                                          <ComboBox fx:id="rent_carid" layoutX="74.0" layoutY="14.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <ComboBox fx:id="rent_brand" layoutX="74.0" layoutY="56.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <ComboBox fx:id="rent_model" layoutX="74.0" layoutY="97.0" prefWidth="150.0" promptText="Choose.." styleClass="textfield" stylesheets="@../css/dashboard.css" />
+                                          <DatePicker fx:id="ent_dateRented" layoutX="85.0" layoutY="306.0" prefHeight="26.0" prefWidth="143.0" />
+                                          <TextField fx:id="rent_firstName" layoutX="75.0" layoutY="141.0" promptText="Username" styleClass="textfield" />
+                                          <TextField fx:id="rent_lastName" layoutX="75.0" layoutY="180.0" promptText="LastName" styleClass="textfield" />
+                                          <ComboBox fx:id="rent_gender" layoutX="74.0" layoutY="224.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
+                                          <DatePicker fx:id="rent_dateReturn" layoutX="81.0" layoutY="266.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="143.0" />
+                                          <Label layoutX="8.0" layoutY="20.0" text="Car ID:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="10.0" layoutY="70.0" text="Brand:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="9.0" layoutY="117.0" text="Model:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="3.0" layoutY="311.0" text="Date Rented:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="8.0" layoutY="147.0" text="First Name:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="9.0" layoutY="186.0" text="Last Name:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="18.0" layoutY="229.0" text="Gender:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="-3.0" layoutY="272.0" text="Date Returned:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <TextField fx:id="rent_amount" layoutX="75.0" layoutY="378.0" onAction="#rentAmount" prefWidth="114.0" />
+                                          <Button fx:id="rentBtn" layoutX="78.0" layoutY="466.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" styleClass="add-btn" text="Rent" />
+                                          <Label layoutX="23.0" layoutY="415.0" text="Balance:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label fx:id="rent_balance" layoutX="98.0" layoutY="415.0" text="\$0.0">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="16.0" layoutY="383.0" text="Amount:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label layoutX="25.0" layoutY="356.0" text="Total:">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                                          <Label fx:id="rent_total" layoutX="98.0" layoutY="356.0" text="\$0.0">
+                                              <font>
+                                                  <Font name="Tahoma" size="13.0" />
+                                              </font>
+                                          </Label>
+                              <TableView layoutX="270.0" layoutY="27.0" prefHeight="466.0" prefWidth="452.0">
+                                <columns>
+                                  <TableColumn fx:id="availableCars_col_carid" prefWidth="75.0" text="Car ID" />
+                                  <TableColumn fx:id="availableCars_col_brand" prefWidth="75.0" text="Brand" />
+                                    <TableColumn fx:id="availableCars_col_model" prefWidth="75.0" text="Model" />
+                                    <TableColumn fx:id="availableCars_col_price" prefWidth="75.0" text="Price" />
+                                    <TableColumn fx:id="availableCars_col_status" prefWidth="75.0" text="Status" />
+                                    <TableColumn fx:id="availableCars_col_photo" prefWidth="75.0" text="Photo" />
+                                </columns>
+                              </TableView>
                                     </children>
                                 </AnchorPane>
                             </children>

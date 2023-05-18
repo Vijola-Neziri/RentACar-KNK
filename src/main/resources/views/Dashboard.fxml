@@ -307,19 +307,19 @@
                                     <TextField fx:id="availableCars_price" layoutX="290.0" layoutY="24.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="11.0" layoutY="246.0" prefHeight="298.0" prefWidth="880.0" stylesheets="@../css/dashboard.css">
+                              <AnchorPane layoutY="257.0" prefHeight="298.0" prefWidth="880.0" stylesheets="@../css/dashboard.css">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView layoutX="40.0" layoutY="28.0" prefHeight="239.0" prefWidth="818.0">
+                                    <TableView fx:id="availableCars_tableView" layoutX="40.0" layoutY="28.0" prefHeight="239.0" prefWidth="818.0">
                                       <columns>
-                                        <TableColumn prefWidth="162.40005493164062" text="CarID" />
-                                        <TableColumn prefWidth="141.60000610351562" text="Brand" />
-                                          <TableColumn prefWidth="148.79998779296875" text="Model" />
-                                          <TableColumn prefWidth="178.4000244140625" text="Price" />
-                                          <TableColumn prefWidth="185.5999755859375" text="Status" />
+                                        <TableColumn fx:id="availableCars_col_carId" prefWidth="162.40005493164062" text="CarID" />
+                                        <TableColumn fx:id="availableCars_col_brand" prefWidth="141.60000610351562" text="Brand" />
+                                          <TableColumn fx:id="availableCars_col_model" prefWidth="148.79998779296875" text="Model" />
+                                          <TableColumn fx:id="availableCars_col_price" prefWidth="178.4000244140625" text="Price" />
+                                          <TableColumn fx:id="availableCars_col_status" prefWidth="185.5999755859375" text="Status" />
                                       </columns>
                                     </TableView>
                                  </children>

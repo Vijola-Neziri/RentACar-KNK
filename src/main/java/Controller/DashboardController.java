@@ -785,7 +785,7 @@ private String[] listStatus ={"Available","Not Available"};
         // TO DISPLAY THE DATA ON THE TABLEVIEW
         availableCarShowListData();
         availableCarStatusList();
-        availableCarSearch();
+
 
         rentCarShowListData();
         rentCarCarId();
