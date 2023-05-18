@@ -6,6 +6,8 @@ public class carData {
     private Integer carId;
     private String brand;
     private String model;
+
+
     private Double price;
     private String status;
     private Date date;

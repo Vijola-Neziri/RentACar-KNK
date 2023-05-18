@@ -22,15 +22,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.getData;
+import models.makina;
+import repository.CarRepository;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
+import java.util.Date;
 
 public class AdminAvailibleCarController  implements Initializable {
     @FXML
@@ -46,19 +46,19 @@ public class AdminAvailibleCarController  implements Initializable {
     private Button availableCars_clearBtn;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_brand;
+    private TableColumn<makina, String> availableCars_col_brand;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_carid;
+    private TableColumn<makina, String> availableCars_col_carid;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_model;
+    private TableColumn<makina, String> availableCars_col_model;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_price;
+    private TableColumn<makina, String> availableCars_col_price;
 
     @FXML
-    private TableColumn<carData, String> availableCars_col_status;
+    private TableColumn<makina, String> availableCars_col_status;
 
     @FXML
     private Button availableCars_deleteBtn;
@@ -88,7 +88,7 @@ public class AdminAvailibleCarController  implements Initializable {
     private ComboBox<?> availableCars_status;
 
     @FXML
-    private TableView<carData> availableCars_tableView;
+    private TableView<makina> availableCars_tableView;
 
     @FXML
     private Button availableCars_updateBtn;
@@ -105,26 +105,6 @@ public class AdminAvailibleCarController  implements Initializable {
     @FXML
     private Button home_btn;
 
-    @FXML
-    private LineChart<?, ?> home_customerChart;
-
-    @FXML
-    private BarChart<?, ?> home_incomeChart;
-
-//    @FXML
-//    private AnchorPane home_totalCustomers;
-//
-//    @FXML
-//    private AnchorPane home_totalIncome;
-
-    @FXML
-    private Label home_totalCustomers;
-
-    @FXML
-    private Label home_totalIncome;
-
-    @FXML
-    private Button logoutBtn;
 
     @FXML
     private AnchorPane main_form;
@@ -151,19 +131,19 @@ public class AdminAvailibleCarController  implements Initializable {
     private ComboBox<?> rent_carid;
 
     @FXML
-    private TableColumn<?, ?> rent_col_brand;
+    private TableColumn<makina, String> rent_col_brand;
 
     @FXML
-    private TableColumn<carData, String> rent_col_carid;
+    private TableColumn<makina, Integer> rent_col_carid;
 
     @FXML
-    private TableColumn<carData, String> rent_col_model;
+    private TableColumn<makina, String> rent_col_model;
 
     @FXML
-    private TableColumn<carData, String> rent_col_price;
+    private TableColumn<makina, Double> rent_col_price;
 
     @FXML
-    private TableColumn<carData, String> rent_col_status;
+    private TableColumn<makina, String> rent_col_status;
 
     @FXML
     private DatePicker rent_dateRented;
@@ -202,18 +182,35 @@ public class AdminAvailibleCarController  implements Initializable {
     private Label username;
 
     @FXML
-    private TableView<carData> rent_tableView;
+    private TableView<makina> rent_tableView;
 
 
     private DBHandler handler;
     private Connection connection;
-    private PreparedStatement pst;
 
-    // private Connection connect;
-//    private PreparedStatement prepare;
-    private ResultSet result;
+
+
+    private ResultSet rs=null;
     private Statement statement;
     private Image image;
+
+    private PreparedStatement pst = null;
+
+
+    private ObservableList<makina> data;
+    private void fillTable() {
+        for (makina car:this.data) {
+            System.out.println(car.getMakina_id());
+            rent_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+            rent_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+            rent_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+            rent_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+            rent_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
+
+            rent_tableView.setItems(data);
+        }
+    }
+
     private String[] listStatus ={"Available","Not Available"};
     public void availableCarStatusList() {
 
@@ -368,6 +365,7 @@ public class AdminAvailibleCarController  implements Initializable {
 
     }
 
+
     public ObservableList<carData> availableCarListData() {
         ObservableList<carData> listData = FXCollections.observableArrayList();
         String sql = "Select * from makina";
@@ -396,77 +394,47 @@ public class AdminAvailibleCarController  implements Initializable {
         return listData;
     }
 
+    private CarRepository carRepository;
 
-    private ObservableList<carData> availableCarList;
+
+
+
 
     public void availableCarShowListData() {
-        availableCarList = availableCarListData();
-        for (carData car:availableCarList
-        ) {
+        for (makina car:this.data) {
+            System.out.println(car.getMakina_id());
             availableCars_col_carid.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
             availableCars_col_brand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
             availableCars_col_model.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
             availableCars_col_price.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
             availableCars_col_status.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
 
-            availableCars_tableView.setItems(availableCarList);
+            availableCars_tableView.setItems(data);
         }
-
     }
 
     public void availableCarSearch() {
 
-        FilteredList<carData> filter = new FilteredList<>(availableCarList, e -> true);
-
-        availableCars_search.textProperty().addListener((Observable, oldValue, newValue) -> {
-
-            filter.setPredicate(predicateCarData -> {
-
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String searchKey = newValue.toLowerCase();
-
-                if (predicateCarData.getCarId().toString().contains(searchKey)) {
-                    return true;
-                } else if (predicateCarData.getBrand().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else if (predicateCarData.getModel().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else if (predicateCarData.getPrice().toString().contains(searchKey)) {
-                    return true;
-                } else if (predicateCarData.getStatus().toLowerCase().contains(searchKey)) {
-                    return true;
-                } else {
-                    return false;
-                }
-            });
-        });
-        SortedList<carData> sortList = new SortedList<>(filter);
-
-        sortList.comparatorProperty().bind(availableCars_tableView.comparatorProperty());
-        availableCars_tableView.setItems(sortList);
 
     }
 
 
     public void availableCarSelect() {
-        carData carD = availableCars_tableView.getSelectionModel().getSelectedItem();
+        makina carD = availableCars_tableView.getSelectionModel().getSelectedItem();
         int num = availableCars_tableView.getSelectionModel().getSelectedIndex();
 
         if ((num - 1) < - 1) {
             return;
         }
 
-        availableCars_carid.setText(String.valueOf(carD.getCarId()));
-        availableCars_brand.setText(carD.getBrand());
-        availableCars_model.setText(carD.getModel());
-        availableCars_price.setText(String.valueOf(carD.getPrice()));
+        availableCars_carid.setText(String.valueOf(carD.getMakina_id()));
+        availableCars_brand.setText(carD.getBrand_makina());
+        availableCars_model.setText(carD.getModel_makina());
+        availableCars_price.setText(String.valueOf(carD.getCmimi_makina()));
 
-        getData.path = carD.getImage();
+        getData.path = carD.getFoto_makina();
 
-        String uri = "file:" + carD.getImage();
+        String uri = "file:" + carD.getFoto_makina();
 
         image = new Image(uri, 116, 153, false, true);
         availableCars_imageView.setImage(image);
@@ -542,10 +510,36 @@ public class AdminAvailibleCarController  implements Initializable {
 
     }
 
+    ObservableList<makina> loadDataFromDatabase() {
+        ObservableList<makina> data = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM makina";
+            Connection con = DBHandler.getConnection();
+            pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int carId = rs.getInt("makina_id");
+                String brand = rs.getString("brand_makina");
+                String model = rs.getString("model_makina");
+                double price = rs.getDouble("cmimi_makina");
+                String status = rs.getString("statusiMakina");
+                String photo = rs.getString("foto_makina");
+
+                makina car = new makina(carId, brand, model, price, status, photo, new Date());
+                data.add(car);
+
+                System.out.println(car.getMakina_id());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return data;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        availableCarShowListData();
-        availableCarStatusList();
+        data = loadDataFromDatabase();
+
 
     }
 }

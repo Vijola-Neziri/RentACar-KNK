@@ -62,7 +62,7 @@
                         <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
                         <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
+<!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
                            </image>
                         </ImageView>
                         <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="26.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
@@ -127,7 +127,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="164.0" prefWidth="874.0">
                                  <styleClass>
@@ -220,12 +220,12 @@
                                        </styleClass>
                                        <children>
                                           <BarChart fx:id="home_incomeChart" layoutX="30.0" layoutY="13.0" prefHeight="342.4" prefWidth="531.2" title="Income Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
                                           </BarChart>
                                        </children>
                                     </AnchorPane>
@@ -236,12 +236,12 @@
                                        </styleClass>
                                        <children>
                                           <LineChart fx:id="home_customerChart" layoutX="-127.0" layoutY="-72.0" prefHeight="342.4" prefWidth="373.6" title="Customers Data Chart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                             <xAxis>
-                                                <CategoryAxis side="BOTTOM" />
-                                             </xAxis>
-                                             <yAxis>
-                                                <NumberAxis side="LEFT" />
-                                             </yAxis>
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
                                           </LineChart>
                                        </children>
                                     </AnchorPane>
@@ -253,7 +253,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="availableCars_form" layoutX="82.0" layoutY="39.0" prefHeight="556.0" prefWidth="899.2" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="availableCars_form" layoutX="82.0" layoutY="39.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="206.0" prefWidth="875.0">
                                  <styleClass>
@@ -307,26 +307,21 @@
                                     <TextField fx:id="availableCars_price" layoutX="290.0" layoutY="24.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane layoutX="14.0" layoutY="239.0" prefHeight="305.0" prefWidth="875.0">
+                              <AnchorPane layoutX="11.0" layoutY="246.0" prefHeight="298.0" prefWidth="880.0" stylesheets="@../css/dashboard.css">
                                  <styleClass>
                                     <String fx:value="white-bg" />
-                                    <String fx:value="column-header" />
-                                    <String fx:value="nav-form" />
-                                    <String fx:value="column-header-background" />
-                                    <String fx:value="textfield" />
-                                    <String fx:value="label" />
+                                    <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="availableCars_tableView" layoutX="14.0" layoutY="54.0" onMouseClicked="#availableCarSelect" prefHeight="238.0" prefWidth="843.0" stylesheets="@../css/dashboard.css">
-                                       <columns>
-                                          <TableColumn fx:id="availableCars_col_carid" prefWidth="164.0" text="Car ID" />
-                                          <TableColumn fx:id="availableCars_col_brand" prefWidth="160.00006103515625" text="Brand" />
-                                          <TableColumn fx:id="availableCars_col_model" prefWidth="155.199951171875" text="Model" />
-                                          <TableColumn fx:id="availableCars_col_price" prefWidth="175.20001220703125" text="Price" />
-                                          <TableColumn fx:id="availableCars_col_status" prefWidth="191.199951171875" text="Status" />
-                                       </columns>
+                                    <TableView layoutX="40.0" layoutY="28.0" prefHeight="239.0" prefWidth="818.0">
+                                      <columns>
+                                        <TableColumn prefWidth="162.40005493164062" text="CarID" />
+                                        <TableColumn prefWidth="141.60000610351562" text="Brand" />
+                                          <TableColumn prefWidth="148.79998779296875" text="Model" />
+                                          <TableColumn prefWidth="178.4000244140625" text="Price" />
+                                          <TableColumn prefWidth="185.5999755859375" text="Status" />
+                                      </columns>
                                     </TableView>
-                                    <TextField fx:id="availableCars_search" layoutX="14.0" layoutY="16.0" onKeyTyped="#availableCarSearch" prefHeight="30.0" prefWidth="198.0" promptText="Search" styleClass="search" stylesheets="@../css/dashboard.css" text="dgfdsg" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -428,13 +423,13 @@
                                        </font>
                                     </Label>
                                     <TableView fx:id="rent_tableView" layoutX="18.0" layoutY="49.0" prefHeight="231.0" prefWidth="838.0">
-                                       <columns>
-                                          <TableColumn fx:id="rent_col_carid" prefWidth="133.60000610351562" text="Car ID" />
-                                          <TableColumn fx:id="rent_col_brand" prefWidth="162.4000244140625" text="Brand" />
+                                      <columns>
+                                        <TableColumn fx:id="rent_col_carid" prefWidth="133.60000610351562" text="Car ID" />
+                                        <TableColumn fx:id="rent_col_brand" prefWidth="162.4000244140625" text="Brand" />
                                           <TableColumn fx:id="rent_col_model" prefWidth="163.20001220703125" text="Model" />
                                           <TableColumn fx:id="rent_col_price" prefWidth="181.5999755859375" text="Price" />
                                           <TableColumn fx:id="rent_col_status" prefWidth="199.2000732421875" text="Status" />
-                                       </columns>
+                                      </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>

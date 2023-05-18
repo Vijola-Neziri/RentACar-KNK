@@ -2,7 +2,7 @@ package models;
 
 import java.util.Date;
 
-public class makina{
+public class makina {
     private Integer makina_id;
     private String brand_makina;
     private String model_makina;
@@ -17,27 +17,28 @@ public class makina{
         this.model_makina = model_makina;
         this.cmimi_makina = cmimi_makina;
         this.statusiMakina = statusiMakina;
-        this.date = date;
         this.foto_makina = foto_makina;
+        this.date = date;
     }
 
-    public Integer getmakina_id() {
+
+    public Integer getMakina_id() {
         return makina_id;
     }
 
-    public String getbrand_makina() {
+    public String getBrand_makina() {
         return brand_makina;
     }
 
-    public String getmodel_makina() {
+    public String getModel_makina() {
         return model_makina;
     }
 
-    public Double getcmimi_makina() {
+    public Double getCmimi_makina() {
         return cmimi_makina;
     }
 
-    public String getstatusiMakina() {
+    public String getStatusiMakina() {
         return statusiMakina;
     }
 
@@ -45,7 +46,7 @@ public class makina{
         return date;
     }
 
-    public String getfoto_makina() {
+    public String getFoto_makina() {
         return foto_makina;
     }
 }

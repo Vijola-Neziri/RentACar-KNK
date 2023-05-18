@@ -21,10 +21,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
-
-
-
 public class ChartsDemoUIController implements Initializable {
     @FXML
     private BorderPane borderPane;
@@ -47,8 +43,6 @@ public class ChartsDemoUIController implements Initializable {
                 new PieChart.Data("Product B", 1500),
                 new PieChart.Data("Product C", 100)
         );
-
-
         //Create PieChart object
         PieChart pieChart = new PieChart(pieCharDAta);
         pieChart.setTitle("Products sold");
@@ -71,7 +65,6 @@ public class ChartsDemoUIController implements Initializable {
                 }
             }
         });
-
 
         miSwitchToBarChart.setOnAction((ActionEvent actionEvent) -> {
             borderPane.setCenter(buildBarChart());
@@ -100,7 +93,6 @@ public class ChartsDemoUIController implements Initializable {
 
         return barChart;
     }
-
     @FXML
     private void handleShowPieChart(ActionEvent event) {
         //Create Data
@@ -109,8 +101,6 @@ public class ChartsDemoUIController implements Initializable {
                 new PieChart.Data("Viti 2022",2500),
                 new PieChart.Data("Viti 2023",2000)
         );
-
-
         //Create PieChart object
         PieChart pieChart=new PieChart(pieCharDAta);
         pieChart.setTitle("Cars sold");
@@ -133,15 +123,12 @@ public class ChartsDemoUIController implements Initializable {
                 }
             }
         });
-
-
         miSwitchToBarChart.setOnAction((ActionEvent actionEvent)-> {
             borderPane.setCenter(buildBarChart());
         } );
 
         borderPane.setCenter(pieChart);
     }
-
     @FXML
     private void handleUpdateData(ActionEvent event) {
         Node node = borderPane.getCenter();
@@ -154,8 +141,6 @@ public class ChartsDemoUIController implements Initializable {
         }
     }
 
-// ...
-
     @FXML
     private void handleAbout(ActionEvent event) {
         Alert alert = new Alert(AlertType.INFORMATION);
@@ -165,9 +150,6 @@ public class ChartsDemoUIController implements Initializable {
 
         alert.showAndWait();
     }
-
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
