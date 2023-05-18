@@ -1,8 +1,7 @@
 package repository;
-import javafx.collections.ObservableList;
+
 import models.Car;
-import ConnectionMysql.DBHandler;
-import ConnectionMysql.Configs;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -100,7 +99,6 @@ public class CarRepository {
         return models;
     }
 
-
     public Car getCarById(int carId) {
         Car car = null;
 
@@ -115,8 +113,7 @@ public class CarRepository {
                 String model = resultSet.getString("model_makina");
                 float price = resultSet.getFloat("cmimi_makina");
                 String status = resultSet.getString("statusiMakina");
-                String photo
-                        = resultSet.getString("foto_makina");
+                String photo = resultSet.getString("foto_makina");
                 LocalDate date = resultSet.getDate("date").toLocalDate();
                 car = new Car(carId, brand, model, price, status, photo, date);
             }
@@ -129,5 +126,5 @@ public class CarRepository {
         return car;
     }
 
-// Add other methods as needed for your application
+    // Add other methods as needed for your application
 }

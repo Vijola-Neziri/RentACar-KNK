@@ -152,6 +152,9 @@ public class DashboardController implements Initializable {
     private Statement statement;
     private Image image;
 
+    public void Dashboard(){
+
+    }
     @FXML
     private void handleLogoutButtonAction(ActionEvent event) {
         Stage stage = (Stage) logoutBtn.getScene().getWindow();
