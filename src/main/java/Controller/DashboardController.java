@@ -188,19 +188,22 @@ public class DashboardController implements Initializable {
         }catch(Exception e){e.printStackTrace();}
     }
 
-    public void homeTotalCustomers(){
-        String sql = "SELECT COUNT(klient_id) FROM klientet";
+    public void homeTotalCustomers() {
+        String sql = "SELECT COUNT(klient_id) AS count FROM klientet";
         int countTC = 0;
         connection = handler.getConnection();
-        try{
+        try {
             pst = connection.prepareStatement(sql);
             ResultSet result = pst.executeQuery();
-            while(result.next()){
-                countTC = result.getInt("COUNT(klient_id)");
+            while (result.next()) {
+                countTC = result.getInt("count");
             }
-//            home_totalCustomers.setText(String.valueOf(countTC));
-        }catch(Exception e){e.printStackTrace();}
+            home_totalCustomers.setText(String.valueOf(countTC));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     public void homeIncomeChart(){
         home_incomeChart.getData().clear();
@@ -783,7 +786,7 @@ private String[] listStatus ={"Available","Not Available"};
         homeCustomerChart();
 
         // TO DISPLAY THE DATA ON THE TABLEVIEW
-        availableCarShowListData();
+
         availableCarStatusList();
 
 
