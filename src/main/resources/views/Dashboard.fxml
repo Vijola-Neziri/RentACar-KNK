@@ -108,7 +108,7 @@
                                  </font>
                                  <stylesheets>
                                     <URL value="@../css/dashboard.css" />
-                                    <URL value="@../css/dashboard.css" />
+                                    <URL value="@../css/dashboard.css"/>
                                  </stylesheets>
                               </Button>
                            </children>
