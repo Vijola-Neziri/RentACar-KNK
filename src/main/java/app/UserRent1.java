@@ -23,4 +23,3 @@ public class UserRent1 extends Application {
             launch(args);
         }
     }
-

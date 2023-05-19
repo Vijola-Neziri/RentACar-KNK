@@ -84,11 +84,18 @@ public class HelpController implements Initializable {
     void carList(ActionEvent event) {
 
     }
-
     @FXML
-    void help(ActionEvent event) {
-
+    public  void help(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
+
 
     @FXML
     void close(ActionEvent event) {

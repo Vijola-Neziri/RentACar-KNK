@@ -70,6 +70,29 @@ public class CarListController {
 
     }
 
+    @FXML
+    private Button helpbn;
+
+    @FXML
+    public void signout(ActionEvent event) {
+        // Get the current stage/window
+        Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
+
+        // Close the window
+        currentStage.close();
+    }
+    @FXML
+    public  void Help(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
 
 
 

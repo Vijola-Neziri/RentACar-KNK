@@ -72,6 +72,9 @@ public class UserHomeController implements Initializable {
     private Label user;
 
     @FXML
+    private Button helpbtn;
+
+    @FXML
     private Label username;
     private DBHandler handler;
     private Connection connection;
@@ -106,6 +109,27 @@ public class UserHomeController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+  public void signOut(ActionEvent event) {
+        // Get the current stage/window
+        Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
+
+        // Close the window
+        currentStage.close();
+    }
+
+  @FXML
+  public  void Help(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     public void homeTotalCustomers() {
@@ -202,7 +226,7 @@ public class UserHomeController implements Initializable {
     public void RentCar(ActionEvent event) throws IOException {
         rentCar_btn.getScene().getWindow().hide();
         Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRent1.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         signup.setScene(scene);

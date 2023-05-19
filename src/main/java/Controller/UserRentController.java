@@ -16,14 +16,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.makina;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.Date;
 
-public class UserRent implements Initializable {
-
+public class UserRentController implements Initializable {
+    @FXML
+    private Button help;
     @FXML
     private Button carlist;
 
@@ -50,9 +53,6 @@ public class UserRent implements Initializable {
 
     @FXML
     private TableColumn<makina, String> columnStatus;
-
-    @FXML
-    private DatePicker ent_dateRented;
 
     @FXML
     private Button home_btn;
@@ -112,7 +112,6 @@ public class UserRent implements Initializable {
     private Label username;
 
 
-
     @FXML
     void RentCar(ActionEvent event) {
 
@@ -123,7 +122,19 @@ public class UserRent implements Initializable {
 
     }
 
+    @FXML
+    public  void Help(ActionEvent event) throws IOException {
+        home_btn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
 
+private DBHandler handler;
 
 
     public void rentPay(){
@@ -132,7 +143,7 @@ public class UserRent implements Initializable {
                 + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
                 + ", model_makina, total, date_rented, date_returned ) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
-        connection = DBHandler.getConnection();
+        connection = handler.getConnection();
         try{
             Alert alert;
             if(rent_firstName.getText().isEmpty()
@@ -157,13 +168,13 @@ public class UserRent implements Initializable {
                     pst.setString(2, rent_firstName.getText());
                     pst.setString(3, rent_lastName.getText());
                     pst.setString(4, (String)rent_gender.getSelectionModel().getSelectedItem());
-                    pst.setInt(5, (Integer )rent_carid.getSelectionModel().getSelectedItem());
+                    pst.setInt(5, (Integer) rent_carid.getSelectionModel().getSelectedItem());
                     pst.setString(6, (String)rent_brand.getSelectionModel().getSelectedItem());
                     pst.setString(7, (String)rent_model.getSelectionModel().getSelectedItem());
                     pst.setString(8, String.valueOf(totalP));
-                    pst.setString(9, String.valueOf(ent_dateRented.getValue()));
+                    pst.setString(9, String.valueOf(rent_dateRented.getValue()));
                     pst.setString(10, String.valueOf(rent_dateReturn.getValue()));
-                    pst.executeUpdate();
+                    pst.execute(sql);
                     // SET THE  STATUS OF CAR TO NOT AVAILABLE
                     String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = '"
                             +rent_carid.getSelectionModel().getSelectedItem()+"'";
@@ -179,6 +190,8 @@ public class UserRent implements Initializable {
             }
         }catch(Exception e){e.printStackTrace();}
     }
+
+
 
     @FXML
     void CarList(ActionEvent event) throws IOException {
@@ -218,9 +231,34 @@ public class UserRent implements Initializable {
     }
     private double amount;
     private double balance;
-    public void rentAmount(){
 
+
+
+    public void rentAmount(){
+        Alert alert;
+        if(totalP == 0 || rent_amount.getText().isEmpty()){
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid :3");
+            alert.showAndWait();
+            rent_amount.setText("");
+        }else{
+            amount = Double.parseDouble(rent_amount.getText());
+            if(amount >= totalP){
+                balance = (amount - totalP);
+                rent_balance.setText("$" + String.valueOf(balance));
+            }else{
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Invalid :3");
+                alert.showAndWait();
+                rent_amount.setText("");
+            }
+        }
     }
+
     private int countDate;
 
     @FXML
@@ -253,7 +291,7 @@ public class UserRent implements Initializable {
         connection = DBHandler.getConnection();
         try{
             pst = connection.prepareStatement(sql);
-            rs = pst.executeQuery();
+            rs= pst.executeQuery();
             if(rs.next()){
                 price = rs.getDouble("cmimi_makina");
             }
@@ -282,8 +320,8 @@ public class UserRent implements Initializable {
     }
 
 
-    private ResultSet rs = null;
-    private PreparedStatement pst = null;
+    private ResultSet rs ;
+    private PreparedStatement pst ;
 
     private void fillTable() {
         for (makina car:this.data) {
@@ -390,6 +428,10 @@ public class UserRent implements Initializable {
             }
         }
     }
+    @FXML
+    private DatePicker rent_dateRented;
+
+
     public void rentDate(){
         Alert alert;
         if(rent_carid.getSelectionModel().getSelectedItem() == null
@@ -400,12 +442,12 @@ public class UserRent implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Something wrong :3");
             alert.showAndWait();
-            ent_dateRented.setValue(null);
+            rent_dateRented.setValue(null);
             rent_dateReturn.setValue(null);
         }else{
-            if(rent_dateReturn.getValue().isAfter(ent_dateRented.getValue())){
+            if(rent_dateReturn.getValue().isAfter(rent_dateRented.getValue())){
                 // COUNT THE DAY
-                countDate = rent_dateReturn.getValue().compareTo(ent_dateRented.getValue());
+                countDate = rent_dateReturn.getValue().compareTo(rent_dateRented.getValue());
             }else{
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
@@ -413,11 +455,10 @@ public class UserRent implements Initializable {
                 alert.setContentText("Something wrong :3");
                 alert.showAndWait();
                 // INCREASE OF 1 DAY ONCE THE USER CLICKED THE SAME DAY
-                rent_dateReturn.setValue(ent_dateRented.getValue().plusDays(1));
+                rent_dateReturn.setValue(rent_dateRented.getValue().plusDays(1));
             }
         }
     }
-
     public void rentCarGender() {
         List<String> listG = new ArrayList<>();
         for (String data : genderList) {
@@ -451,6 +492,8 @@ public class UserRent implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        DBHandler DBHandler = new DBHandler();
+
         data = loadDataFromDatabase();
         fillTable();
         rentCarCarId();
