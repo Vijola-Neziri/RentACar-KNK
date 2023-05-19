@@ -115,14 +115,15 @@ public class UserHomeController implements Initializable {
         try {
             pst = connection.prepareStatement(sql);
             ResultSet result = pst.executeQuery();
-            while (result.next()) {
+            if (result.next()) {
                 countTC = result.getInt("count");
             }
-//        home_totalCustomers.setText(String.valueOf(countTC));
+            home_totalCustomers.setText(String.valueOf(countTC));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     public void homeIncomeChart() {
         home_incomeChart.getData().clear();
