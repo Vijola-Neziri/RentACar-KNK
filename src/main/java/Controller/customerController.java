@@ -6,10 +6,12 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import models.Klientet;
 
 public class customerController {
+
     @FXML
-    private TableView<?> tableCars;
+    private TableView<Klientet> tableCars;
     @FXML
     private TableColumn<?, ?> columnCarId;
     @FXML
