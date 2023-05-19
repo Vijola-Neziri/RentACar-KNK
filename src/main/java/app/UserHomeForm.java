@@ -15,7 +15,7 @@ public class UserHomeForm  extends Application {
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("HOME");
+        primaryStage.setTitle("Rent Car System");
         primaryStage.show();
     }
     public static void main(String[] args) {

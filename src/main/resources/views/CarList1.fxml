@@ -43,7 +43,7 @@
                                         <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signout" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -66,6 +66,7 @@
                                     </font>
                                 </Label>
                         <Button fx:id="carlist" layoutX="65.0" layoutY="375.0" mnemonicParsing="false" onAction="#carlist" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
+                        <Button fx:id="helpbn" layoutX="25.0" layoutY="408.0" mnemonicParsing="false" onAction="#Help" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Help" />
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
