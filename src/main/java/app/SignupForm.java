@@ -21,7 +21,7 @@ public class SignupForm extends Application {
 
         VBox container = new VBox();
         container.setAlignment(Pos.BOTTOM_RIGHT);
-        container.setSpacing(10);
+            container.setSpacing(10);
         container.setPadding(new Insets(20));
 
         Label primeDriveLabel = new Label("PrimeDrive");
