@@ -17,22 +17,22 @@
       <TextField fx:id="usernameid" layoutX="544.0" layoutY="158.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your username.." />
       <PasswordField fx:id="passwordid" layoutX="544.0" layoutY="215.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your password.." />
       <TextField fx:id="addressid" layoutX="544.0" layoutY="397.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your location.." />
-      <Label layoutX="444.0" layoutY="161.0" prefHeight="18.0" prefWidth="85.0" text="Username" textFill="#e7ebfc">
+      <Label fx:id="label_usernameid" layoutX="444.0" layoutY="161.0" prefHeight="18.0" prefWidth="85.0" text="Username" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="447.0" layoutY="218.0" prefHeight="20.0" prefWidth="79.0" text="Password" textFill="#e7ebfc">
+      <Label fx:id="label_passwordid" layoutX="447.0" layoutY="218.0" prefHeight="20.0" prefWidth="79.0" text="Password" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="444.0" layoutY="452.0" prefHeight="20.0" prefWidth="69.0" text="Gender" textFill="#e7ebfc">
+      <Label fx:id="label_genderid" layoutX="444.0" layoutY="452.0" prefHeight="20.0" prefWidth="69.0" text="Gender" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="444.0" layoutY="400.0" prefHeight="20.0" prefWidth="70.0" text="Address" textFill="#e7ebfc">
+      <Label fx:id="label_addressid" layoutX="444.0" layoutY="400.0" prefHeight="20.0" prefWidth="70.0" text="Address" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -53,18 +53,18 @@
          </font>
       </Label>
       <Button fx:id="loginid" layoutX="648.0" layoutY="590.0" mnemonicParsing="false" onAction="#loginaction" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #d6d7df;" text="Log in" />
-      <Label layoutX="462.0" layoutY="590.0" prefHeight="26.0" prefWidth="163.0" text="Do you have an account?" textFill="#e7ebfc" underline="true">
+      <Label fx:id="label_doYouHaveAnAccountid" layoutX="462.0" layoutY="590.0" prefHeight="26.0" prefWidth="163.0" text="Do you have an account?" textFill="#e7ebfc" underline="true">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label layoutX="447.0" layoutY="99.0" prefHeight="18.0" prefWidth="93.0" text="Name" textFill="#e7ebfc">
+      <Label fx:id="label_nameid" layoutX="447.0" layoutY="99.0" prefHeight="18.0" prefWidth="93.0" text="Name" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <TextField fx:id="name" layoutX="544.0" layoutY="96.0" prefHeight="26.0" prefWidth="175.0" promptText="Enter your name..." />
       <TextField fx:id="phoneid" layoutX="544.0" layoutY="276.0" prefHeight="26.0" prefWidth="175.0" promptText="+38344111222" />
-      <Label layoutX="447.0" layoutY="279.0" prefHeight="18.0" prefWidth="94.0" text="Phone" textFill="#e7ebfc">
+      <Label fx:id="label_phoneid" layoutX="447.0" layoutY="279.0" prefHeight="18.0" prefWidth="94.0" text="Phone" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -76,6 +76,8 @@
                   <Image url="@../resources/Images/Car-Login.png" />
                </image>
             </ImageView>
+            <RadioButton fx:id="alButton" layoutX="26.0" layoutY="614.0" mnemonicParsing="false" text="AL" />
+            <RadioButton fx:id="enButton" layoutX="89.0" layoutY="614.0" mnemonicParsing="false" text="EN" />
          </children>
       </Pane>
       <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="482.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
