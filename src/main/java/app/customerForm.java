@@ -11,11 +11,11 @@ import java.io.IOException;
 public class customerForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(app.UserRent1.class.getResource("/views/customer.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(customerForm.class.getResource("/views/customer.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Help");
+        primaryStage.setTitle("");
         primaryStage.show();
     }
     public static void main(String[] args) {

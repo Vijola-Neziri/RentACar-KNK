@@ -11,7 +11,7 @@ import java.io.IOException;
 public class HelpForm extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelpForm.class.getResource("/views/Help.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelpForm.class.getResource("/views/customer.fxml"));
         Pane pane = fxmlLoader.load();
 
         Scene scene = new Scene(pane);

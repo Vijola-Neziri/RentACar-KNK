@@ -2,22 +2,19 @@ package models;
 
 import java.time.LocalDate;
 
-public class Klientet extends User{
-                private int klient_id;
-                private String emri_klient;
-                private String mbimeri_klient;
-                private String gjinia;
-                private int makina_id;
-                private String brand_makina;
-                private String model_makina;
-                private int total;
-                private LocalDate date_rented;
-                private LocalDate date_returned;
+public class Klientet {
+        private int klient_id;
+        private String emri_klient;
+        private String mbimeri_klient;
+        private String gjinia;
+        private int makina_id;
+        private String brand_makina;
+        private String model_makina;
+        private int total;
+        private LocalDate date_rented;
+        private LocalDate date_returned;
 
-        public Klientet(int klient_id, String emri_klient, String mbimeri_klient, String gjinia, int makina_id,
-                        String brand_makina, String model_makina, int total, LocalDate date_rented, LocalDate date_returned) {
-                super(0, null, null, null, null, null, null, gjinia);
-                // Rest of the code remains the same...
+        public Klientet(int klient_id, String emri_klient, String mbimeri_klient, String gjinia, int makina_id, String brand_makina, String model_makina, int total, LocalDate date_rented, LocalDate date_returned) {
 
                 this.klient_id = klient_id;
                 this.emri_klient = emri_klient;
@@ -30,7 +27,6 @@ public class Klientet extends User{
                 this.date_rented = date_rented;
                 this.date_returned = date_returned;
         }
-
 
         public int getKlient_id() {
                 return klient_id;

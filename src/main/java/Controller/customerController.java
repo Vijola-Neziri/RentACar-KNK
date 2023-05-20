@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.Klientet;
-import models.makina;
 import repository.CarRepository;
 
 import java.net.URL;
@@ -22,18 +21,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.ResourceBundle;
 
-public class customerController  implements Initializable {
+public class customerController implements Initializable {
 
     @FXML
     private Button carlist;
-    @FXML
-    private TableColumn<Klientet, Date> Date_rentedId;
 
     @FXML
-    private TableColumn<Klientet, Date> Date_returnedId;
+    private TableColumn<Klientet, LocalDate> Date_rentedId;
+
+    @FXML
+    private TableColumn<Klientet, LocalDate> Date_returnedId;
 
     @FXML
     private Button close;
@@ -58,6 +57,7 @@ public class customerController  implements Initializable {
 
     @FXML
     private TableColumn<Klientet, String> columnModel;
+
     @FXML
     private TableView<Klientet> tableKlientet;
 
@@ -84,14 +84,20 @@ public class customerController  implements Initializable {
 
     @FXML
     private TableView<Klientet> tableCars;
+
     @FXML
-    private TableColumn<Klientet, Date> columnDate;
+    private TableColumn<Klientet, LocalDate> columnDate;
 
     @FXML
     private Label user;
 
     @FXML
     private Label username;
+
+    private ObservableList<Klientet> data;
+    private CarRepository carRepository;
+    private ResultSet rs = null;
+    private PreparedStatement pst = null;
 
     @FXML
     void CarList(ActionEvent event) {
@@ -118,11 +124,6 @@ public class customerController  implements Initializable {
 
     }
 
-    private ObservableList<Klientet> data;
-    private CarRepository carRepository;
-    private ResultSet rs = null;
-    private PreparedStatement pst = null;
-
     private void fillTable() {
         columnKlientId.setCellValueFactory(new PropertyValueFactory<>("klient_id"));
         columnEmri.setCellValueFactory(new PropertyValueFactory<>("emri_klient"));
@@ -132,10 +133,11 @@ public class customerController  implements Initializable {
         columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
         columnDate.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
+        Date_rentedId.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
+        Date_returnedId.setCellValueFactory(new PropertyValueFactory<>("date_returned"));
 
         tableKlientet.setItems(data);
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -151,19 +153,17 @@ public class customerController  implements Initializable {
             pst = con.prepareStatement(query);
             rs = pst.executeQuery();
             while (rs.next()) {
-                int KlientId = rs.getInt("klient_id");
-                String Emri = rs.getString("emri_klient");
-                String Mbiemri = rs.getString("mbimeri_klient");
-                String Gjinia = rs.getString("gjinia");
-                int Makina = rs.getInt("makina_id");
-                String Brand = rs.getString("brand_makina");
-                String Model = rs.getString("model_makina");
+                int klient_id = rs.getInt("klient_id");
+                String emri_klient = rs.getString("emri_klient");
+                String mbimeri_klient = rs.getString("mbimeri_klient");
+                String gjinia = rs.getString("gjinia");
+                int makina_id = rs.getInt("makina_id");
+                String brand_makina = rs.getString("brand_makina");
+                String model_makina = rs.getString("model_makina");
+                LocalDate date_rented = rs.getDate("date_rented").toLocalDate();
+                LocalDate date_returned = rs.getDate("date_returned").toLocalDate();
 
-
-
-
-                Klientet klient = new Klientet(KlientId, Emri, Mbiemri, Gjinia, Makina, Brand, Model, 0, LocalDate.now(), LocalDate.now());
-
+                Klientet klient = new Klientet(klient_id, emri_klient, mbimeri_klient, gjinia, makina_id, brand_makina, model_makina, 0, date_rented, date_returned);
                 data.add(klient);
 
                 System.out.println(klient.getKlient_id());
@@ -174,4 +174,3 @@ public class customerController  implements Initializable {
         return data;
     }
 }
-
