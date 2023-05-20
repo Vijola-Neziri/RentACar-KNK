@@ -3,6 +3,7 @@ package repository;
 import ConnectionMysql.DBHandler;
 import javafx.scene.control.Alert;
 import models.Admin;
+import repository.Interface.AdminInterface;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdminRepository {
+public class AdminRepository implements AdminInterface {
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;

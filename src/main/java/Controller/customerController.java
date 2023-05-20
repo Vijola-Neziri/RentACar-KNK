@@ -13,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import models.Klientet;
-import repository.CarRepository;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -95,33 +94,32 @@ public class customerController implements Initializable {
     private Label username;
 
     private ObservableList<Klientet> data;
-    private CarRepository carRepository;
     private ResultSet rs = null;
     private PreparedStatement pst = null;
 
     @FXML
     void CarList(ActionEvent event) {
-
+        // Logic for handling the carlist button event
     }
 
     @FXML
     void RentCar(ActionEvent event) {
-
+        // Logic for handling the rentCar button event
     }
 
     @FXML
     void close(ActionEvent event) {
-
+        // Logic for handling the close button event
     }
 
     @FXML
     void minimize(ActionEvent event) {
-
+        // Logic for handling the minimize button event
     }
 
     @FXML
     void switchForm(ActionEvent event) {
-
+        // Logic for switching forms
     }
 
     private void fillTable() {
@@ -132,7 +130,6 @@ public class customerController implements Initializable {
         columnMakina.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
         columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
         Date_rentedId.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
         Date_returnedId.setCellValueFactory(new PropertyValueFactory<>("date_returned"));
 
