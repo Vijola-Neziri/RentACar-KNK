@@ -14,22 +14,23 @@ public class Klientet extends User{
                 private LocalDate date_rented;
                 private LocalDate date_returned;
 
-                public Klientet(int User_ID, String user_username, String emri_user, String telefoni_user,
-                              String adresa_user, String Salted_Password, String Salt, String gjinia,
-                              int klient_id, String emri_klient, String mbimeri_klient, int makina_id,
-                              String brand_makina, String model_makina, int total, LocalDate date_rented, LocalDate date_returned) {
-                        super(User_ID, user_username, emri_user, telefoni_user, adresa_user, Salted_Password, Salt, gjinia);
-                        this.klient_id = klient_id;
-                        this.emri_klient = emri_klient;
-                        this.mbimeri_klient = mbimeri_klient;
-                        this.gjinia = gjinia;
-                        this.makina_id = makina_id;
-                        this.brand_makina = brand_makina;
-                        this.model_makina = model_makina;
-                        this.total = total;
-                        this.date_rented = date_rented;
-                        this.date_returned = date_returned;
-                }
+        public Klientet(int klient_id, String emri_klient, String mbimeri_klient, String gjinia, int makina_id,
+                        String brand_makina, String model_makina, int total, LocalDate date_rented, LocalDate date_returned) {
+                super(0, null, null, null, null, null, null, gjinia);
+                // Rest of the code remains the same...
+
+                this.klient_id = klient_id;
+                this.emri_klient = emri_klient;
+                this.mbimeri_klient = mbimeri_klient;
+                this.gjinia = gjinia;
+                this.makina_id = makina_id;
+                this.brand_makina = brand_makina;
+                this.model_makina = model_makina;
+                this.total = total;
+                this.date_rented = date_rented;
+                this.date_returned = date_returned;
+        }
+
 
         public int getKlient_id() {
                 return klient_id;
