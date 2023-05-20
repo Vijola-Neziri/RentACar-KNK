@@ -128,13 +128,9 @@
 .delete-btn:hover{
     -fx-background-color:#b13048;
 }
-src
-└── main
-    └── java
-    |   └── Controller
-    |       └── LoginFormController.java
-    └── resources
-        └── lang.properties
-        └── lang_al.properties
+.chart {
+    -fx-background-color: #f5f5f5; /* Set background color of the chart */
+}
+
 
 

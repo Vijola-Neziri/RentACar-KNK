@@ -14,13 +14,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import models.Klientet;
 import models.makina;
+import repository.KlientRepository;
 
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.Date;
 
@@ -133,64 +134,99 @@ public class UserRentController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
+    @FXML
+    private Label rent_balance;
 
-private DBHandler handler;
-
-
-    public void rentPay(){
+    public void rentPay() {
         rentCustomerId();
-        String sql = "INSERT INTO klientet "
-                + "(klient_id, emri_klient, mbiemri_klient, gjinia, makina_id, brand_makina"
-                + ", model_makina, total, date_rented, date_returned ) "
-                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO klientet " +
+                "(emri_klient, mbimeri_klient, gjinia, makina_id, brand_makina, model_makina, total, date_rented, date_returned) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection = handler.getConnection();
-        try{
+        try {
             Alert alert;
-            if(rent_firstName.getText().isEmpty()
+            if (rent_firstName.getText().isEmpty()
                     || rent_lastName.getText().isEmpty()
                     || rent_gender.getSelectionModel().getSelectedItem() == null
                     || rent_carid.getSelectionModel().getSelectedItem() == null
                     || rent_brand.getSelectionModel().getSelectedItem() == null
                     || rent_model.getSelectionModel().getSelectedItem() == null
-                    || totalP == 0 || rent_amount.getText().isEmpty()){
+                    || totalP == 0 || rent_amount.getText().isEmpty()) {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText(null);
                 alert.setContentText("Something wrong :3");
                 alert.showAndWait();
-            }else{
+            } else {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setHeaderText(null);
                 alert.setContentText("Are you sure?");
                 Optional<ButtonType> option = alert.showAndWait();
-                if(option.get().equals(ButtonType.OK)){
-                    pst = connection.prepareStatement(sql);
-                    pst.setString(1, String.valueOf(customerId));
-                    pst.setString(2, rent_firstName.getText());
-                    pst.setString(3, rent_lastName.getText());
-                    pst.setString(4, (String)rent_gender.getSelectionModel().getSelectedItem());
-                    pst.setInt(5, (Integer) rent_carid.getSelectionModel().getSelectedItem());
-                    pst.setString(6, (String)rent_brand.getSelectionModel().getSelectedItem());
-                    pst.setString(7, (String)rent_model.getSelectionModel().getSelectedItem());
-                    pst.setString(8, String.valueOf(totalP));
-                    pst.setString(9, String.valueOf(rent_dateRented.getValue()));
-                    pst.setString(10, String.valueOf(rent_dateReturn.getValue()));
-                    pst.execute(sql);
-                    // SET THE  STATUS OF CAR TO NOT AVAILABLE
-                    String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = '"
-                            +rent_carid.getSelectionModel().getSelectedItem()+"'";
-                    Statement  statement = connection.createStatement();
-                    statement.executeUpdate(updateCar);
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successful!");
-                    alert.showAndWait();
-                    rentCarShowListData();
-                    rentClear();
+                if (option.isPresent() && option.get().equals(ButtonType.OK)) {
+                    pst = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    pst.setString(1, rent_firstName.getText());
+                    pst.setString(2, rent_lastName.getText());
+                    pst.setString(3, (String) rent_gender.getSelectionModel().getSelectedItem());
+                    pst.setInt(4, (Integer) rent_carid.getSelectionModel().getSelectedItem());
+                    pst.setString(5, (String) rent_brand.getSelectionModel().getSelectedItem());
+                    pst.setString(6, (String) rent_model.getSelectionModel().getSelectedItem());
+                    pst.setInt(7, (int) totalP);
+                    pst.setDate(8, java.sql.Date.valueOf(rent_dateRented.getValue()));
+                    pst.setDate(9, java.sql.Date.valueOf(rent_dateReturn.getValue()));
+                    pst.executeUpdate();
+
+                    ResultSet generatedKeys = pst.getGeneratedKeys();
+                    if (generatedKeys.next()) {
+                        int generatedId = generatedKeys.getInt(1);
+                        System.out.println("Generated ID: " + generatedId);
+                        // SET THE STATUS OF CAR TO NOT AVAILABLE
+                        String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = ?";
+                        PreparedStatement updateCarStatement = connection.prepareStatement(updateCar);
+                        updateCarStatement.setInt(1, (Integer) rent_carid.getSelectionModel().getSelectedItem());
+                        updateCarStatement.executeUpdate();
+
+                        alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setHeaderText(null);
+                        alert.setContentText("Successful!");
+                        alert.showAndWait();
+
+                        rentCarShowListData();
+                        rentClear();
+                    }
                 }
             }
-        }catch(Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
+    private void clearFields() {
+        rent_firstName.clear();
+        rent_lastName.clear();
+        rent_gender.getSelectionModel().clearSelection();
+        rent_carid.getSelectionModel().clearSelection();
+        rent_brand.getSelectionModel().clearSelection();
+        rent_model.getSelectionModel().clearSelection();
+        rent_amount.clear();
+        rent_dateRented.setValue(null);
+        rent_dateReturn.setValue(null);
+    }
+
+
+
+
+    private ObservableList<makina> rentCarList;
+
+    public void rentCarShowListData() {
+        rentCarList = rentCarListData();
+        columnCarId.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+        columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+        columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+        columnPrice.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+        columnStatus.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
+        columnPhoto.setCellValueFactory(new PropertyValueFactory<>("foto_makina"));
+
+        tableCars.setItems(rentCarList);
+    }
 
 
     @FXML
@@ -227,7 +263,15 @@ private DBHandler handler;
 
     public void rentCustomerId(){
         String sql = "SELECT klient_id FROM klientet";
-
+        connection = handler.getConnection();
+        try{
+            pst = connection.prepareStatement(sql);
+            ResultSet result = pst.executeQuery();
+            while(result.next()){
+                // GET THE LAST id and add + 1
+                customerId = result.getInt("klient_id") + 1;
+            }
+        }catch(Exception e){e.printStackTrace();}
     }
     private double amount;
     private double balance;
@@ -265,8 +309,6 @@ private DBHandler handler;
     private Label rent_total;
     private double totalP;
 
-    @FXML
-    private Label rent_balance;
     public void rentClear(){
         totalP = 0;
         rent_firstName.setText("");
@@ -305,10 +347,6 @@ private DBHandler handler;
     private String[] genderList = {"Male", "Female", "Others"};
 
 
-    private ObservableList<makina> rentCarList;
-
-    public void rentCarShowListData() {
-    }
 
 
     public void close(){
@@ -366,6 +404,8 @@ private DBHandler handler;
         return data;
     }
     private Connection connection;
+    private DBHandler handler = new DBHandler();
+
 
 
     @FXML
@@ -447,7 +487,8 @@ private DBHandler handler;
         }else{
             if(rent_dateReturn.getValue().isAfter(rent_dateRented.getValue())){
                 // COUNT THE DAY
-                countDate = rent_dateReturn.getValue().compareTo(rent_dateRented.getValue());
+                countDate = (int) ChronoUnit.DAYS.between(rent_dateRented.getValue(), rent_dateReturn.getValue());
+
             }else{
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
@@ -501,6 +542,8 @@ private DBHandler handler;
         rentCarModel();
         rentCarGender();
         rentCarListData();
+        rentCarShowListData();
     }
+
 
 }

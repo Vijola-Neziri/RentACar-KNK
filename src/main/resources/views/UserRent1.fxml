@@ -123,9 +123,9 @@
                     <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="178.0" prefHeight="556.0" prefWidth="899.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="-29.0" prefHeight="609.0" prefWidth="899.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-29.0">
                            <children>
-                              <AnchorPane layoutX="4.0" layoutY="9.0" prefHeight="538.0" prefWidth="890.0">
+                              <AnchorPane layoutX="4.0" layoutY="31.0" prefHeight="578.0" prefWidth="890.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />
@@ -150,21 +150,21 @@
                                     <TextField fx:id="rent_firstName" layoutX="124.0" layoutY="238.0" promptText="Username" />
                                     <TextField fx:id="rent_lastName" layoutX="124.0" layoutY="285.0" promptText="LastName" />
                                     <Label layoutX="39.0" layoutY="289.0" text="Last Name:" />
-                                    <Label layoutX="35.0" layoutY="332.0" text="Date Rented" />
-                                    <DatePicker fx:id="rent_dateRented" layoutX="124.0" layoutY="328.0" prefHeight="26.0" prefWidth="150.0" />
-                                    <Label layoutX="33.0" layoutY="380.0" prefHeight="18.0" prefWidth="84.0" text="Data Returned" />
-                                    <DatePicker fx:id="rent_dateReturn" layoutX="128.0" layoutY="376.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="150.0" />
-                                    <Label layoutX="42.0" layoutY="422.0" text="Amount" />
-                                    <TextField fx:id="rent_amount" layoutX="124.0" layoutY="417.0" onAction="#rentAmount" prefHeight="26.0" prefWidth="158.0" />
+                                    <Label layoutX="32.0" layoutY="386.0" text="Date Rented" />
+                                    <DatePicker fx:id="rent_dateRented" layoutX="123.0" layoutY="372.0" prefHeight="26.0" prefWidth="150.0" />
+                                    <Label layoutX="27.0" layoutY="422.0" prefHeight="18.0" prefWidth="84.0" text="Data Returned" />
+                                    <DatePicker fx:id="rent_dateReturn" layoutX="124.0" layoutY="418.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="150.0" />
+                                    <Label layoutX="47.0" layoutY="464.0" text="Amount" />
+                                    <TextField fx:id="rent_amount" layoutX="124.0" layoutY="460.0" onAction="#rentAmount" prefHeight="26.0" prefWidth="158.0" />
                                     <ComboBox fx:id="rent_gender" layoutX="123.0" layoutY="185.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
                                     <ComboBox fx:id="rent_model" layoutX="124.0" layoutY="127.0" onAction="#rentCarModel" prefWidth="150.0" promptText="Choose.." />
                                     <ComboBox fx:id="rent_brand" layoutX="123.0" layoutY="80.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." />
                                     <ComboBox fx:id="rent_carid" layoutX="123.0" layoutY="33.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose..." />
-                                    <Label layoutX="68.0" layoutY="460.0" text="Total:" />
-                                    <Label fx:id="rent_total" layoutX="128.0" layoutY="460.0" text="\$0.0" />
-                                    <Label layoutX="68.0" layoutY="497.0" text="Balance:" />
-                                    <Label fx:id="rent_balance" layoutX="128.0" layoutY="497.0" text="\$0.0" />
-                                    <Button fx:id="rentBtn" layoutX="186.0" layoutY="469.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" styleClass="add-btn" text="Rent" />
+                                    <Label layoutX="60.0" layoutY="505.0" text="Total:" />
+                                    <Label fx:id="rent_total" layoutX="128.0" layoutY="505.0" text="\$0.0" />
+                                    <Label layoutX="60.0" layoutY="535.0" text="Balance:" />
+                                    <Label fx:id="rent_balance" layoutX="128.0" layoutY="535.0" text="\$0.0" />
+                                    <Button fx:id="rentBtn" layoutX="198.0" layoutY="515.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" styleClass="add-btn" text="Rent" />
                                     <Label fx:id="rent_tableView1" layoutX="557.0" layoutY="23.0" prefHeight="38.0" prefWidth="165.0" text="Available Cars">
                                        <font>
                                           <Font name="Arial Bold" size="18.0" />
