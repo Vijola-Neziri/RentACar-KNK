@@ -12,6 +12,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -111,6 +112,7 @@ public class UserHomeController implements Initializable {
         }
     }
 
+
     @FXML
   public void signOut(ActionEvent event) {
         // Get the current stage/window
@@ -120,9 +122,10 @@ public class UserHomeController implements Initializable {
         currentStage.close();
     }
 
+    @FXML
+    private MenuItem help;
   @FXML
   public  void Help(ActionEvent event) throws IOException {
-        home_btn.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
         Pane pane = fxmlLoader.load();
@@ -161,11 +164,18 @@ public class UserHomeController implements Initializable {
                 chart.getData().add(new XYChart.Data<>(result.getString("date_rented"), result.getDouble("total")));
             }
             home_incomeChart.getData().add(chart);
+
+            // Set colors for the series and data points
+            String seriesColor = "#ff0000"; // Red color
+            String dataPointColor = "#00ff00"; // Green color
+            String seriesStyle = String.format("-fx-stroke: %s;", seriesColor);
+            String dataPointStyle = String.format("-fx-background-color: %s;", dataPointColor);
+            chart.getNode().setStyle(seriesStyle);
+            chart.getData().forEach(data -> data.getNode().setStyle(dataPointStyle));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     public void homeCustomerChart() {
         home_customerChart.getData().clear();
         String sql = "SELECT date_rented, COUNT(klient_id) AS count FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";

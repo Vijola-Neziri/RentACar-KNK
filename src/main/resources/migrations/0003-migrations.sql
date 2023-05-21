@@ -22,3 +22,7 @@ PRIMARY KEY (klient_id),
 FOREIGN KEY (klient_id) REFERENCES User(User_ID) ON DELETE CASCADE,
 foreign key(makina_id) references makina(makina_id) ON DELETE CASCADE
 );
+    alter table Admins add column admin_username varchar(50);
+    alter table Admins add column admin_password varchar(50);
+    alter table Admins add column admin_saledpassword varchar(50);
+    alter table Admins drop column admin_saledpassword ;

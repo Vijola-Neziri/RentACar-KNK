@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -12,50 +13,56 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="496.0" prefWidth="770.0" style="-fx-background-color: #5e5a55;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
+<AnchorPane prefHeight="496.0" prefWidth="770.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
    <children>
       <TextField fx:id="usernameid" layoutX="459.0" layoutY="132.0" prefHeight="38.0" prefWidth="218.0" promptText="Enter your username" />
-      <Label fx:id="label_usernameid" layoutX="344.0" layoutY="137.0" prefHeight="27.0" prefWidth="94.0" text="Username" textFill="#e7ebfc">
+      <Label fx:id="label_usernameid" layoutX="324.0" layoutY="137.0" prefHeight="27.0" prefWidth="127.0" text="Username">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="label_passwordid" layoutX="344.0" layoutY="211.0" prefHeight="27.0" prefWidth="108.0" text="Password" textFill="#e7ebfc">
+      <Label fx:id="label_passwordid" layoutX="326.0" layoutY="211.0" prefHeight="27.0" prefWidth="116.0" text="Password">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="loginid" layoutX="467.0" layoutY="363.0" mnemonicParsing="false" onAction="#loginaction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #d6d7df;" text="Log in" textFill="#1a1a1b">
+      <Button fx:id="loginid" layoutX="476.0" layoutY="343.0" mnemonicParsing="false" onAction="#loginaction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Log in" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="signupid" layoutX="640.0" layoutY="412.0" mnemonicParsing="false" onAction="#signupaction" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #d6d7df;" text="Sign up" textFill="#333436" />
+      <Button fx:id="signupid" layoutX="632.0" layoutY="437.0" mnemonicParsing="false" onAction="#signupaction" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="Sign up" textFill="WHITE" />
       <PasswordField fx:id="passwordid" layoutX="459.0" layoutY="206.0" prefHeight="38.0" prefWidth="218.0" promptText="Enter your password" />
-      <Label fx:id="label_clickSignupToRegisterid" layoutX="408.0" layoutY="415.0" prefHeight="20.0" prefWidth="271.0" text="Click sign up to register" textFill="#e7ebfc" underline="true">
+      <Label fx:id="label_clickSignupToRegisterid" layoutX="400.0" layoutY="440.0" prefHeight="20.0" prefWidth="218.0" text="Click sign up to register" textFill="#e7ebfc">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="520.0" layoutY="38.0" prefHeight="18.0" prefWidth="42.0" text="Car">
+      <Label layoutX="520.0" layoutY="38.0" prefHeight="35.0" prefWidth="78.0" text="Prime">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label layoutX="568.0" layoutY="38.0" text="Review" textFill="#e1dbdb">
+      <Label layoutX="593.0" layoutY="38.0" prefHeight="35.0" prefWidth="94.0" text="Drive" textFill="#e1dbdb">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Pane layoutX="-2.0" layoutY="-7.0" prefHeight="502.0" prefWidth="306.0" style="-fx-background-color: #d6d7df;">
+      <Pane layoutX="-2.0" layoutY="-7.0" prefHeight="502.0" prefWidth="306.0" style="-fx-background-color: #d7dfe4;">
          <children>
-            <ImageView fitHeight="152.0" fitWidth="331.0" layoutX="51.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="167.0" fitWidth="325.0" layoutX="51.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../resources/Images/Car-Login.png" />
                </image>
             </ImageView>
-            <RadioButton fx:id="alButton" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" text="AL" />
-            <RadioButton fx:id="enButton" layoutX="77.0" layoutY="456.0" mnemonicParsing="false" text="EN" />
+            <RadioButton fx:id="alButton" layoutX="14.0" layoutY="456.0" mnemonicParsing="false" text="AL">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="enButton" layoutX="77.0" layoutY="456.0" mnemonicParsing="false" text="EN">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></RadioButton>
          </children>
       </Pane>
       <ImageView fitHeight="50.0" fitWidth="81.0" layoutX="441.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
@@ -64,7 +71,14 @@
          </image>
       </ImageView>
       <Button fx:id="close" layoutX="732.0" layoutY="14.0" mnemonicParsing="false" onAction="#close" styleClass="x" stylesheets="@../css/dashboard.css" text="X" />
-      <Label fx:id="label_selectUserid" layoutX="340.0" layoutY="266.0" prefHeight="38.0" prefWidth="126.0" text="Select User" textFill="WHITE" />
-      <ComboBox fx:id="comboBox" layoutX="480.0" layoutY="273.0" onAction="#selectUser" prefWidth="150.0" />
+      <Label fx:id="label_selectUserid" layoutX="328.0" layoutY="266.0" prefHeight="38.0" prefWidth="127.0" text="Select User">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <ComboBox fx:id="comboBox" layoutX="463.0" layoutY="273.0" onAction="#selectUser" prefHeight="26.0" prefWidth="212.0" promptText="Select a role.." />
    </children>
+   <styleClass>
+      <String fx:value="shadow" />
+      <String fx:value="nav-form" />
+   </styleClass>
 </AnchorPane>
