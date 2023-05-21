@@ -4,6 +4,9 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -67,6 +70,20 @@
                                 </Label>
                         <Button fx:id="carlist" layoutX="65.0" layoutY="375.0" mnemonicParsing="false" onAction="#carlist" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
                         <Button fx:id="helpbn" layoutX="25.0" layoutY="408.0" mnemonicParsing="false" onAction="#Help" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Help" />
+                        <MenuBar layoutX="6.0" layoutY="-3.0" prefHeight="31.0" prefWidth="199.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem fx:id="helpId" mnemonicParsing="false" onAction="#Help" text="Help" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
