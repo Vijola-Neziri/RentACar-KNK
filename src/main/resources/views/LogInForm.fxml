@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -24,12 +23,6 @@
       <Label fx:id="label_passwordid" layoutX="344.0" layoutY="211.0" prefHeight="27.0" prefWidth="108.0" text="Password" textFill="#e7ebfc">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <CheckBox layoutX="459.0" layoutY="328.0" mnemonicParsing="false" selected="true" />
-      <Label layoutX="520.0" layoutY="323.0" prefHeight="18.0" prefWidth="150.0" text="Remember me?" textFill="#e7ebfc" underline="true">
-         <font>
-            <Font size="18.0" />
          </font>
       </Label>
       <Button fx:id="loginid" layoutX="467.0" layoutY="363.0" mnemonicParsing="false" onAction="#loginaction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #d6d7df;" text="Log in" textFill="#1a1a1b">
