@@ -227,14 +227,14 @@ public class DashboardController implements Initializable {
         try{
             XYChart.Series chart = new XYChart.Series();
             pst = connection.prepareStatement(sql);
-          ResultSet  result = pst.executeQuery();
+            ResultSet  result = pst.executeQuery();
             while(result.next()){
                 chart.getData().add(new XYChart.Data(result.getString(1), result.getInt(2)));
             }
             home_customerChart.getData().add(chart);
         }catch(Exception e){e.printStackTrace();}
     }
-private String[] listStatus ={"Available","Not Available"};
+    private String[] listStatus ={"Available","Not Available"};
     public void availableCarStatusList() {
         List<String> listS = new ArrayList<>();
         for (String data : listStatus) {
@@ -316,7 +316,7 @@ private String[] listStatus ={"Available","Not Available"};
                 alert.setContentText("Are you sure you want to UPDATE Car ID: " + availableCars_carid.getText() + "?");
                 Optional<ButtonType> option = alert.showAndWait();
                 if (option.get().equals(ButtonType.OK)) {
-                   Statement statement = connection.createStatement();
+                    Statement statement = connection.createStatement();
                     statement.executeUpdate(sql);
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
@@ -360,7 +360,7 @@ private String[] listStatus ={"Available","Not Available"};
         connection = handler.getConnection();
         try {
             pst = connection.prepareStatement(sql);
-          ResultSet  result = pst.executeQuery();
+            ResultSet  result = pst.executeQuery();
             carData carD;
             while (result.next()){
                 carD = new carData(result.getInt("makina_id"),
@@ -419,7 +419,7 @@ private String[] listStatus ={"Available","Not Available"};
         availableCars_tableView.setItems(sortList);
     }
 
-        public void availableCarSelect() {
+    public void availableCarSelect() {
         carData carD = availableCars_tableView.getSelectionModel().getSelectedItem();
         int num = availableCars_tableView.getSelectionModel().getSelectedIndex();
         if ((num - 1) < - 1) {
@@ -476,7 +476,7 @@ private String[] listStatus ={"Available","Not Available"};
                     // SET THE  STATUS OF CAR TO NOT AVAILABLE
                     String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = '"
                             +rent_carid.getSelectionModel().getSelectedItem()+"'";
-                  Statement  statement = connection.createStatement();
+                    Statement  statement = connection.createStatement();
                     statement.executeUpdate(updateCar);
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setHeaderText(null);

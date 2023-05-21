@@ -137,6 +137,8 @@ public class UserRentController implements Initializable {
     @FXML
     private Label rent_balance;
 
+
+
     public void rentPay() {
         rentCustomerId();
         String sql = "INSERT INTO klientet " +
@@ -179,24 +181,79 @@ public class UserRentController implements Initializable {
                         int generatedId = generatedKeys.getInt(1);
                         System.out.println("Generated ID: " + generatedId);
                         // SET THE STATUS OF CAR TO NOT AVAILABLE
-                        String updateCar = "UPDATE makina SET statusiMakina  = 'Not Available' WHERE makina_id = ?";
+                        String updateCar = "UPDATE makina SET statusiMakina = 'Not Available' WHERE makina_id = ?";
                         PreparedStatement updateCarStatement = connection.prepareStatement(updateCar);
                         updateCarStatement.setInt(1, (Integer) rent_carid.getSelectionModel().getSelectedItem());
                         updateCarStatement.executeUpdate();
 
-                        alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Successful!");
-                        alert.showAndWait();
+                        // Insert data into the rent table
+                        String rentInsertQuery = "INSERT INTO rent (klient_id, makina_id, data_e_rezervimit, data_e_fillimit_te_qirase, data_e_mbarimit_te_qirase, cmimi_total) " +
+                                "VALUES (?, ?, ?, ?, ?, ?)";
+                        PreparedStatement rentInsertStatement = connection.prepareStatement(rentInsertQuery, PreparedStatement.RETURN_GENERATED_KEYS);
+                        rentInsertStatement.setInt(1, CustomerID()); // Replace with appropriate method to get the customer ID
+                        rentInsertStatement.setInt(2, (Integer) rent_carid.getSelectionModel().getSelectedItem());
+                        rentInsertStatement.setDate(3, java.sql.Date.valueOf(rent_dateRented.getValue()));
+                        rentInsertStatement.setDate(4, java.sql.Date.valueOf(rent_dateRented.getValue()));
+                        rentInsertStatement.setDate(5, java.sql.Date.valueOf(rent_dateReturn.getValue()));
+                        rentInsertStatement.setFloat(6, (float) totalP);
+                        rentInsertStatement.executeUpdate();
 
-                        rentCarShowListData();
-                        rentClear();
+                        ResultSet rentGeneratedKeys = rentInsertStatement.getGeneratedKeys();
+                        if (rentGeneratedKeys.next()) {
+                            int rentGeneratedId = rentGeneratedKeys.getInt(1);
+                            System.out.println("Rent Generated ID: " + rentGeneratedId);
+
+                            // Rest of the code remains the same
+                            alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setHeaderText(null);
+                            alert.setContentText("Successful!");
+                            alert.showAndWait();
+
+                            rentCarShowListData();
+                            rentClear();
+                        } else {
+                            // Handle the case when rent ID is not generated
+                            System.err.println("Failed to generate rent ID.");
+                        }
+                    } else {
+                        // Handle the case when customer ID is not generated
+                        System.err.println("Failed to generate customer ID.");
                     }
                 }
+            }
+        } catch (SQLException e) {
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                String errorMessage = "Cannot add or update a child row: a foreign key constraint fails.\n" +
+                        "Please make sure you have selected valid data.";
+                System.err.println(errorMessage);
+
+                Alert  alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText(null);
+                alert.setContentText(errorMessage);
+                alert.showAndWait();
+            } else {
+                e.printStackTrace();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private int CustomerID() {
+        int customerId = 0;
+        String sql = "SELECT klient_id FROM klientet WHERE emri_klient = ? AND mbimeri_klient = ?";
+        connection = handler.getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, rent_firstName.getText());
+            preparedStatement.setString(2, rent_lastName.getText());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                customerId = resultSet.getInt("klient_id");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customerId;
     }
 
     private void clearFields() {

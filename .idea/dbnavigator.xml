@@ -19,10 +19,10 @@
       <console name="Connection" type="STANDARD" schema="mysql" session="Main" />
     </connection>
     <connection id="86f9fee0-ee8f-4432-84d9-82af723cc275">
-      <console name="Connection 1" type="STANDARD" schema="mysql" session="Main" />
+      <console name="Connection 1" type="STANDARD" schema="knkrent" session="Main" />
     </connection>
     <connection id="772b42ec-7729-433f-80b7-2c0a5ccfcdcd">
-      <console name="Connection 2" type="STANDARD" schema="mysql" session="Main" />
+      <console name="Connection 2" type="STANDARD" schema="rent" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">

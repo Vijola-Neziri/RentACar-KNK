@@ -141,7 +141,7 @@
                                           <TableColumn prefWidth="75.0" text="Column X" />
                                                     </columns>
                                                 </TableView>
-                                                <Label fx:id="rent_tableView1" layoutX="346.0" layoutY="14.0" prefHeight="26.0" prefWidth="160.0" text="Customers Cars">
+                                                <Label fx:id="rent_tableView1" layoutX="346.0" layoutY="14.0" prefHeight="26.0" prefWidth="119.0" text="Customers ">
                                                     <font>
                                                         <Font name="Arial Bold" size="18.0" />
                                                     </font>

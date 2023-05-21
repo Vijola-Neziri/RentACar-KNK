@@ -8,7 +8,7 @@ import java.util.concurrent.Callable;
 public  class ConnectionUnit {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/RENT","root","Rinesa123.");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/RENT","root","Caseifok!23");
         System.out.println("Connected");
 
     }
