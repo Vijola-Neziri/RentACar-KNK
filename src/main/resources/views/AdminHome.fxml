@@ -128,12 +128,12 @@
                                     </Label>
                                     <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="14.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../resources/Images/greenDot.png" />
+                                          <Image url="@../resources/Images/green.png" />
                                        </image>
                                     </ImageView>
                                     <ImageView fitHeight="20.0" fitWidth="18.0" layoutX="14.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../resources/Images/RedDot1.png" />
+                                          <Image url="@../resources/Images/Red.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -142,7 +142,7 @@
                                  <children>
                                     <ImageView fitHeight="56.0" fitWidth="89.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../Desktop/KNK/RentACar-KNK/src/main/resources/resources/Images/carhome.png" />
+                                          <Image url="@../resources/Images/user.png" />
                                        </image>
                                     </ImageView>
                                     <Label layoutX="34.0" layoutY="166.0" text="Total Cars" textAlignment="CENTER" textFill="#fffcfc">
@@ -166,7 +166,7 @@
                                     </Label>
                                     <ImageView fitHeight="56.0" fitWidth="120.0" layoutX="24.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../../Desktop/KNK/RentACar-KNK/src/main/resources/resources/Images/users.png" />
+                                          <Image url="@../resources/Images/user.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="home_totalCustomers" alignment="CENTER_RIGHT" layoutX="256.0" layoutY="32.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">
