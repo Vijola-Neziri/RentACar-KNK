@@ -50,7 +50,7 @@
                                         <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="69.0" layoutY="468.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -118,7 +118,7 @@
                                                 <URL value="@../css/dashboard.css" />
                                             </stylesheets>
                                         </Button>
-                                        <Label layoutX="44.0" layoutY="12.0" text="Car Rental Managament System">
+                                        <Label layoutX="44.0" layoutY="12.0" text="Car Rental Managament System" textFill="#f7f3f3">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
@@ -126,7 +126,8 @@
                                     </children>
                                     <styleClass>
                                         <String fx:value="top-form" />
-                                        <String fx:value="shadow" />
+                                        <String fx:value="nav-form" />
+                              <String fx:value="shadow" />
                                     </styleClass>
                                     <stylesheets>
                                         <URL value="@../css/dashboard.css" />

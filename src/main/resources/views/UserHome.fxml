@@ -111,7 +111,7 @@
                                         </Button>
                                     </children>
                                     <styleClass>
-                                        <String fx:value="top-form" />
+                                        <String fx:value="nav-form" />
                                         <String fx:value="shadow" />
                                     </styleClass>
                                     <stylesheets>
