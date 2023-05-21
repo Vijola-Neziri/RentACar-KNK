@@ -383,6 +383,11 @@ public class AdminCarRegistrationController implements Initializable {
     void availableCarImport(ActionEvent event) {
 
     }
+
+    @FXML
+    void signOut(ActionEvent event) {
+
+    }
 }
 
 

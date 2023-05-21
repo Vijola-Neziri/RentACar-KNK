@@ -173,4 +173,39 @@ public class customerController implements Initializable {
         }
         return data;
     }
+
+    @FXML
+    void carList(ActionEvent event) {
+
+    }
+
+    @FXML
+    void carReg(ActionEvent event) {
+
+    }
+
+    @FXML
+    void carRent(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void customers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void dataAnalysis(ActionEvent event) {
+
+    }
+
+    @FXML
+    void home(ActionEvent event) {
+
+    }
+
+
+
 }
+

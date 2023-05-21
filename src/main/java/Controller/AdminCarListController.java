@@ -129,6 +129,11 @@ public class AdminCarListController implements Initializable {
             Stage stage = (Stage)main_form.getScene().getWindow();
             stage.setIconified(true);
         }
+
+    @FXML
+    void signOut(ActionEvent event) {
+
+    }
     }
 
 //    @FXML
