@@ -25,6 +25,8 @@ import java.util.Date;
 public class AdminCarRegistrationController implements Initializable {
     @FXML
     private Button DashboardBtn;
+    @FXML
+    private Button availableCarImport;
 
     @FXML
     private TextField availableCars_carid;
@@ -376,6 +378,10 @@ public class AdminCarRegistrationController implements Initializable {
 //        home_unavailableCars();
 //        homeIncomeChart();
 //        homeCustomerChart();
+    }
+    @FXML
+    void availableCarImport(ActionEvent event) {
+
     }
 }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -21,9 +22,9 @@
          <children>
             <BorderPane prefHeight="600.0" prefWidth="1099.0">
                <top>
-                  <AnchorPane prefHeight="35.0" prefWidth="1099.0" style="-fx-background-color: #BFC9CA;" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="35.0" prefWidth="1099.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="72.0" layoutY="11.0" text="Car Rental Managament System">
+                        <Label layoutX="72.0" layoutY="11.0" text="Car Rental Managament System" textFill="#fcfafa">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -44,25 +45,44 @@
                            </font>
                         </Button>
                      </children>
+                     <styleClass>
+                        <String fx:value="nav-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
                   </AnchorPane>
                </top>
                <left>
-                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #BFC9CA;" BorderPane.alignment="CENTER">
+                  <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../resources/Images/user.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="72.0" layoutY="200.0" text="Welcome" />
-                        <Label layoutX="79.0" layoutY="228.0" text="Admin" />
+                        <Label layoutX="72.0" layoutY="200.0" text="Welcome" textFill="#f7f7f7">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
+                        <Label layoutX="79.0" layoutY="228.0" text="Admin" textFill="#fcfafa">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Label>
                         <Line endX="100.0" layoutX="100.0" layoutY="258.0" startX="-100.0" />
                         <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
-                        <Button fx:id="carBtn" layoutX="51.0" layoutY="328.0" mnemonicParsing="false" text="Car registration" />
-                        <Button fx:id="dataAnalysis" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" text="Data Analysis" />
-                        <Button fx:id="carList" layoutX="71.0" layoutY="368.0" mnemonicParsing="false" text="Car list" />
-                        <Button fx:id="customers" layoutX="71.0" layoutY="407.0" mnemonicParsing="false" text="Clients" />
+                        <Button fx:id="carBtn" layoutX="25.0" layoutY="324.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="Car registration" />
+                        <Button fx:id="dataAnalysis" layoutX="26.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" text="Data Analysis" />
+                        <Button fx:id="carList" layoutX="25.0" layoutY="368.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="Car list" />
+                        <Button fx:id="customers" layoutX="27.0" layoutY="407.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" text="Clients" />
+                        <Button fx:id="logoutBtn" layoutX="69.0" layoutY="491.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" text="Sign out" textFill="#e1dcdc">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
                      </children>
+                     <styleClass>
+                        <String fx:value="nav-form" />
+                        <String fx:value="shadow" />
+                     </styleClass>
                   </AnchorPane>
                </left>
                <center>

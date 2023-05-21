@@ -2,6 +2,7 @@ package Controller;
 import ConnectionMysql.DBHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -119,6 +120,53 @@ public class AdminRentController implements Initializable {
         Stage stage = (Stage)main_form.getScene().getWindow();
         stage.setIconified(true);
     }
+    @FXML
+    void carList(ActionEvent event) {
 
+    }
+
+    @FXML
+    void carReg(ActionEvent event) {
+
+    }
+
+    @FXML
+    void carRent(ActionEvent event) {
+
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+
+    }
+
+    @FXML
+    void customers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void dataAnalysis(ActionEvent event) {
+
+    }
+
+    @FXML
+    void home(ActionEvent event) {
+
+    }
+
+    @FXML
+    void minimize(ActionEvent event) {
+
+    }
+
+    @FXML
+    void signOut(ActionEvent event) {
+
+    }
 
 }
+
+
+
+

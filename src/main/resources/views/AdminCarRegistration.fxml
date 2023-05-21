@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -17,16 +18,16 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.AdminCarRegistrationController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css">
          <children>
             <BorderPane layoutY="88.0" prefHeight="569.0" prefWidth="1069.0">
                <top>
                   <AnchorPane prefHeight="45.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutX="134.0" layoutY="-14.0" prefHeight="45.0" prefWidth="1099.3333333333333" style="-fx-background-color: #BFC9CA;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane layoutY="9.0" prefHeight="45.0" prefWidth="1099.3333333333333" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0">
                            <children>
                               <ImageView fitHeight="44.0" fitWidth="45.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label layoutX="59.0" layoutY="14.0" text="Car Rental Management System" />
+                              <Label layoutX="59.0" layoutY="14.0" text="Car Rental Management System" textFill="#faf0f0" />
                               <Button fx:id="minimize" layoutX="1030.0" layoutY="9.0" mnemonicParsing="false" onAction="#minimize" prefHeight="27.0" prefWidth="30.0" styleClass="x" text="-">
                                  <font>
                                     <Font name="System Bold" size="13.0" />
@@ -42,6 +43,10 @@
                                  </font>
                               </Button>
                            </children>
+                           <styleClass>
+                              <String fx:value="nav-form" />
+                              <String fx:value="shadow" />
+                           </styleClass>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
@@ -49,15 +54,21 @@
                <left>
                   <AnchorPane fx:id="main_form" prefHeight="575.0" prefWidth="202.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane prefHeight="557.0" prefWidth="201.0" style="-fx-background-color: #BFC9CA;" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane prefHeight="557.0" prefWidth="201.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../resources/Images/user.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="72.0" layoutY="200.0" text="Welcome" />
-                              <Label layoutX="79.0" layoutY="228.0" text="Admin" />
+                              <Label layoutX="72.0" layoutY="200.0" text="Welcome" textFill="#faf3f3">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
+                              <Label layoutX="79.0" layoutY="228.0" text="Admin" textFill="#eae4e4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font></Label>
                               <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
                               <Button fx:id="carBtn" layoutX="51.0" layoutY="328.0" mnemonicParsing="false" text="Car registration" />
                               <Button fx:id="carList" layoutX="71.0" layoutY="368.0" mnemonicParsing="false" text="Car list" />
@@ -65,6 +76,10 @@
                               <Line endX="100.0" layoutX="100.0" layoutY="258.0" startX="-100.0" />
                               <Button fx:id="dataAnalysis" layoutX="53.0" layoutY="445.0" mnemonicParsing="false" text="Data Analysis" />
                            </children>
+                           <styleClass>
+                              <String fx:value="nav-form" />
+                              <String fx:value="shadow" />
+                           </styleClass>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
@@ -72,50 +87,78 @@
                <center>
                   <AnchorPane layoutX="82.0" layoutY="39.0" prefHeight="489.0" prefWidth="911.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="-1.0" prefHeight="556.0" prefWidth="411.0" style="-fx-background-color: #FDFEFE;">
+                        <AnchorPane layoutY="14.0" prefHeight="556.0" prefWidth="411.0" style="-fx-background-color: #FDFEFE;">
                            <children>
-                              <AnchorPane layoutX="28.0" layoutY="276.0" prefHeight="171.0" prefWidth="139.0" />
-                              <ImageView fx:id="availableCars_imageView" fitHeight="170.0" fitWidth="140.0" layoutX="27.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true" />
-                              <Button layoutX="26.0" layoutY="418.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" text="Button" />
-                              <Button fx:id="availableCars_deleteBtn" layoutX="255.0" layoutY="437.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="117.0" styleClass="delete-btn" text="Delete" />
-                              <Button fx:id="availableCars_updateBtn" layoutX="247.0" layoutY="371.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="38.0" prefWidth="117.0" styleClass="update-btn" text="Update" />
-                              <Button fx:id="availableCars_clearBtn" layoutX="257.0" layoutY="303.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="38.0" prefWidth="113.0" styleClass="clear-btn" text="Clear" />
-                              <Button fx:id="availableCars_insertBtn" layoutX="248.0" layoutY="248.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="37.0" prefWidth="115.0" styleClass="add-btn" text="Insert" />
-                              <Label layoutX="29.0" layoutY="38.0" text="Car ID:">
+                              <AnchorPane layoutX="244.0" layoutY="18.0" prefHeight="171.0" prefWidth="139.0" style="-fx-background-color: lightgray;" stylesheets="@../css/dashboard.css">
+                                 <children>
+                                    <ImageView fx:id="availableCars_imageView" fitHeight="184.0" fitWidth="144.0" layoutX="-2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children></AnchorPane>
+                              <Button layoutX="76.0" layoutY="487.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" text="Button" textFill="#ece5e5">
+                                 <styleClass>
+                                    <String fx:value="nav-form" />
+                                    <String fx:value="shadow" />
+                                 </styleClass></Button>
+                              <Button fx:id="availableCars_deleteBtn" layoutX="255.0" layoutY="439.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="117.0" text="Delete" textFill="#f4f2f2">
+                                 <styleClass>
+                                    <String fx:value="nav-form" />
+                                    <String fx:value="shadow" />
+                                 </styleClass></Button>
+                              <Button fx:id="availableCars_updateBtn" layoutX="256.0" layoutY="392.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="38.0" prefWidth="117.0" text="Update" textFill="#faf9f9">
+                                 <styleClass>
+                                    <String fx:value="nav-form" />
+                                    <String fx:value="shadow" />
+                                 </styleClass></Button>
+                              <Button fx:id="availableCars_clearBtn" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="38.0" prefWidth="113.0" text="Clear" textFill="#f4f1f1">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="nav-form" />
+                                 </styleClass></Button>
+                              <Button fx:id="availableCars_insertBtn" layoutX="257.0" layoutY="288.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="37.0" prefWidth="115.0" text="Insert" textFill="#e7e2e2">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="nav-form" />
+                                 </styleClass></Button>
+                              <Label layoutX="12.0" layoutY="82.0" text="Car ID:">
                                  <font>
-                                    <Font name="Tahoma" size="13.0" />
+                                    <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_carid" layoutX="79.0" layoutY="32.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
-                              <Label layoutX="29.0" layoutY="82.0" text="Brand:">
+                              <TextField fx:id="availableCars_carid" layoutX="73.0" layoutY="76.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
+                              <Label layoutX="14.0" layoutY="167.0" text="Brand:">
                                  <font>
-                                    <Font name="Tahoma" size="13.0" />
+                                    <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_brand" layoutX="79.0" layoutY="76.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
-                              <Label layoutX="30.0" layoutY="128.0" text="Model:">
+                              <TextField fx:id="availableCars_brand" layoutX="72.0" layoutY="161.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
+                              <Label layoutX="14.0" layoutY="259.0" text="Model:">
                                  <font>
-                                    <Font name="Tahoma" size="13.0" />
+                                    <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_model" layoutX="79.0" layoutY="122.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
-                              <Label layoutX="28.0" layoutY="212.0" text="Type:">
+                              <TextField fx:id="availableCars_model" layoutX="73.0" layoutY="253.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
+                              <Label layoutX="20.0" layoutY="437.0" text="Type:">
                                  <font>
-                                    <Font name="Tahoma" size="13.0" />
+                                    <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="availableCars_status" layoutX="73.0" layoutY="207.0" onAction="#availableCarStatusList" prefWidth="150.0" styleClass="textfield" />
-                              <Label layoutX="30.0" layoutY="173.0" text="Price:">
+                              <ComboBox fx:id="availableCars_status" layoutX="73.0" layoutY="431.0" onAction="#availableCarStatusList" prefWidth="150.0" styleClass="textfield" />
+                              <Label layoutX="19.0" layoutY="353.0" text="Price:">
                                  <font>
-                                    <Font name="Tahoma" size="13.0" />
+                                    <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_price" layoutX="75.0" layoutY="167.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
+                              <TextField fx:id="availableCars_price" layoutX="74.0" layoutY="347.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
+                              <Button fx:id="availableCars_importBtn" layoutX="261.0" layoutY="230.0" mnemonicParsing="false" onAction="#availableCarImport" prefHeight="46.0" prefWidth="107.0" text="Import" textFill="#ece5e5">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="nav-form" />
+                                 </styleClass>
+                              </Button>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="416.0" layoutY="-1.0" prefHeight="651.0" prefWidth="481.0">
                            <children>
-                              <TableView fx:id="tableCarsRegistration" layoutX="-5.0" layoutY="60.0" prefHeight="500.0" prefWidth="477.0">
+                              <TableView fx:id="tableCarsRegistration" layoutX="2.0" layoutY="48.0" prefHeight="500.0" prefWidth="477.0">
                                 <columns>
                                     <TableColumn fx:id="columnCarId" prefWidth="93.333251953125" text="Car ID" />
                                     <TableColumn fx:id="columnBrand" prefWidth="97.3333740234375" text="Brand" />
@@ -125,7 +168,10 @@
                                     <TableColumn fx:id="columnDate" prefWidth="75.0" text="Date" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="218.0" layoutY="23.0" text="Car registration" />
+                              <Label layoutX="199.0" layoutY="14.0" prefHeight="18.0" prefWidth="101.0" text="Car registration">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
                            </children>
                         </AnchorPane>
                      </children>

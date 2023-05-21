@@ -95,6 +95,10 @@ public class AdminStatisticsController implements Initializable {
     void minimize(ActionEvent event) {
 
     }
+    @FXML
+    void signOut(ActionEvent event) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
