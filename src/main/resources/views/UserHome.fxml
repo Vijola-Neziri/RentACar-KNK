@@ -50,7 +50,7 @@
                                         <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="logoutBtn" layoutX="28.0" layoutY="498.0" mnemonicParsing="false" onAction="#signOut" prefHeight="35.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="62.0" layoutY="498.0" mnemonicParsing="false" onAction="#signOut" prefHeight="35.0" prefWidth="64.0" style="-fx-background-color: #000000;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -126,9 +126,9 @@
                                 <MenuItem mnemonicParsing="false" text="Close" />
                               </items>
                             </Menu>
-                            <Menu mnemonicParsing="false" text="Help">
+                            <Menu fx:id="help1" mnemonicParsing="false" onAction="#HelpBtn" text="Help">
                               <items>
-                                <MenuItem fx:id="help" mnemonicParsing="false" onAction="#Help" text="Help" />
+                                <MenuItem fx:id="help" mnemonicParsing="false" onAction="#HelpBtn" text="Help" />
                               </items>
                             </Menu>
                           </menus>

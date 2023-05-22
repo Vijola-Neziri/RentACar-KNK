@@ -2,6 +2,7 @@ package Controller;
 
 import ConnectionMysql.DBHandler;
 import app.LoginForm;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,16 +15,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import models.Klientet;
 import models.makina;
-import repository.KlientRepository;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 
 public class UserRentController implements Initializable {
     @FXML
@@ -137,7 +136,27 @@ public class UserRentController implements Initializable {
     @FXML
     private Label rent_balance;
 
+    @FXML
+    void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
+    }
 
     public void rentPay() {
         rentCustomerId();
@@ -344,7 +363,7 @@ public class UserRentController implements Initializable {
             alert.setContentText("Invalid :3");
             alert.showAndWait();
             rent_amount.setText("");
-        }else{
+        }else
             amount = Double.parseDouble(rent_amount.getText());
             if(amount >= totalP){
                 balance = (amount - totalP);
@@ -358,7 +377,7 @@ public class UserRentController implements Initializable {
                 rent_amount.setText("");
             }
         }
-    }
+
 
     private int countDate;
 

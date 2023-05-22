@@ -2,12 +2,15 @@ package Controller;
 
 import ConnectionMysql.DBHandler;
 import app.LoginForm;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -17,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CarList2Controller  implements Initializable{
@@ -85,7 +89,7 @@ public class CarList2Controller  implements Initializable{
     public void RentCar(ActionEvent event) throws IOException {
         rentCar_btn.getScene().getWindow().hide();
         Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRentCar.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRent1.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         signup.setScene(scene);
@@ -116,13 +120,27 @@ public class CarList2Controller  implements Initializable{
         signup.show();
         signup.setResizable(false);
     }
-    @FXML
-    public void signout(ActionEvent event) {
-        // Get the current stage/window
-        Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
 
-        // Close the window
-        currentStage.close();
+    @FXML
+    void signout(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
+
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
     }
     @FXML
     public  void Help(ActionEvent event) throws IOException {

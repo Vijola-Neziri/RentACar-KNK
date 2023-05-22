@@ -132,7 +132,6 @@ public class customerController implements Initializable {
         columnMakina.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
         columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
         columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-        columnDate.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
         Date_rentedId.setCellValueFactory(new PropertyValueFactory<>("date_rented"));
         Date_returnedId.setCellValueFactory(new PropertyValueFactory<>("date_returned"));
 

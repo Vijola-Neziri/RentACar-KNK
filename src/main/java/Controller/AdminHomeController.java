@@ -8,16 +8,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -98,10 +94,6 @@ public class AdminHomeController implements Initializable {
         }catch(Exception e){}
 
     }
-
-
-
-
 
 
 
@@ -217,8 +209,6 @@ public class AdminHomeController implements Initializable {
         signup.setResizable(false);
 
     }
-
-
 
 
     @FXML

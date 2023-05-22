@@ -2,6 +2,7 @@ package Controller;
 
 import ConnectionMysql.DBHandler;
 import app.LoginForm;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,9 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,12 +21,14 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserHomeController implements Initializable {
     @FXML
     private Button availableCars_btn;
-
+    @FXML
+    private MenuBar Help;
     @FXML
     private Button close;
     @FXML
@@ -112,20 +113,34 @@ public class UserHomeController implements Initializable {
         }
     }
 
-
     @FXML
-  public void signOut(ActionEvent event) {
-        // Get the current stage/window
-        Stage currentStage = (Stage) logoutBtn.getScene().getWindow();
+    void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
-        // Close the window
-        currentStage.close();
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
     }
+
 
     @FXML
     private MenuItem help;
   @FXML
-  public  void Help(ActionEvent event) throws IOException {
+  public  void HelpBtn(ActionEvent event) throws IOException {
+      Help.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
         Pane pane = fxmlLoader.load();
@@ -164,14 +179,6 @@ public class UserHomeController implements Initializable {
                 chart.getData().add(new XYChart.Data<>(result.getString("date_rented"), result.getDouble("total")));
             }
             home_incomeChart.getData().add(chart);
-
-            // Set colors for the series and data points
-            String seriesColor = "#ff0000"; // Red color
-            String dataPointColor = "#00ff00"; // Green color
-            String seriesStyle = String.format("-fx-stroke: %s;", seriesColor);
-            String dataPointStyle = String.format("-fx-background-color: %s;", dataPointColor);
-            chart.getNode().setStyle(seriesStyle);
-            chart.getData().forEach(data -> data.getNode().setStyle(dataPointStyle));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -208,7 +215,6 @@ public class UserHomeController implements Initializable {
 
     @FXML
     void switchForm(ActionEvent event) throws  IOException{
-        home_btn.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
         Pane pane = fxmlLoader.load();

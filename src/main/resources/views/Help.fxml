@@ -3,7 +3,11 @@
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -20,26 +24,29 @@
             <children>
                 <BorderPane prefHeight="600.0" prefWidth="1099.2" stylesheets="@../css/dashboard.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <left>
-                        <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
+                        <AnchorPane fx:id="main_form" prefHeight="556.0" prefWidth="198.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../resources/Images/user.png" />
+                                        <Image url="@../resources/Images/usersignup.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
+                                <Label fx:id="user" layoutX="60.0" layoutY="213.0" text="Welcome" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
                                 </Label>
-                                <Line endX="48.30000305175781" endY="-1.52587890625E-5" layoutX="125.0" layoutY="278.0" startX="-100.0" stroke="WHITE" />
-                                <Button fx:id="home_btn" layoutX="26.0" layoutY="307.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Home" />
+                                <Line endX="74.99998474121094" layoutX="125.0" layoutY="294.0" startX="-125.00001525878906" stroke="WHITE" />
+                                <Button fx:id="home_btn" layoutX="26.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Home">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                                 <Label layoutX="60.0" layoutY="516.0" textFill="WHITE">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
@@ -50,7 +57,7 @@
                                         <String fx:value="logout-btn" />
                                     </styleClass>
                                 </Button>
-                                <Button fx:id="rentCar_btn" layoutX="25.0" layoutY="341.0" mnemonicParsing="false" onAction="#rentCar" prefHeight="30.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
+                                <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="381.0" mnemonicParsing="false" onAction="#rentCar" prefHeight="30.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
                                 <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
@@ -61,13 +68,26 @@
                                         <Image url="@../resources/Images/carlogo1.jpg" />
                                     </image>
                                 </ImageView>
-                        <Label layoutX="76.0" layoutY="217.0" prefHeight="25.0" prefWidth="48.0" text="User" textFill="WHITE">
+                        <Label layoutX="76.0" layoutY="241.0" prefHeight="25.0" prefWidth="48.0" text="User" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="carListid" layoutX="26.0" layoutY="371.0" mnemonicParsing="false" onAction="#carList" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
-                        <Button fx:id="helpid" layoutX="25.0" layoutY="405.0" mnemonicParsing="false" onAction="#help" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Help" />
+                        <Button fx:id="carListid" layoutX="26.0" layoutY="412.0" mnemonicParsing="false" onAction="#carList" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
+                        <MenuBar layoutX="-2.0" layoutY="-2.0" prefHeight="30.0" prefWidth="210.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Help">
+                              <items>
+                                <MenuItem fx:id="help" mnemonicParsing="false" onAction="#HelpBtn" text="Help" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -122,13 +142,28 @@
                             <children>
                                 <AnchorPane fx:id="availableCars_form" prefHeight="556.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="96.0" layoutY="107.0" prefHeight="18.0" prefWidth="130.0" text="Type your name:" />
-                              <TextField fx:id="nameid" layoutX="227.0" layoutY="104.0" promptText="Type your name..." />
-                              <Label layoutX="92.0" layoutY="182.0" prefHeight="18.0" prefWidth="138.0" text="Type your email" />
-                              <TextField fx:id="emailid" layoutX="230.0" layoutY="178.0" prefHeight="26.0" prefWidth="150.0" promptText="Type your email...." />
-                              <Label layoutX="96.0" layoutY="260.0" text="Type your question" />
-                              <TextArea fx:id="textfieldid" layoutX="226.0" layoutY="237.0" prefHeight="104.0" prefWidth="294.0" promptText="Type here..." />
-                              <Button fx:id="submitid" layoutX="170.0" layoutY="392.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #9c9999;" text="Submit" />
+                              <Label layoutX="56.0" layoutY="107.0" prefHeight="20.0" prefWidth="146.0" text="Type your name:">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField fx:id="nameid" layoutX="222.0" layoutY="100.0" prefHeight="34.0" prefWidth="178.0" promptText="Type your name..." />
+                              <Label layoutX="55.0" layoutY="181.0" prefHeight="20.0" prefWidth="151.0" text="Type your email">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextField fx:id="emailid" layoutX="223.0" layoutY="167.0" prefHeight="38.0" prefWidth="179.0" promptText="Type your email...." />
+                              <Label layoutX="58.0" layoutY="258.0" text="Type your question">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font></Label>
+                              <TextArea fx:id="textfieldid" layoutX="230.0" layoutY="237.0" prefHeight="104.0" prefWidth="290.0" promptText="Type here..." />
+                              <Button fx:id="submitid" layoutX="170.0" layoutY="392.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE" />
+                              <Label layoutX="58.0" layoutY="471.0" prefHeight="18.0" prefWidth="199.0" text="To connect directly with us">
+                                 <font>
+                                    <Font name="System Bold Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                              <Hyperlink layoutX="283.0" layoutY="469.0" prefHeight="24.0" prefWidth="303.0" text="www.facebook/PrimeDrive" />
                            </children>
                                 </AnchorPane>
                             </children>

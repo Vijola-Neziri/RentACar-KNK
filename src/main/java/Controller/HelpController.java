@@ -2,16 +2,13 @@ package Controller;
 
 import app.LoginForm;
 import ConnectionMysql.DBHandler;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class HelpController implements Initializable {
@@ -60,7 +58,8 @@ public class HelpController implements Initializable {
 
     @FXML
     private Button submitid;
-
+    @FXML
+    private MenuBar Help;
     @FXML
     private TextArea textfieldid;
 
@@ -69,6 +68,17 @@ public class HelpController implements Initializable {
 
     private Connection connection;
     private KomentetRepository komentetRepository;
+    @FXML
+    public  void HelpBtn(ActionEvent event) throws IOException {
+        Help.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
 
     public HelpController() {
         connection = DBHandler.getConnection();
@@ -81,8 +91,15 @@ public class HelpController implements Initializable {
     }
 
     @FXML
-    void carList(ActionEvent event) {
-
+    void carList(ActionEvent event) throws IOException{
+        carListid.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/CarList.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
     @FXML
     public  void help(ActionEvent event) throws IOException {
@@ -121,14 +138,38 @@ public class HelpController implements Initializable {
     }
 
     @FXML
-    void rentCar(ActionEvent event) {
-
+    void rentCar(ActionEvent event) throws  IOException{
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserRent1.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
     void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
     }
+
 
     @FXML
     void submit(ActionEvent event) {

@@ -69,12 +69,12 @@
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font></Label>
-                              <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
-                              <Button fx:id="carBtn" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="149.0" text="Car registration" />
-                              <Button fx:id="carList" layoutX="28.0" layoutY="368.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" text="Car list" />
-                              <Button fx:id="customers" layoutX="28.0" layoutY="407.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="145.0" text="Clients" />
+                              <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" onAction="#carRent" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
+                              <Button fx:id="carBtn" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" onAction="#carReg" prefHeight="26.0" prefWidth="149.0" text="Car registration" />
+                              <Button fx:id="carList" layoutX="28.0" layoutY="368.0" mnemonicParsing="false" onAction="#carList" prefHeight="26.0" prefWidth="147.0" text="Car list" />
+                              <Button fx:id="customers" layoutX="28.0" layoutY="407.0" mnemonicParsing="false" onAction="#customers" prefHeight="26.0" prefWidth="145.0" text="Clients" />
                               <Line endX="100.0" layoutX="100.0" layoutY="258.0" startX="-100.0" />
-                              <Button fx:id="dataAnalysis" layoutX="25.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Data Analysis" />
+                              <Button fx:id="dataAnalysis" layoutX="25.0" layoutY="445.0" mnemonicParsing="false" onAction="#dataAnalysis" prefHeight="26.0" prefWidth="150.0" text="Data Analysis" />
                               <Button fx:id="logoutBtn" layoutX="66.0" layoutY="489.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" text="Sign out" textFill="#e1dcdc">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
@@ -92,33 +92,33 @@
                <center>
                   <AnchorPane layoutX="82.0" layoutY="39.0" prefHeight="489.0" prefWidth="911.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane layoutY="14.0" prefHeight="556.0" prefWidth="411.0" style="-fx-background-color: #FDFEFE;">
+                        <AnchorPane layoutY="14.0" prefHeight="538.0" prefWidth="386.0" style="-fx-background-color: #FDFEFE;">
                            <children>
-                              <AnchorPane layoutX="244.0" layoutY="18.0" prefHeight="171.0" prefWidth="139.0" style="-fx-background-color: lightgray;" stylesheets="@../css/dashboard.css">
+                              <AnchorPane layoutX="244.0" layoutY="18.0" prefHeight="191.0" prefWidth="125.0" style="-fx-background-color: lightgray;" stylesheets="@../css/dashboard.css">
                                  <children>
-                                    <ImageView fx:id="availableCars_imageView" fitHeight="184.0" fitWidth="144.0" layoutX="-2.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="availableCars_imageView" fitHeight="184.0" fitWidth="140.0" layoutX="-13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                                  </children></AnchorPane>
                               <Button layoutX="76.0" layoutY="487.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" text="Button" textFill="#ece5e5">
                                  <styleClass>
                                     <String fx:value="nav-form" />
                                     <String fx:value="shadow" />
                                  </styleClass></Button>
-                              <Button fx:id="availableCars_deleteBtn" layoutX="255.0" layoutY="439.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="117.0" text="Delete" textFill="#f4f2f2">
+                              <Button fx:id="availableCars_deleteBtn" layoutX="255.0" layoutY="439.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="108.0" text="Delete" textFill="#f4f2f2">
                                  <styleClass>
                                     <String fx:value="nav-form" />
                                     <String fx:value="shadow" />
                                  </styleClass></Button>
-                              <Button fx:id="availableCars_updateBtn" layoutX="256.0" layoutY="392.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="38.0" prefWidth="117.0" text="Update" textFill="#faf9f9">
+                              <Button fx:id="availableCars_updateBtn" layoutX="256.0" layoutY="392.0" mnemonicParsing="false" onAction="#availableCarUpdate" prefHeight="38.0" prefWidth="112.0" text="Update" textFill="#faf9f9">
                                  <styleClass>
                                     <String fx:value="nav-form" />
                                     <String fx:value="shadow" />
                                  </styleClass></Button>
-                              <Button fx:id="availableCars_clearBtn" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="38.0" prefWidth="113.0" text="Clear" textFill="#f4f1f1">
+                              <Button fx:id="availableCars_clearBtn" layoutX="257.0" layoutY="342.0" mnemonicParsing="false" onAction="#availableCarClear" prefHeight="38.0" prefWidth="109.0" text="Clear" textFill="#f4f1f1">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="nav-form" />
                                  </styleClass></Button>
-                              <Button fx:id="availableCars_insertBtn" layoutX="257.0" layoutY="288.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="37.0" prefWidth="115.0" text="Insert" textFill="#e7e2e2">
+                              <Button fx:id="availableCars_insertBtn" layoutX="256.0" layoutY="290.0" mnemonicParsing="false" onAction="#availableCarAdd" prefHeight="38.0" prefWidth="108.0" text="Insert" textFill="#e7e2e2">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="nav-form" />
@@ -128,32 +128,32 @@
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_carid" layoutX="73.0" layoutY="76.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
+                              <TextField fx:id="availableCars_carid" layoutX="73.0" layoutY="76.0" prefHeight="28.0" prefWidth="139.0" styleClass="textfield" />
                               <Label layoutX="14.0" layoutY="167.0" text="Brand:">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_brand" layoutX="72.0" layoutY="161.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
+                              <TextField fx:id="availableCars_brand" layoutX="72.0" layoutY="161.0" prefHeight="28.0" prefWidth="139.0" styleClass="textfield" />
                               <Label layoutX="14.0" layoutY="259.0" text="Model:">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_model" layoutX="73.0" layoutY="253.0" prefHeight="28.0" prefWidth="150.0" styleClass="textfield" />
+                              <TextField fx:id="availableCars_model" layoutX="73.0" layoutY="253.0" prefHeight="28.0" prefWidth="138.0" styleClass="textfield" />
                               <Label layoutX="20.0" layoutY="437.0" text="Type:">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="availableCars_status" layoutX="73.0" layoutY="431.0" onAction="#availableCarStatusList" prefWidth="150.0" styleClass="textfield" />
+                              <ComboBox fx:id="availableCars_status" layoutX="73.0" layoutY="431.0" onAction="#availableCarStatusList" prefHeight="27.0" prefWidth="141.0" styleClass="textfield" />
                               <Label layoutX="19.0" layoutY="353.0" text="Price:">
                                  <font>
                                     <Font name="Tahoma Bold" size="13.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="availableCars_price" layoutX="74.0" layoutY="347.0" prefHeight="28.0" prefWidth="148.0" styleClass="textfield" />
-                              <Button fx:id="availableCars_importBtn" layoutX="261.0" layoutY="230.0" mnemonicParsing="false" onAction="#availableCarImport" prefHeight="46.0" prefWidth="107.0" text="Import" textFill="#ece5e5">
+                              <TextField fx:id="availableCars_price" layoutX="74.0" layoutY="347.0" prefHeight="28.0" prefWidth="144.0" styleClass="textfield" />
+                              <Button fx:id="availableCars_importBtn" layoutX="254.0" layoutY="230.0" mnemonicParsing="false" onAction="#availableCarImport" prefHeight="46.0" prefWidth="107.0" text="Import" textFill="#ece5e5">
                                  <styleClass>
                                     <String fx:value="shadow" />
                                     <String fx:value="nav-form" />
@@ -163,14 +163,15 @@
                         </AnchorPane>
                         <AnchorPane layoutX="416.0" layoutY="-1.0" prefHeight="651.0" prefWidth="481.0">
                            <children>
-                              <TableView fx:id="tableCarsRegistration" layoutX="2.0" layoutY="48.0" prefHeight="500.0" prefWidth="477.0">
+                              <TableView fx:id="tableCarsRegistration" layoutX="-37.0" layoutY="48.0" prefHeight="500.0" prefWidth="521.0">
                                 <columns>
-                                    <TableColumn fx:id="columnCarId" prefWidth="93.333251953125" text="Car ID" />
-                                    <TableColumn fx:id="columnBrand" prefWidth="97.3333740234375" text="Brand" />
-                                    <TableColumn fx:id="columnModel" prefWidth="78.66668701171875" text="Model" />
-                                    <TableColumn fx:id="columnPrice" prefWidth="85.33331298828125" text="Price" />
-                                    <TableColumn fx:id="columnStatus" prefWidth="60.0" text="Status" />
-                                    <TableColumn fx:id="columnDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="columnCarId" prefWidth="57.60009765625" text="Car ID" />
+                                    <TableColumn fx:id="columnBrand" prefWidth="78.39999389648438" text="Brand" />
+                                    <TableColumn fx:id="columnModel" prefWidth="93.60003662109375" text="Model" />
+                                    <TableColumn fx:id="columnPrice" prefWidth="74.4000244140625" text="Price" />
+                                    <TableColumn fx:id="columnStatus" prefWidth="87.199951171875" text="Status" />
+                                    <TableColumn fx:id="columnDate" prefWidth="61.59991455078125" text="Date" />
+                                    <TableColumn fx:id="columnPhoto" prefWidth="81.60009765625" text="Photo" />
                                 </columns>
                               </TableView>
                               <Label layoutX="199.0" layoutY="14.0" prefHeight="18.0" prefWidth="101.0" text="Car registration">

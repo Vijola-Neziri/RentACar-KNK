@@ -1,26 +1,32 @@
 package Controller;
 
 import ConnectionMysql.DBHandler;
+import app.AdminHomeForm;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.getData;
 import models.makina;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.*;
 import java.util.Date;
+import java.util.*;
 
 public class AdminCarRegistrationController implements Initializable {
     @FXML
@@ -96,43 +102,28 @@ public class AdminCarRegistrationController implements Initializable {
 
     private DBHandler handler;
     private Connection connection;
-    private ResultSet rs=null;
+    private ResultSet rs = null;
     private Statement statement;
     private Image image;
 
     private PreparedStatement pst = null;
     private ObservableList<makina> data;
 
-
+    @FXML
+    private TableColumn<makina, String> columnPhoto;
 
     private void fillTable() {
-        for (makina car:this.data) {
-            System.out.println(car.getMakina_id());
-            columnCarId.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
-            columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
-            columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
-            columnPrice.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
-            columnStatus.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
-
-
-            tableCarsRegistration.setItems(data);
-        }
-    }
-
-    private String[] listStatus ={"Available","Not Available"};
-    public void availableCarStatusList() {
-
-        List<String> listS = new ArrayList<>();
-
-        for (String data : listStatus) {
-            listS.add(data);
-        }
-
-        ObservableList listData = FXCollections.observableArrayList(listS);
-        availableCars_status.setItems(listData);
+        columnCarId.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
+        columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
+        columnModel.setCellValueFactory(new PropertyValueFactory<>("model_makina"));
+        columnPrice.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
+        columnStatus.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
+        columnPhoto.setCellValueFactory(new PropertyValueFactory<>("foto_makina"));
+        tableCarsRegistration.setItems(data);
     }
 
 
+    private String[] listStatus = {"Available", "Not Available"};
 
 
     public void availableCarImportImage() {
@@ -171,7 +162,7 @@ public class AdminCarRegistrationController implements Initializable {
     @FXML
     void availableCarAdd(ActionEvent event) {
         String sql = "INSERT INTO makina (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
-                + "VALUES(?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             Alert alert;
@@ -185,43 +176,50 @@ public class AdminCarRegistrationController implements Initializable {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Please fill all blank fields");
+                alert.setContentText("Please fill in all required fields");
                 alert.showAndWait();
             } else {
-                connection = handler.getConnection();
-                pst = connection.prepareStatement(sql);
-                pst.setString(1, availableCars_carid.getText());
-                pst.setString(2, availableCars_brand.getText());
-                pst.setString(3, availableCars_model.getText());
-                pst.setString(4, availableCars_price.getText());
-                pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+                Connection connection = null;
+                PreparedStatement pst = null;
+                try {
+                    connection = DBHandler.getConnection();
+                    pst = connection.prepareStatement(sql);
+                    pst.setInt(1, Integer.parseInt(availableCars_carid.getText()));
+                    pst.setString(2, availableCars_brand.getText());
+                    pst.setString(3, availableCars_model.getText());
+                    pst.setFloat(4, Float.parseFloat(availableCars_price.getText()));
+                    pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+                    pst.setString(6, availableCarImport.getText());
 
-                String uri = getData.path;
-                uri = uri.replace("\\", "\\\\");
+                    String uri = getData.path;
+                    uri = uri.replace("\\", "\\\\");
 
-                pst.setString(6, uri);
+                    pst.setString(6, uri);
 
-                java.util.Date date = new java.util.Date();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
-                pst.setDate(7, sqlDate);
+                    pst.executeUpdate();
 
-                pst.executeUpdate();
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Information Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Successfully Added!");
+                    alert.showAndWait();
 
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully Added!");
-                alert.showAndWait();
-
-                fillTable();
-                availableCarClear();
+                    fillTable();
+                    availableCarClear();
+                } finally {
+                    if (pst != null) {
+                        pst.close();
+                    }
+                    if (connection != null) {
+                        connection.close();
+                    }
+                }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     void availableCarDelete(ActionEvent event) {
@@ -270,9 +268,56 @@ public class AdminCarRegistrationController implements Initializable {
 
     }
 
-    @FXML
-    void availableCarStatusList(ActionEvent event) {
+    public void availableCarAdd() {
+        String sql = "INSERT INTO makina (makina_id , brand_makina, model_makina , cmimi_makina , statusiMakina , foto_makina, date) "
+                + "VALUES(?,?,?,?,?,?,?)";
+        connection = DBHandler.getConnection();
+        try {
+            Alert alert;
+            if (availableCars_carid.getText().isEmpty()
+                    || availableCars_brand.getText().isEmpty()
+                    || availableCars_model.getText().isEmpty()
+                    || availableCars_status.getSelectionModel().getSelectedItem() == null
+                    || availableCars_price.getText().isEmpty()
+                    || getData.path == null || getData.path == "") {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Please fill all blank fields");
+                alert.showAndWait();
+            } else {
+                pst = connection.prepareStatement(sql);
+                pst.setString(1, availableCars_carid.getText());
+                pst.setString(2, availableCars_brand.getText());
+                pst.setString(3, availableCars_model.getText());
+                pst.setString(4, availableCars_price.getText());
+                pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+                String uri = getData.path;
+                uri = uri.replace("\\", "\\\\");
+                pst.setString(6, uri);
+                Date date = new Date();
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                pst.setString(7, String.valueOf(sqlDate));
+                pst.executeUpdate();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Added!");
+                alert.showAndWait();
+                availableCarClear();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public void availableCarStatusList() {
+        List<String> listS = new ArrayList<>();
+        for (String data : listStatus) {
+            listS.add(data);
+        }
+        ObservableList listData = FXCollections.observableArrayList(listS);
+        availableCars_status.setItems(listData);
     }
 
     @FXML
@@ -336,9 +381,10 @@ public class AdminCarRegistrationController implements Initializable {
 
     @FXML
     void minimize(ActionEvent event) {
-        Stage stage = (Stage)main_form.getScene().getWindow();
+        Stage stage = (Stage) main_form.getScene().getWindow();
         stage.setIconified(true);
     }
+
     ObservableList<makina> loadDataFromDatabase() {
         ObservableList<makina> data = FXCollections.observableArrayList();
         try {
@@ -365,12 +411,16 @@ public class AdminCarRegistrationController implements Initializable {
         }
         return data;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
-        connection = handler.getConnection();
+        connection = DBHandler.getConnection();
         data = loadDataFromDatabase();
         fillTable();
+        availableCarStatusList();
+
+        availableCarSelect();
 //        homeAvailableCars();
 //        homeTotalIncome();
 //        homeTotalCustomers();
@@ -379,15 +429,121 @@ public class AdminCarRegistrationController implements Initializable {
 //        homeIncomeChart();
 //        homeCustomerChart();
     }
+
+    public void availableCarSelect() {
+        makina carD = tableCarsRegistration.getSelectionModel().getSelectedItem();
+        int num = tableCarsRegistration.getSelectionModel().getSelectedIndex();
+        if ((num - 1) < -1) {
+            return;
+        }
+        availableCars_carid.setText(String.valueOf(carD.getMakina_id()));
+        availableCars_brand.setText(carD.getBrand_makina());
+        availableCars_model.setText(carD.getModel_makina());
+        availableCars_price.setText(String.valueOf(carD.getModel_makina()));
+        getData.path = carD.getFoto_makina();
+        String uri = "file:" + carD.getFoto_makina();
+        image = new Image(uri, 116, 153, false, true);
+        availableCars_imageView.setImage(image);
+    }
+
     @FXML
     void availableCarImport(ActionEvent event) {
+        FileChooser open = new FileChooser();
+        open.setTitle("Open Image File");
+        open.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*jpg", "*png"));
+        File file = open.showOpenDialog(main_form.getScene().getWindow());
+        if (file != null) {
+            getData.path = file.getAbsolutePath();
+            image = new Image(file.toURI().toString(), 140, 170, false, true);
+            availableCars_imageView.setImage(image);
+        }
+    }
+
+
+    @FXML
+    public void carReg(ActionEvent event) throws IOException {
+        carBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarRegistration.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
 
     }
+
 
     @FXML
     void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
     }
-}
+
+        @FXML
+        public void carList (ActionEvent event) throws IOException {
+            carList.getScene().getWindow().hide();
+            Stage signup = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarList.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            signup.setScene(scene);
+            signup.show();
+            signup.setResizable(false);
+        }
+
+        @FXML
+        public void dataAnalysis (ActionEvent event) throws IOException {
+            dataAnalysis.getScene().getWindow().hide();
+            Stage signup = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminStatistics.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            signup.setScene(scene);
+            signup.show();
+            signup.setResizable(false);
+
+        }
+        @FXML
+        public void carRent (ActionEvent event) throws IOException {
+            carBtn.getScene().getWindow().hide();
+            Stage signup = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminHome.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            signup.setScene(scene);
+            signup.show();
+            signup.setResizable(false);
+        }
+
+
+        @FXML
+        public void customers (ActionEvent event) throws IOException {
+            customers.getScene().getWindow().hide();
+            Stage signup = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/customer.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            signup.setScene(scene);
+            signup.show();
+            signup.setResizable(false);
+        }
+    }
 
 
