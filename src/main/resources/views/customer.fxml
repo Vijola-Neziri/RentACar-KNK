@@ -38,7 +38,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="logoutBtn" layoutX="60.0" layoutY="521.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="60.0" layoutY="521.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
