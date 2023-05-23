@@ -2,6 +2,7 @@ package Controller;
 
 import ConnectionMysql.DBHandler;
 import app.AdminHomeForm;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,10 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +25,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class customerController implements Initializable {
@@ -124,13 +123,7 @@ public class customerController implements Initializable {
     void close(ActionEvent event) {
 
     }
-
-    @FXML
-    void minimize(ActionEvent event) {
-        Stage stage = (Stage)main_form.getScene().getWindow();
-        stage.setIconified(true);
-    }
-
+    
     @FXML
     void switchForm(ActionEvent event) {
 
@@ -244,7 +237,11 @@ public class customerController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
-
+    @FXML
+    void minimize(ActionEvent event) {
+        Stage stage = (Stage)main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
     @FXML
     void dataAnalysis(ActionEvent event) throws IOException{
         dataAnalysisBtn.getScene().getWindow().hide();
@@ -268,7 +265,27 @@ public class customerController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
+    @FXML
+    void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
+    }
 
 
 }

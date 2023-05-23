@@ -1,27 +1,31 @@
 package Controller;
+
 import ConnectionMysql.DBHandler;
+import app.AdminHomeForm;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Rent;
-import models.makina;
 import repository.CarRepository;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminRentController implements Initializable {
@@ -56,6 +60,8 @@ public class AdminRentController implements Initializable {
 
     @FXML
     private Button minimize;
+    @FXML
+    private Button carListBtn;
 
 
     private CarRepository carRepository;
@@ -121,18 +127,48 @@ public class AdminRentController implements Initializable {
         stage.setIconified(true);
     }
     @FXML
-    void carList(ActionEvent event) {
-
+    void carList(ActionEvent event)throws IOException {
+        carListBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarList.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
-    void carReg(ActionEvent event) {
+    public Button carBtn;
 
+    @FXML
+    public Button carRentBtn;
+    @FXML
+    public Button customersBtn;
+    @FXML
+    public Button dataAnalysisBtn;
+    @FXML
+    void carReg(ActionEvent event) throws IOException{
+        carBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarRegistration.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
-    void carRent(ActionEvent event) {
-
+    void carRent(ActionEvent event) throws IOException{
+        carRentBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminRent.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
@@ -141,28 +177,68 @@ public class AdminRentController implements Initializable {
     }
 
     @FXML
-    void customers(ActionEvent event) {
-
+    void customers(ActionEvent event) throws IOException {
+        customersBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/customer.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
-    void dataAnalysis(ActionEvent event) {
-
+    void dataAnalysis(ActionEvent event) throws IOException{
+        dataAnalysisBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminStatistics.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
-
+@FXML
+private Button DashboardBtn;
     @FXML
-    void home(ActionEvent event) {
-
+    void home(ActionEvent event) throws  IOException{
+        DashboardBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
     }
 
     @FXML
     void minimize(ActionEvent event) {
-
+        Stage stage = (Stage)main_form.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
     void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
+        // Customize the button types
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+        // Wait for the user's response
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            // User clicked OK, perform logout actions
+            Platform.exit(); // Close all windows and exit the application
+        }
     }
 
 }

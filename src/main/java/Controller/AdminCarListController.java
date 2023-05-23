@@ -39,6 +39,8 @@ public class AdminCarListController implements Initializable {
 
     @FXML
     private Button close;
+    @FXML
+    private Button carRentBtn;
 
     @FXML
     private TableColumn<?, ?> columnBrand;
@@ -146,7 +148,17 @@ public class AdminCarListController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
-
+    @FXML
+    void carRent(ActionEvent event) throws IOException {
+        carRentBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarList.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
     @FXML
     void CarRegistration(ActionEvent event) throws IOException {
         carBtn.getScene().getWindow().hide();
