@@ -114,20 +114,13 @@ public class customerController implements Initializable {
 
     }
 
-    @FXML
-    void RentCar(ActionEvent event) {
 
-    }
 
     @FXML
     void close(ActionEvent event) {
 
     }
-    
-    @FXML
-    void switchForm(ActionEvent event) {
 
-    }
 
     private void fillTable() {
         columnKlientId.setCellValueFactory(new PropertyValueFactory<>("klient_id"));
@@ -201,7 +194,6 @@ public class customerController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
-
 
     @FXML
     private Button carRentBtn;

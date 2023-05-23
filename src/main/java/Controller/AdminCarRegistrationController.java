@@ -473,6 +473,8 @@ public class AdminCarRegistrationController implements Initializable {
 
     }
 
+    @FXML
+    private Button carRentBtn;
 
     @FXML
     void signOut(ActionEvent event) {
@@ -524,7 +526,7 @@ public class AdminCarRegistrationController implements Initializable {
         public void carRent (ActionEvent event) throws IOException {
             carBtn.getScene().getWindow().hide();
             Stage signup = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminHome.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminRent.fxml"));
             Pane pane = fxmlLoader.load();
             Scene scene = new Scene(pane);
             signup.setScene(scene);
