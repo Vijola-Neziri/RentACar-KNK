@@ -183,18 +183,34 @@
                                     <ComboBox fx:id="rent_model" layoutX="124.0" layoutY="127.0" onAction="#rentCarModel" prefWidth="150.0" promptText="Choose.." />
                                     <ComboBox fx:id="rent_brand" layoutX="123.0" layoutY="80.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." />
                                     <ComboBox fx:id="rent_carid" layoutX="123.0" layoutY="33.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose..." />
-                                    <Label layoutX="84.0" layoutY="418.0" prefHeight="33.0" prefWidth="58.0" text="Total:">
+                                    <Label layoutX="60.0" layoutY="446.0" prefHeight="33.0" prefWidth="58.0" text="Total:">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font></Label>
-                                    <Label fx:id="rent_total" layoutX="158.0" layoutY="426.0" text="\$0.0">
+                                    <Label fx:id="rent_total" layoutX="171.0" layoutY="453.0" text="\$0.0">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font></Label>
-                                    <Button fx:id="rentBtn" layoutX="78.0" layoutY="474.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: #000000;" styleClass="add-btn" text="Rent" />
+                                    <Button fx:id="rentBtn" layoutX="104.0" layoutY="514.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: #000000;" styleClass="add-btn" text="Rent" />
                                     <Label fx:id="rent_tableView1" layoutX="557.0" layoutY="23.0" prefHeight="38.0" prefWidth="165.0" text="Available Cars">
                                        <font>
                                           <Font name="Arial Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="48.0" layoutY="420.0" text="Amount">
+                                       <font>
+                                          <Font name="System Bold Italic" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="rent_amount" layoutX="125.0" layoutY="416.0" />
+                                    <Label layoutX="63.0" layoutY="487.0" text="Balance">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="rent_balance" layoutX="171.0" layoutY="486.0" text="\$0.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
                                  </children>
