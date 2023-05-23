@@ -45,11 +45,6 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../resources/Images/Car-Login.png" />
-                                    </image>
-                                </ImageView>
                                 <Button fx:id="logoutBtn" layoutX="69.0" layoutY="468.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
@@ -57,16 +52,6 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="341.0" mnemonicParsing="false" onAction="#RentCar" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="47.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
-                                    </image>
-                                </ImageView>
-                                <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="26.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../resources/Images/carlogo1.jpg" />
-                                    </image>
-                                </ImageView>
                                 <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="User" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />

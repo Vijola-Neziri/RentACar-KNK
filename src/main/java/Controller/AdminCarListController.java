@@ -1,19 +1,24 @@
 package Controller;
 import ConnectionMysql.DBHandler;
+import app.AdminHomeForm;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.makina;
 import repository.CarRepository;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,12 +79,12 @@ public class AdminCarListController implements Initializable {
     private PreparedStatement pst = null;
 
 
-        public void close(){
-            System.exit(0);
-        }
+    public void close() {
+        System.exit(0);
+    }
 
     private void fillTable() {
-        for (makina car:this.data) {
+        for (makina car : this.data) {
             System.out.println(car.getMakina_id());
             columnCarId.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
             columnBrand.setCellValueFactory(new PropertyValueFactory<>("brand_makina"));
@@ -98,6 +103,7 @@ public class AdminCarListController implements Initializable {
         data = loadDataFromDatabase();
         fillTable();
     }
+
     ObservableList<makina> loadDataFromDatabase() {
         ObservableList<makina> data = FXCollections.observableArrayList();
         try {
@@ -125,16 +131,77 @@ public class AdminCarListController implements Initializable {
         return data;
     }
 
-        public void minimize(){
-            Stage stage = (Stage)main_form.getScene().getWindow();
-            stage.setIconified(true);
-        }
+    public void minimize() {
+        Stage stage = (Stage) main_form.getScene().getWindow();
+        stage.setIconified(true);
+    }
+    @FXML
+    void CarList(ActionEvent event) throws IOException {
+        carList.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarList.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
+    @FXML
+    void CarRegistration(ActionEvent event) throws IOException {
+        carBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarRegistration.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
+    @FXML
+    void Clients(ActionEvent event) throws  IOException {
+        customers.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/customer.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
+    @FXML
+    void Dashboard(ActionEvent event) throws IOException {
+        DashboardBtn.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminHome.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
+    @FXML
+    void DataAnalysis(ActionEvent event) throws IOException {
+        dataAnalysis.getScene().getWindow().hide();
+        Stage signup = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminStatistics.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        signup.setScene(scene);
+        signup.show();
+        signup.setResizable(false);
+    }
+
 
     @FXML
     void signOut(ActionEvent event) {
 
     }
-    }
+
+}
 
 //    @FXML
 //    void minimize(ActionEvent event) {

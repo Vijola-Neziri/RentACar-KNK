@@ -1,12 +1,12 @@
 .top-form{
     -fx-background-color: #fff;
-    -fx-border-width: #000;
+    -fx-border-width: 2;
     -fx-border-width: .4px .4px .2px .4px;
 }
 
 .semi-top-form{
     -fx-background-color: #efefef;
-    -fx-border-width: #000;
+    -fx-border-width: 2;
     -fx-border-width: .2px .4px .4px .4px;
 }
 

@@ -66,11 +66,11 @@
                               <Font size="14.0" />
                            </font></Label>
                         <Line endX="100.0" layoutX="100.0" layoutY="258.0" startX="-100.0" stroke="#f4ebeb" />
-                        <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
-                        <Button fx:id="carBtn" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="147.0" text="Car registration" />
-                        <Button fx:id="dataAnalysis" layoutX="29.0" layoutY="445.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" text="Data Analysis" />
-                        <Button fx:id="carList" layoutX="25.0" layoutY="368.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" text="Car list" />
-                        <Button fx:id="customers" layoutX="27.0" layoutY="407.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Clients" />
+                        <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="277.0" mnemonicParsing="false" onAction="#Dashboard" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
+                        <Button fx:id="carBtn" layoutX="28.0" layoutY="328.0" mnemonicParsing="false" onAction="#CarRegistration" prefHeight="26.0" prefWidth="147.0" text="Car registration" />
+                        <Button fx:id="dataAnalysis" layoutX="29.0" layoutY="445.0" mnemonicParsing="false" onAction="#DataAnalysis" prefHeight="26.0" prefWidth="154.0" text="Data Analysis" />
+                        <Button fx:id="carList" layoutX="25.0" layoutY="368.0" mnemonicParsing="false" onAction="#CarList" prefHeight="26.0" prefWidth="154.0" text="Car list" />
+                        <Button fx:id="customers" layoutX="27.0" layoutY="407.0" mnemonicParsing="false" onAction="#Clients" prefHeight="26.0" prefWidth="150.0" text="Clients" />
                         <Button fx:id="logoutBtn" layoutX="74.0" layoutY="497.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" text="Sign out" textFill="#e1dcdc">
                            <font>
                               <Font name="System Bold" size="12.0" />

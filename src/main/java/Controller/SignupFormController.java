@@ -197,7 +197,7 @@ public class SignupFormController implements Initializable {
 
                 // Open the UserHome.fxml page
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/LogInForm.fxml"));
                     Pane pane = fxmlLoader.load();
                     Scene scene = new Scene(pane);
                     Stage userHomeStage = new Stage();
