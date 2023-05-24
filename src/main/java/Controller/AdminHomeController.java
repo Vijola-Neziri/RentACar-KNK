@@ -32,8 +32,6 @@ public class AdminHomeController implements Initializable {
     private Button carBtn;
 
     @FXML
-    private Label welcome_label;
-    @FXML
     private RadioButton enButton;
     @FXML
     private RadioButton alButton;
@@ -301,7 +299,6 @@ public class AdminHomeController implements Initializable {
                 totalCustomers_label.setText(bundle.getString("total.customers.label"));
                 availableCars_label.setText(bundle.getString("available.cars.label"));
                 unavailableCars_label.setText(bundle.getString("unavailable.cars.label"));
-                welcome_label.setText(bundle.getString("Welcome.label"));
 
 
 
@@ -314,7 +311,7 @@ public class AdminHomeController implements Initializable {
                 totalCustomers_label.setText(bundle.getString("total.customers.label"));
                 availableCars_label.setText(bundle.getString("available.cars.label"));
                 unavailableCars_label.setText(bundle.getString("unavailable.cars.label"));
-                welcome_label.setText(bundle.getString("Welcome.label"));
+
 
             }
 

@@ -53,9 +53,8 @@
                               <Image url="@../resources/Images/user.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="DashboardBtn" layoutX="26.0" layoutY="189.0" mnemonicParsing="false" onAction="#home" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
-                        <Button fx:id="carBtn" layoutX="26.0" layoutY="243.0" mnemonicParsing="false" onAction="#carReg" prefHeight="33.0" prefWidth="147.0" text="Car registration" />
-                        <Button fx:id="carListBtn" layoutX="26.0" layoutY="296.0" mnemonicParsing="false" onAction="#carList" prefHeight="33.0" prefWidth="147.0" text="Car list" />
+                        <Button fx:id="DashboardBtn" layoutX="26.0" layoutY="243.0" mnemonicParsing="false" onAction="#home" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
+                        <Button fx:id="carBtn" layoutX="26.0" layoutY="295.0" mnemonicParsing="false" onAction="#carReg" prefHeight="33.0" prefWidth="147.0" text="Car registration" />
                         <Button fx:id="carRentBtn" layoutX="26.0" layoutY="347.0" mnemonicParsing="false" onAction="#carRent" prefHeight="33.0" prefWidth="147.0" text="Car Rent" />
                         <Button fx:id="customersBtn" layoutX="26.0" layoutY="399.0" mnemonicParsing="false" onAction="#customers" prefHeight="33.0" prefWidth="147.0" text="Clients" />
                         <Button fx:id="dataAnalysisBtn" layoutX="26.0" layoutY="449.0" mnemonicParsing="false" onAction="#dataAnalysis" prefHeight="33.0" prefWidth="147.0" text="Data Analysis" />

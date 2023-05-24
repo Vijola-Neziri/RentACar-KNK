@@ -128,7 +128,7 @@ public class AdminCarRegistration2 implements Initializable {
 
     public void availableCarAdd() {
 
-        String sql = "INSERT INTO makinaa (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, image, date) "
+        String sql = "INSERT INTO makinaa (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
 
         connection = handler.getConnection();
@@ -385,9 +385,9 @@ public class AdminCarRegistration2 implements Initializable {
         availableCars_model.setText(carD.getModel_makina());
         availableCars_price.setText(String.valueOf(carD.getCmimi_makina()));
 
-        getData.path = carD.getImage();
+        getData.path = carD.getFoto_makina();
 
-        String uri = "file:" + carD.getImage();
+        String uri = "file:" + carD.getFoto_makina();
 
         image = new Image(uri, 140, 184, false, true);
         availableCars_imageView.setImage(image);

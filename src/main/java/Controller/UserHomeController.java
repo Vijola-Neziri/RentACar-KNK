@@ -261,7 +261,6 @@ public class UserHomeController implements Initializable {
         Scene scene = new Scene(pane);
         signup.setScene(scene);
         signup.show();
-        signup.setResizable(false);
     }
 
 

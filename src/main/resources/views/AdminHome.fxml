@@ -61,22 +61,21 @@
                                     <Image url="@../resources/Images/user.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="72.0" layoutY="194.0" text="Admin" textFill="#efebeb">
+                              <Label layoutX="72.0" layoutY="214.0" text="Admin" textFill="#efebeb">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font></Label>
                               <Line endX="100.0" layoutX="100.0" layoutY="258.0" startX="-100.0" />
                               <Button fx:id="DashboardBtn" layoutX="27.0" layoutY="271.0" mnemonicParsing="false" onAction="#home" prefHeight="33.0" prefWidth="147.0" text="Dashboard" />
-                              <Button fx:id="logoutBtn" layoutX="56.0" layoutY="518.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" text="Sign out" textFill="#e1dcdc">
+                              <Button fx:id="logoutBtn" layoutX="14.0" layoutY="510.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" text="Sign out" textFill="#e1dcdc">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="carBtn" layoutX="27.0" layoutY="311.0" mnemonicParsing="false" onAction="#carReg" prefHeight="33.0" prefWidth="147.0" text="Car registration" />
-                              <Button fx:id="carListBtn" layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#carList" prefHeight="33.0" prefWidth="147.0" text="Car list" />
-                              <Button fx:id="carRentBtn" layoutX="27.0" layoutY="394.0" mnemonicParsing="false" onAction="#carRent" prefHeight="33.0" prefWidth="147.0" text="Car Rent" />
-                              <Button fx:id="customersBtn" layoutX="27.0" layoutY="435.0" mnemonicParsing="false" onAction="#customers" prefHeight="33.0" prefWidth="147.0" text="Clients" />
-                              <Button fx:id="dataAnalysisBtn" layoutX="27.0" layoutY="476.0" mnemonicParsing="false" onAction="#dataAnalysis" prefHeight="33.0" prefWidth="147.0" text="Data Analysis" />
+                              <Button fx:id="carBtn" layoutX="27.0" layoutY="315.0" mnemonicParsing="false" onAction="#carReg" prefHeight="38.0" prefWidth="147.0" text="Car registration" />
+                              <Button fx:id="carRentBtn" layoutX="27.0" layoutY="369.0" mnemonicParsing="false" onAction="#carRent" prefHeight="33.0" prefWidth="147.0" text="Car Rent" />
+                              <Button fx:id="customersBtn" layoutX="27.0" layoutY="418.0" mnemonicParsing="false" onAction="#customers" prefHeight="33.0" prefWidth="147.0" text="Clients" />
+                              <Button fx:id="dataAnalysisBtn" layoutX="27.0" layoutY="463.0" mnemonicParsing="false" onAction="#dataAnalysis" prefHeight="33.0" prefWidth="147.0" text="Data Analysis" />
                            </children>
                            <styleClass>
                               <String fx:value="nav-form" />

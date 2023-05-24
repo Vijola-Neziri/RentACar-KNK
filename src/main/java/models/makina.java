@@ -46,7 +46,7 @@ public class makina {
         return date;
     }
 
-    public String getImage() {
+    public String getFoto_makina() {
         return foto_makina;
     }
 }

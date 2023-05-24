@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.getData;
 import models.makina;
+import org.w3c.dom.events.MouseEvent;
 
 import java.io.File;
 import java.io.IOException;
@@ -112,6 +113,8 @@ public class AdminCarRegistrationController implements Initializable {
 
     @FXML
     private TableColumn<makina, String> columnPhoto;
+    @FXML
+    private  TableColumn<?,?> columnDate;
 
     private void fillTable() {
         columnCarId.setCellValueFactory(new PropertyValueFactory<>("makina_id"));
@@ -120,10 +123,32 @@ public class AdminCarRegistrationController implements Initializable {
         columnPrice.setCellValueFactory(new PropertyValueFactory<>("cmimi_makina"));
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("statusiMakina"));
         columnPhoto.setCellValueFactory(new PropertyValueFactory<>("foto_makina"));
+        columnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+
         tableCarsRegistration.setItems(data);
     }
 
+    public void availableCarSelect(MouseEvent event) {
+        makina carD = tableCarsRegistration.getSelectionModel().getSelectedItem();
+        int num = tableCarsRegistration.getSelectionModel().getSelectedIndex();
 
+        if ((num - 1) < - 1) {
+            return;
+        }
+
+        availableCars_carid.setText(String.valueOf(carD.getMakina_id()));
+        availableCars_brand.setText(carD.getBrand_makina());
+        availableCars_model.setText(carD.getModel_makina());
+        availableCars_price.setText(String.valueOf(carD.getCmimi_makina()));
+
+        getData.path = carD.getFoto_makina();
+
+        String uri = "file:" + carD.getFoto_makina();
+
+        image = new Image(uri, 140, 184, false, true);
+        availableCars_imageView.setImage(image);
+
+    }
     private String[] listStatus = {"Available", "Not Available"};
 
 
@@ -328,7 +353,7 @@ public class AdminCarRegistrationController implements Initializable {
                 + availableCars_model.getText() + "', statusiMakina ='"
                 + availableCars_status.getSelectionModel().getSelectedItem() + "', cmimi_makina = '"
                 + availableCars_price.getText() + "', foto_makina = '" + uri
-                + "' WHERE  = '" + availableCars_carid.getText() + "'";
+                + "' WHERE makina_id = '" + availableCars_carid.getText() + "'";
 
         connection = handler.getConnection();
 
@@ -419,7 +444,7 @@ public class AdminCarRegistrationController implements Initializable {
         fillTable();
         availableCarStatusList();
 
-        availableCarSelect();
+
 //        homeAvailableCars();
 //        homeTotalIncome();
 //        homeTotalCustomers();
@@ -438,13 +463,15 @@ public class AdminCarRegistrationController implements Initializable {
         availableCars_carid.setText(String.valueOf(carD.getMakina_id()));
         availableCars_brand.setText(carD.getBrand_makina());
         availableCars_model.setText(carD.getModel_makina());
-        availableCars_price.setText(String.valueOf(carD.getModel_makina()));
-        getData.path = carD.getImage();
-        String uri = "file:" + carD.getImage();
+        availableCars_price.setText(String.valueOf(carD.getCmimi_makina()));
+
+
+
+        getData.path = carD.getFoto_makina();
+        String uri = "file:" + carD.getFoto_makina();
         image = new Image(uri, 116, 153, false, true);
         availableCars_imageView.setImage(image);
     }
-
     @FXML
     void availableCarImport(ActionEvent event) {
         FileChooser open = new FileChooser();

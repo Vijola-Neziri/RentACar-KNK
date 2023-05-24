@@ -1,3 +1,4 @@
+
 package Controller;
 
 import ConnectionMysql.DBHandler;
@@ -206,7 +207,7 @@ public class UserRentController implements Initializable {
                 model_label.setText(bundle.getString("Model.label"));
                 firstName_label.setText(bundle.getString("First.name.label"));
                 lastName_label.setText(bundle.getString("Last.name.label"));
-                gebder_label.setText(bundle.getString("Gender1.label "));
+                gebder_label.setText(bundle.getString("Gender1.label"));
                 dateRented_label.setText(bundle.getString("Date.rented.label"));
                 dateReturned_label.setText(bundle.getString("Date.returned.label"));
                 amount_label.setText(bundle.getString("Amount.label"));
@@ -228,7 +229,7 @@ public class UserRentController implements Initializable {
                 model_label.setText(bundle.getString("Model.label"));
                 firstName_label.setText(bundle.getString("First.name.label"));
                 lastName_label.setText(bundle.getString("Last.name.label"));
-                gebder_label.setText(bundle.getString("Gender1.label "));
+                gebder_label.setText(bundle.getString("Gender1.label"));
                 dateRented_label.setText(bundle.getString("Date.rented.label"));
                 dateReturned_label.setText(bundle.getString("Date.returned.label"));
                 amount_label.setText(bundle.getString("Amount.label"));
@@ -456,18 +457,18 @@ public class UserRentController implements Initializable {
             rent_amount.setText("");
         }else
             amount = Double.parseDouble(rent_amount.getText());
-            if(amount >= totalP){
-                balance = (amount - totalP);
-                rent_balance.setText("$" + String.valueOf(balance));
-            }else{
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Invalid :3");
-                alert.showAndWait();
-                rent_amount.setText("");
-            }
+        if(amount >= totalP){
+            balance = (amount - totalP);
+            rent_balance.setText("$" + String.valueOf(balance));
+        }else{
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid :3");
+            alert.showAndWait();
+            rent_amount.setText("");
         }
+    }
 
 
     private int countDate;

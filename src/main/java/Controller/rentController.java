@@ -1,26 +1,24 @@
 
         package Controller;
-import ConnectionMysql.Configs;
-import javafx.beans.Observable;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import models.makina;
-import repository.CarRepository;
-import ConnectionMysql.DBHandler;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+        import ConnectionMysql.DBHandler;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.fxml.FXML;
+        import javafx.fxml.Initializable;
+        import javafx.scene.control.TableColumn;
+        import javafx.scene.control.TableView;
+        import javafx.scene.control.cell.PropertyValueFactory;
+        import models.makina;
+        import repository.CarRepository;
+
+        import java.net.URL;
+        import java.sql.Connection;
+        import java.sql.PreparedStatement;
+        import java.sql.ResultSet;
+        import java.sql.SQLException;
+        import java.util.Date;
+        import java.util.ResourceBundle;
 
 public class rentController implements Initializable {
 
@@ -92,7 +90,7 @@ public class rentController implements Initializable {
                 String status = rs.getString("statusiMakina");
                 String photo = rs.getString("foto_makina");
 
-                makina car = new makina(carId, brand, model, price, status, photo, new Date());
+                makina car = new makina(carId, brand, model, price, status, photo, (java.sql.Date) new Date());
                 data.add(car);
 
                 System.out.println(car.getMakina_id());

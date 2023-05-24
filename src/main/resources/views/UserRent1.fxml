@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
@@ -20,7 +24,6 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1099.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.UserRentController">
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="semi-top-form" stylesheets="@../css/dashboard.css">
@@ -59,20 +62,20 @@
                                     </font>
                                 </Label>
                                 <Button fx:id="carlist" layoutX="73.0" layoutY="387.0" mnemonicParsing="false" onAction="#CarList" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
-                        <MenuBar layoutX="-2.0" prefHeight="31.0" prefWidth="203.0">
-                          <menus>
-                            <Menu mnemonicParsing="false" text="File">
-                              <items>
-                                <MenuItem mnemonicParsing="false" text="Close" />
-                              </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Help">
-                              <items>
-                                <MenuItem fx:id="helpId" mnemonicParsing="false" onAction="#Help" text="Help" />
-                              </items>
-                            </Menu>
-                          </menus>
-                        </MenuBar>
+                                <MenuBar layoutX="-2.0" prefHeight="31.0" prefWidth="203.0">
+                                    <menus>
+                                        <Menu mnemonicParsing="false" text="File">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" text="Close" />
+                                            </items>
+                                        </Menu>
+                                        <Menu mnemonicParsing="false" text="Help">
+                                            <items>
+                                                <MenuItem fx:id="helpId" mnemonicParsing="false" onAction="#Help" text="Help" />
+                                            </items>
+                                        </Menu>
+                                    </menus>
+                                </MenuBar>
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -128,99 +131,99 @@
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
                                 <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="-29.0" prefHeight="609.0" prefWidth="899.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-29.0">
-                           <children>
-                              <AnchorPane layoutX="4.0" layoutY="30.0" prefHeight="578.0" prefWidth="890.0">
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                 </styleClass>
-                                 <children>
-                                    <TableView fx:id="tableCars" layoutX="354.0" layoutY="76.0" prefHeight="438.0" prefWidth="522.0">
-                                       <columns>
-                                          <TableColumn fx:id="columnCarId" prefWidth="75.0" text="Car ID" />
-                                          <TableColumn fx:id="columnBrand" prefWidth="75.0" text="Brand" />
-                                          <TableColumn fx:id="columnModel" prefWidth="75.0" text="Model" />
-                                          <TableColumn fx:id="columnPrice" prefWidth="75.0" text="Price" />
-                                          <TableColumn fx:id="columnStatus" prefWidth="75.0" text="Status" />
-                                          <TableColumn fx:id="columnPhoto" prefWidth="75.0" text="Image" />
-                                          <TableColumn fx:id="columnDate" prefWidth="75.0" text="Date" />
-                                       </columns>
-                                    </TableView>
-                                    <Label fx:id="carid_label" layoutX="50.0" layoutY="36.0" prefHeight="19.0" prefWidth="53.0" text="Car ID" textFill="#080808">
-                                       <font>
-                                          <Font name="System Bold Italic" size="13.0" />
-                                       </font></Label>
-                                    <Label fx:id="brand_label" layoutX="51.0" layoutY="84.0" text="Brand">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <Label fx:id="model_label" layoutX="50.0" layoutY="131.0" text="Model">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <Label fx:id="gebder_label" layoutX="49.0" layoutY="180.0" text="Gender">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <Label fx:id="firstName_label" layoutX="35.0" layoutY="242.0" text="First Name:">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <TextField fx:id="rent_firstName" layoutX="124.0" layoutY="238.0" promptText="Username" />
-                                    <TextField fx:id="rent_lastName" layoutX="124.0" layoutY="285.0" promptText="LastName" />
-                                    <Label fx:id="lastName_label" layoutX="39.0" layoutY="289.0" text="Last Name:">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <Label fx:id="dateRented_label" layoutX="36.0" layoutY="334.0" text="Date Rented">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <DatePicker fx:id="rent_dateRented" layoutX="123.0" layoutY="329.0" prefHeight="26.0" prefWidth="150.0" />
-                                    <Label fx:id="dateReturned_label" layoutX="33.0" layoutY="372.0" prefHeight="18.0" prefWidth="84.0" text="Data Returned">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font></Label>
-                                    <DatePicker fx:id="rent_dateReturn" layoutX="123.0" layoutY="368.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="150.0" />
-                                    <ComboBox fx:id="rent_gender" layoutX="123.0" layoutY="185.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
-                                    <ComboBox fx:id="rent_model" layoutX="124.0" layoutY="127.0" onAction="#rentCarModel" prefWidth="150.0" promptText="Choose.." />
-                                    <ComboBox fx:id="rent_brand" layoutX="123.0" layoutY="80.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." />
-                                    <ComboBox fx:id="rent_carid" layoutX="123.0" layoutY="33.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose..." />
-                                    <Label layoutX="60.0" layoutY="446.0" prefHeight="33.0" prefWidth="58.0" text="Total:">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font></Label>
-                                    <Label fx:id="rent_total" layoutX="171.0" layoutY="453.0" text="\$0.0">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font></Label>
-                                    <Button fx:id="rentBtn" layoutX="104.0" layoutY="514.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: #000000;" styleClass="add-btn" text="Rent" />
-                                    <Label fx:id="rent_tableView1" layoutX="557.0" layoutY="23.0" prefHeight="38.0" prefWidth="165.0" text="Available Cars">
-                                       <font>
-                                          <Font name="Arial Bold" size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="amount_label" layoutX="48.0" layoutY="420.0" text="Amount">
-                                       <font>
-                                          <Font name="System Bold Italic" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <TextField fx:id="rent_amount" layoutX="125.0" layoutY="416.0" />
-                                    <Label fx:id="balance_label" layoutX="63.0" layoutY="487.0" text="Balance">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="rent_balance" layoutX="171.0" layoutY="486.0" text="\$0.0">
-                                       <font>
-                                          <Font name="System Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <RadioButton fx:id="alButton" layoutX="738.0" layoutY="526.0" mnemonicParsing="false" text="AL" />
-                                    <RadioButton fx:id="enButton" layoutX="782.0" layoutY="526.0" mnemonicParsing="false" text="EN" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
+                                    <children>
+                                        <AnchorPane layoutX="4.0" layoutY="30.0" prefHeight="578.0" prefWidth="890.0">
+                                            <styleClass>
+                                                <String fx:value="white-bg" />
+                                                <String fx:value="shadow" />
+                                            </styleClass>
+                                            <children>
+                                                <TableView fx:id="tableCars" layoutX="354.0" layoutY="76.0" prefHeight="438.0" prefWidth="522.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="columnCarId" prefWidth="75.0" text="Car ID" />
+                                                        <TableColumn fx:id="columnBrand" prefWidth="75.0" text="Brand" />
+                                                        <TableColumn fx:id="columnModel" prefWidth="75.0" text="Model" />
+                                                        <TableColumn fx:id="columnPrice" prefWidth="75.0" text="Price" />
+                                                        <TableColumn fx:id="columnStatus" prefWidth="75.0" text="Status" />
+                                                        <TableColumn fx:id="columnPhoto" prefWidth="75.0" text="Image" />
+                                                        <TableColumn fx:id="columnDate" prefWidth="75.0" text="Date" />
+                                                    </columns>
+                                                </TableView>
+                                                <Label fx:id="carid_label" layoutX="50.0" layoutY="36.0" prefHeight="19.0" prefWidth="53.0" text="Car ID" textFill="#080808">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="13.0" />
+                                                    </font></Label>
+                                                <Label fx:id="brand_label" layoutX="51.0" layoutY="84.0" text="Brand">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <Label fx:id="model_label" layoutX="50.0" layoutY="131.0" text="Model">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <Label fx:id="gebder_label" layoutX="49.0" layoutY="180.0" text="Gender">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <Label fx:id="firstName_label" layoutX="35.0" layoutY="242.0" text="First Name:">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <TextField fx:id="rent_firstName" layoutX="124.0" layoutY="238.0" promptText="Username" />
+                                                <TextField fx:id="rent_lastName" layoutX="124.0" layoutY="285.0" promptText="LastName" />
+                                                <Label fx:id="lastName_label" layoutX="39.0" layoutY="289.0" text="Last Name:">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <Label fx:id="dateRented_label" layoutX="36.0" layoutY="334.0" text="Date Rented">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <DatePicker fx:id="rent_dateRented" layoutX="123.0" layoutY="329.0" prefHeight="26.0" prefWidth="150.0" />
+                                                <Label fx:id="dateReturned_label" layoutX="33.0" layoutY="372.0" prefHeight="18.0" prefWidth="84.0" text="Data Returned">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font></Label>
+                                                <DatePicker fx:id="rent_dateReturn" layoutX="123.0" layoutY="368.0" onAction="#rentDisplayTotal" prefHeight="26.0" prefWidth="150.0" />
+                                                <ComboBox fx:id="rent_gender" layoutX="123.0" layoutY="185.0" onAction="#rentCarGender" prefWidth="150.0" promptText="Choose.." />
+                                                <ComboBox fx:id="rent_model" layoutX="124.0" layoutY="127.0" onAction="#rentCarModel" prefWidth="150.0" promptText="Choose.." />
+                                                <ComboBox fx:id="rent_brand" layoutX="123.0" layoutY="80.0" onAction="#rentCarBrand" prefWidth="150.0" promptText="Choose.." />
+                                                <ComboBox fx:id="rent_carid" layoutX="123.0" layoutY="33.0" onAction="#rentCarCarId" prefWidth="150.0" promptText="Choose..." />
+                                                <Label layoutX="60.0" layoutY="446.0" prefHeight="33.0" prefWidth="58.0" text="Total:">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font></Label>
+                                                <Label fx:id="rent_total" layoutX="171.0" layoutY="453.0" text="\$0.0">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font></Label>
+                                                <Button fx:id="rentBtn" layoutX="104.0" layoutY="514.0" mnemonicParsing="false" onAction="#rentPay" prefHeight="40.0" prefWidth="91.0" style="-fx-background-color: #000000;" styleClass="add-btn" text="Rent" />
+                                                <Label fx:id="rent_tableView1" layoutX="557.0" layoutY="23.0" prefHeight="38.0" prefWidth="165.0" text="Available Cars">
+                                                    <font>
+                                                        <Font name="Arial Bold" size="18.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="amount_label" layoutX="48.0" layoutY="420.0" text="Amount">
+                                                    <font>
+                                                        <Font name="System Bold Italic" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <TextField fx:id="rent_amount" layoutX="125.0" layoutY="416.0" />
+                                                <Label fx:id="balance_label" layoutX="63.0" layoutY="487.0" text="Balance">
+                                                    <font>
+                                                        <Font name="System Bold" size="12.0" />
+                                                    </font>
+                                                </Label>
+                                                <Label fx:id="rent_balance" layoutX="171.0" layoutY="486.0" text="\$0.0">
+                                                    <font>
+                                                        <Font name="System Bold" size="14.0" />
+                                                    </font>
+                                                </Label>
+                                                <RadioButton fx:id="alButton" layoutX="738.0" layoutY="526.0" mnemonicParsing="false" text="AL" />
+                                                <RadioButton fx:id="enButton" layoutX="782.0" layoutY="526.0" mnemonicParsing="false" text="EN" />
+                                            </children>
+                                        </AnchorPane>
+                                    </children>
 
                                 </AnchorPane>
                             </children>
