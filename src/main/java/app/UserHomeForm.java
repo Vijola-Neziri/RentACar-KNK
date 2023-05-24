@@ -17,6 +17,7 @@ public class UserHomeForm  extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Rent Car System");
         primaryStage.show();
+
     }
     public static void main(String[] args) {
         launch(args);

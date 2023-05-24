@@ -546,7 +546,24 @@ public class UserRentController implements Initializable {
     }
     @FXML
     private DatePicker rent_dateRented;
+    @FXML
+    private  Label usrLabel;
+    private void displayUsername(String username) {
+        try (Connection connection = handler.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            if (resultSet.next()) {
+                String name = resultSet.getString("emri_user");
+                usrLabel.setText(name);
+            } else {
+                usrLabel.setText("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void rentDate(){
         Alert alert;
@@ -612,6 +629,9 @@ public class UserRentController implements Initializable {
         DBHandler DBHandler = new DBHandler();
 
         data = loadDataFromDatabase();
+        String loggedInUsername = LoginFormController.getLoggedInUsername();
+
+        displayUsername(loggedInUsername);
         fillTable();
         rentCarCarId();
         rentCarBrand();

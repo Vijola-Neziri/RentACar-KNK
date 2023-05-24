@@ -21,6 +21,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -29,6 +30,7 @@ public class UserHomeController implements Initializable {
     private Button availableCars_btn;
     @FXML
     private MenuBar Help;
+    private static String loggedInUsername;
     @FXML
     private Button close;
     @FXML
@@ -77,10 +79,12 @@ public class UserHomeController implements Initializable {
     private Button helpbtn;
 
     @FXML
-    private Label username;
+    private Label  usrLabel;
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
+    private ResultSet resultSet;
+
     public void homeAvailableCars() {
         String sql = "SELECT COUNT(makina_id) AS count FROM makina WHERE statusiMakina = 'Available'";
         connection = handler.getConnection();
@@ -251,14 +255,37 @@ public class UserHomeController implements Initializable {
 
     }
 
-        @Override
+
+    private void displayUsername(String username) {
+        try (Connection connection = handler.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("emri_user");
+                usrLabel.setText(name);
+            } else {
+                usrLabel.setText("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-            handler = new DBHandler();
-            connection = handler.getConnection();
-            homeAvailableCars();
-            homeTotalIncome();
-            homeTotalCustomers();
-            homeIncomeChart();
-            homeCustomerChart();
+        handler = new DBHandler();
+        String loggedInUsername = LoginFormController.getLoggedInUsername();
+
+     displayUsername(loggedInUsername);
+        // Additional code for other initialization tasks
+        homeAvailableCars();
+        homeTotalIncome();
+        homeTotalCustomers();
+        homeIncomeChart();
+        homeCustomerChart();
     }
 }

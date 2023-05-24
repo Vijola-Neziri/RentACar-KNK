@@ -18,6 +18,8 @@ import repository.KomentetRepository;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -64,7 +66,13 @@ public class HelpController implements Initializable {
     private TextArea textfieldid;
 
     @FXML
+    private Label usrLabel;
+    @FXML
     private Label user;
+    private DBHandler handler;
+
+    private PreparedStatement pst;
+    private ResultSet resultSet;
 
     private Connection connection;
     private KomentetRepository komentetRepository;
@@ -87,7 +95,9 @@ public class HelpController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Add any initialization logic here
+        String loggedInUsername = LoginFormController.getLoggedInUsername();
+
+        displayUsername(loggedInUsername);
     }
 
     @FXML
@@ -199,6 +209,22 @@ public class HelpController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.show();
+    }
+    private void displayUsername(String username) {
+        try (Connection connection = handler.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("emri_user");
+                usrLabel.setText(name);
+            } else {
+                usrLabel.setText("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void clearFields() {

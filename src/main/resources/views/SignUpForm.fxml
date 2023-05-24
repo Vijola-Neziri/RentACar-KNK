@@ -96,7 +96,7 @@
          <toggleGroup>
             <ToggleGroup fx:id="gjinia" />
          </toggleGroup></RadioButton>
-      <RadioButton fx:id="Female" layoutX="632.0" layoutY="391.0" mnemonicParsing="false" onAction="#getMale" selected="true" text="Female" textFill="#f7f6f6" toggleGroup="$gjinia" />
+      <RadioButton fx:id="Female" layoutX="632.0" layoutY="391.0" mnemonicParsing="false" onAction="#getFemale" selected="true" text="Female" textFill="#f7f6f6" toggleGroup="$gjinia" />
 
    </children>
    <styleClass>

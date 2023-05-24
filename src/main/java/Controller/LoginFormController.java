@@ -68,6 +68,8 @@ public class LoginFormController implements Initializable {
     private UserRepository userRepository = new UserRepository();
     private AdminRepository adminRepository = new AdminRepository();
 
+
+
     public void close() {
         System.exit(0);
     }
@@ -130,6 +132,7 @@ public class LoginFormController implements Initializable {
         languageToggleGroup.selectToggle(alButton);
     }
 
+    public static String loggedInUsername;
 
     private void handleLogin() {
         String username = usernameid.getText();
@@ -145,6 +148,7 @@ public class LoginFormController implements Initializable {
             User user = userRepository.getUserByUsernameAndPassword(username, password);
 
             if (user != null) {
+                loggedInUsername = username;
                 loginid.getScene().getWindow().hide();
                 Stage home = new Stage();
 
@@ -164,6 +168,7 @@ public class LoginFormController implements Initializable {
             Admin admin = adminRepository.getAdminByUsernameAndPassword(username, password);
 
             if (admin != null) {
+                loggedInUsername = username;
                 loginid.getScene().getWindow().hide();
                 Stage home = new Stage();
 
@@ -181,6 +186,10 @@ public class LoginFormController implements Initializable {
             }
         }
     }
+    public static String getLoggedInUsername() {
+        return loggedInUsername;
+    }
+
 
     @FXML
     public void signupaction(ActionEvent event) throws IOException {

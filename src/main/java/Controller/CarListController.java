@@ -1,10 +1,12 @@
 package Controller;
 
+import ConnectionMysql.DBHandler;
 import app.LoginForm;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -15,9 +17,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class CarListController {
+public class CarListController implements Initializable {
 
     @FXML
     private Button carlist;
@@ -140,5 +148,31 @@ public class CarListController {
         signup.setResizable(false);
 
     }
+    @FXML
+    private Label usrLabel;
 
+    private DBHandler handler;
+    private void displayUsername(String username) {
+        try (Connection connection = handler.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("emri_user");
+                usrLabel.setText(name);
+            } else {
+                usrLabel.setText("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        String loggedInUsername = LoginFormController.getLoggedInUsername();
+
+        displayUsername(loggedInUsername);
+    }
 }

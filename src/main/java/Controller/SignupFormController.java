@@ -99,8 +99,8 @@ public class SignupFormController implements Initializable {
                 label_phoneid.setText(bundle.getString("Phone.label"));
                 label_addressid.setText(bundle.getString("Address.label"));
                 label_genderid.setText(bundle.getString("Gender.label"));
-                male.setText(bundle.getString("Male.radio"));
-                female.setText(bundle.getString("Female.radio"));
+                Male.setText(bundle.getString("Male.radio"));
+                Female.setText(bundle.getString("Female.radio"));
                 label_doYouHaveAnAccountid.setText(bundle.getString("Do.you.have.an.account.label"));
 
 
@@ -122,8 +122,8 @@ public class SignupFormController implements Initializable {
                 label_phoneid.setText(bundle.getString("Phone.label"));
                 label_addressid.setText(bundle.getString("Address.label"));
                 label_genderid.setText(bundle.getString("Gender.label"));
-                male.setText(bundle.getString("Male.radio"));
-                female.setText(bundle.getString("Female.radio"));
+                Male.setText(bundle.getString("Male.radio"));
+                Female.setText(bundle.getString("Female.radio"));
                 label_doYouHaveAnAccountid.setText(bundle.getString("Do.you.have.an.account.label "));
 
             }

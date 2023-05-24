@@ -52,7 +52,7 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="341.0" mnemonicParsing="false" onAction="#RentCar" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="User" textFill="#fff7f7">
+                                <Label layoutX="72.0" layoutY="209.0" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -72,6 +72,7 @@
                             </Menu>
                           </menus>
                         </MenuBar>
+                        <Label fx:id="usrLabel" layoutX="74.0" layoutY="207.0" prefHeight="30.0" prefWidth="66.0" />
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -124,9 +125,9 @@
                     <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="-29.0" prefHeight="609.0" prefWidth="899.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-29.0">
+                                <AnchorPane fx:id="home_form" layoutX="208.0" layoutY="-44.0" prefHeight="609.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-44.0">
                            <children>
-                              <AnchorPane layoutX="4.0" layoutY="30.0" prefHeight="578.0" prefWidth="890.0">
+                              <AnchorPane layoutX="4.0" layoutY="47.0" prefHeight="573.0" prefWidth="890.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="shadow" />

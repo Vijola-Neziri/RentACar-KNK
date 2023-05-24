@@ -52,7 +52,7 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="372.0" mnemonicParsing="false" onAction="#RentCar" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <Label fx:id="username" layoutX="72.0" layoutY="209.0" text="User" textFill="#fff7f7">
+                                <Label fx:id="usrLabel" layoutX="75.0" layoutY="211.0" prefHeight="27.0" prefWidth="78.0" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

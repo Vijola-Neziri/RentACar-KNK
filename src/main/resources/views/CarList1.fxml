@@ -48,7 +48,7 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="29.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <Label fx:id="username" layoutX="80.0" layoutY="210.0" text="User" textFill="#fcfcfc">
+                                <Label fx:id="usrLabel" layoutX="80.0" layoutY="210.0" prefHeight="27.0" prefWidth="66.0" textFill="#fcfcfc">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

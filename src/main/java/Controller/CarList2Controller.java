@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -62,6 +64,8 @@ public class CarList2Controller  implements Initializable{
     private DBHandler handler;
     private Connection connection;
     private PreparedStatement pst;
+    @FXML
+    private Label usrLabel;
 
     @FXML
     public void backtoslide(ActionEvent event) throws IOException {
@@ -153,9 +157,28 @@ public class CarList2Controller  implements Initializable{
         signup.show();
         signup.setResizable(false);
     }
+    private void displayUsername(String username) {
+        try (Connection connection = handler.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                String name = resultSet.getString("emri_user");
+                usrLabel.setText(name);
+            } else {
+                usrLabel.setText("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
+        String loggedInUsername = LoginFormController.getLoggedInUsername();
+
+        displayUsername(loggedInUsername);
     }
 }
