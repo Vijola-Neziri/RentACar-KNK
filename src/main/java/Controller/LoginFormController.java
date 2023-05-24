@@ -204,13 +204,16 @@ public class LoginFormController implements Initializable {
     }
 
     @Override
+    
     public void initialize(URL location, ResourceBundle resources) {
         comboBox.getItems().addAll("Admin", "User"); // Add options to the comboBox
         handler = new DBHandler();
         changeLanguage();
 
     }
-    
+
+
+
 
 
 

@@ -134,17 +134,17 @@ public class SignupFormController implements Initializable {
 
     public void getMale(ActionEvent event) {
         if (Male.isSelected()) {
-            myLabel.setText(Male.getText());
+            label_genderid.setText(Male.getText());
         } else if (Female.isSelected()) {
-            myLabel.setText(Female.getText());
+            label_genderid.setText(Female.getText());
         }
     }
 
     public void getFemale(ActionEvent event) {
         if (Female.isSelected()) {
-            myLabel.setText(Female.getText());
+            label_genderid.setText(Female.getText());
         } else if (Male.isSelected()) {
-            myLabel.setText(Male.getText());
+            label_genderid.setText(Male.getText());
         }
     }
 
