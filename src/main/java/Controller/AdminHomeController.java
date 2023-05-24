@@ -10,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -19,6 +21,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AdminHomeController implements Initializable {
@@ -27,6 +30,28 @@ public class AdminHomeController implements Initializable {
 
     @FXML
     private Button carBtn;
+
+    @FXML
+    private Label welcome_label;
+    @FXML
+    private RadioButton enButton;
+    @FXML
+    private RadioButton alButton;
+    @FXML
+    private Label totalCars_label;
+
+    @FXML
+    private Label totalCustomers_label;
+
+    @FXML
+    private Label totalIncome_label;
+
+    @FXML
+    private Label unavailableCars_label;
+
+
+    @FXML
+    private Label availableCars_label;
 
     @FXML
     private Button carListBtn;
@@ -258,6 +283,40 @@ public class AdminHomeController implements Initializable {
         signup.show();
         signup.setResizable(false);
     }
+
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                totalCars_label.setText(bundle.getString("total.cars.label"));
+                totalIncome_label.setText(bundle.getString("total.income.label"));
+                totalCustomers_label.setText(bundle.getString("total.customers.label"));
+                availableCars_label.setText(bundle.getString("available.cars.label"));
+                unavailableCars_label.setText(bundle.getString("unavailable.cars.label"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
+
+
+
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                totalCars_label.setText(bundle.getString("total.cars.label"));
+                totalIncome_label.setText(bundle.getString("total.income.label"));
+                totalCustomers_label.setText(bundle.getString("total.customers.label"));
+                availableCars_label.setText(bundle.getString("available.cars.label"));
+                unavailableCars_label.setText(bundle.getString("unavailable.cars.label"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
+
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
@@ -267,7 +326,7 @@ public class AdminHomeController implements Initializable {
         homeTotalCustomers();
         homeUnavailableCars();
         home_totalCars();
-    //        homeIncomeChart();
-//        homeCustomerChart();
+        changeLanguage();
+
     }
 }

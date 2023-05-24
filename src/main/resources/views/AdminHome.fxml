@@ -4,6 +4,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -60,7 +61,7 @@
                                     <Image url="@../resources/Images/user.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="63.0" layoutY="184.0" text="Welcome" textFill="#efeaea">
+                              <Label fx:id="welcome_label" layoutX="63.0" layoutY="184.0" text="Welcome" textFill="#efeaea">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font></Label>
@@ -96,7 +97,7 @@
                            <children>
                               <AnchorPane layoutX="431.0" layoutY="293.0" prefHeight="200.0" prefWidth="371.0">
                                  <children>
-                                    <Label layoutX="43.0" layoutY="154.0" text="Unavailable Cars" textAlignment="CENTER" textFill="#fffcfc">
+                                    <Label fx:id="unavailableCars_label" layoutX="43.0" layoutY="154.0" text="Unavailable Cars" textAlignment="CENTER" textFill="#fffcfc">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -106,7 +107,7 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="43.0" layoutY="104.0" text="Available Cars" textAlignment="CENTER" textFill="#fffcfc">
+                                    <Label fx:id="availableCars_label" layoutX="43.0" layoutY="104.0" text="Available Cars" textAlignment="CENTER" textFill="#fffcfc">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -139,7 +140,7 @@
                                           <Image url="@../resources/Images/carhome.png" />
                                        </image>
                                     </ImageView>
-                                    <Label layoutX="34.0" layoutY="166.0" text="Total Cars" textAlignment="CENTER" textFill="#fffcfc">
+                                    <Label fx:id="totalCars_label" layoutX="34.0" layoutY="166.0" text="Total Cars" textAlignment="CENTER" textFill="#fffcfc">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -157,7 +158,7 @@
                               </AnchorPane>
                               <AnchorPane layoutX="32.0" layoutY="293.0" prefHeight="200.0" prefWidth="371.0">
                                  <children>
-                                    <Label layoutX="24.0" layoutY="142.0" text="Total Customers" textAlignment="CENTER" textFill="#fffcfc">
+                                    <Label fx:id="totalCustomers_label" layoutX="24.0" layoutY="142.0" text="Total Customers" textAlignment="CENTER" textFill="#fffcfc">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -178,7 +179,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                               </AnchorPane>
-                              <AnchorPane layoutX="20.0" layoutY="12.0" prefHeight="83.0" prefWidth="867.0">
+                              <AnchorPane layoutX="21.0" layoutY="17.0" prefHeight="259.0" prefWidth="866.0">
                                  <children>
                                     <Label layoutX="319.0" prefHeight="50.0" prefWidth="228.0" text="Prime Drive " textFill="#efebeb">
                                        <font>
@@ -189,7 +190,7 @@
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </Label>
-                                    <AnchorPane layoutX="409.0" layoutY="60.0" prefHeight="200.0" prefWidth="367.0">
+                                    <AnchorPane layoutX="408.0" layoutY="64.0" prefHeight="200.0" prefWidth="367.0">
                                        <children>
                                           <ImageView fitHeight="56.0" fitWidth="326.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -201,7 +202,7 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label layoutX="30.0" layoutY="150.0" text="Total Income" textAlignment="CENTER" textFill="#fffcfc">
+                                          <Label fx:id="totalIncome_label" layoutX="30.0" layoutY="150.0" text="Total Income" textAlignment="CENTER" textFill="#fffcfc">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -214,6 +215,8 @@
                                     </AnchorPane>
                                  </children>
                               </AnchorPane>
+                              <RadioButton fx:id="alButton" layoutX="748.0" layoutY="515.0" mnemonicParsing="false" text="AL" />
+                              <RadioButton fx:id="enButton" layoutX="798.0" layoutY="515.0" mnemonicParsing="false" text="EN" />
                            </children>
                         </AnchorPane>
                      </children>
