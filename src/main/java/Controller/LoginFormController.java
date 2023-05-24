@@ -153,6 +153,8 @@ public class LoginFormController implements Initializable {
                 Stage home = new Stage();
 
                 try {
+                    System.out.println("Connected with database");
+                    System.out.println("The user this username :"+ username +" and password "+ user.getSalt()+" is logged in");
                     FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/UserHome.fxml"));
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
