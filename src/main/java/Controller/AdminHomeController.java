@@ -223,26 +223,30 @@ public class AdminHomeController implements Initializable {
 
 
     @FXML
-    public void carReg(ActionEvent event) throws  IOException {
-        carBtn.getScene().getWindow().hide();
-        Stage signup = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarRegistration.fxml"));
-        Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
-        signup.setScene(scene);
-        signup.show();
-        signup.setResizable(false);
-
+    public void carReg(ActionEvent event) {
+        try {
+            carBtn.getScene().getWindow().hide();
+            Stage signup = new Stage();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/AdminCarRegistration.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            signup.setScene(scene);
+            signup.show();
+            signup.setResizable(false);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception appropriately, such as showing an error message
+        }
     }
 
 
     @FXML
     public void carList(ActionEvent event) throws  IOException {
         carListBtn.getScene().getWindow().hide();
-        Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(AdminHomeForm.class.getResource("/views/AdminCarList.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
+        Stage signup = new Stage();
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
