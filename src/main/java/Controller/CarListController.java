@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,6 +19,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -29,6 +27,15 @@ public class CarListController implements Initializable {
 
     @FXML
     private Button carlist;
+
+    @FXML
+    private RadioButton alButton;
+
+    @FXML
+    private RadioButton enButton;
+
+    @FXML
+    private Label welcome_label;
 
     @FXML
     private Button close;
@@ -152,6 +159,27 @@ public class CarListController implements Initializable {
     private Label usrLabel;
 
     private DBHandler handler;
+
+    public  void changeLanguage() {
+        ToggleGroup languageToggleGroup = new ToggleGroup();
+        alButton.setToggleGroup(languageToggleGroup);
+        enButton.setToggleGroup(languageToggleGroup);
+        languageToggleGroup.selectedToggleProperty().addListener((observable, oldToggle, newToggle) -> {
+            if(newToggle == alButton) {
+                Locale currentLocale = new Locale("sq", "AL");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.AL_SQ", currentLocale);
+                welcome_label.setText(bundle.getString("Welcome.label"));
+
+            }else if(newToggle == enButton)  {
+                Locale currentLocale = new Locale("en", "US");
+                ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
+                welcome_label.setText(bundle.getString("Welcome.label"));
+            }
+
+        });
+        languageToggleGroup.selectToggle(alButton);
+    }
+
     private void displayUsername(String username) {
         try (Connection connection = handler.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT emri_user FROM User WHERE user_username = ?")) {
@@ -174,5 +202,6 @@ public class CarListController implements Initializable {
         String loggedInUsername = LoginFormController.getLoggedInUsername();
 
         displayUsername(loggedInUsername);
+        changeLanguage();
     }
 }
