@@ -77,11 +77,6 @@
                         <Button fx:id="carListid" layoutX="26.0" layoutY="412.0" mnemonicParsing="false" onAction="#carList" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
                         <MenuBar layoutX="-2.0" layoutY="-2.0" prefHeight="30.0" prefWidth="210.0">
                           <menus>
-                            <Menu mnemonicParsing="false" text="File">
-                              <items>
-                                <MenuItem mnemonicParsing="false" text="Close" />
-                              </items>
-                            </Menu>
                             <Menu mnemonicParsing="false" text="Help">
                               <items>
                                 <MenuItem fx:id="help" mnemonicParsing="false" onAction="#HelpBtn" text="Help" />
