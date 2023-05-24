@@ -59,7 +59,7 @@
                               <Image url="@../resources/Images/user.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="72.0" layoutY="200.0" text="Welcome" textFill="#f7f7f7">
+                        <Label fx:id="welcome_label" layoutX="72.0" layoutY="200.0" text="Welcome" textFill="#f7f7f7">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Label>
