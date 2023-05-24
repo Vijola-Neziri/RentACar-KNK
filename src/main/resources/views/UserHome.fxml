@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -58,6 +59,8 @@
                                     </font>
                                 </Label>
                         <Button fx:id="carlist" layoutX="68.0" layoutY="410.0" mnemonicParsing="false" onAction="#CarList" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Car List" />
+                        <RadioButton fx:id="alButton" layoutX="41.0" layoutY="454.0" mnemonicParsing="false" text="AL" />
+                        <RadioButton fx:id="enButton" layoutX="108.0" layoutY="454.0" mnemonicParsing="false" text="EN" />
                             </children>
                             <styleClass>
                                 <String fx:value="nav-form" />
@@ -134,7 +137,7 @@
                                                                 <Image url="@../resources/Images/carlogo1.jpg" />
                                                             </image>
                                                         </ImageView>
-                                                        <Label layoutX="25.0" layoutY="106.0" text="Available Cars" textAlignment="CENTER" textFill="#fffcfc">
+                                                        <Label fx:id="availableCars_label" layoutX="25.0" layoutY="106.0" text="Available Cars" textAlignment="CENTER" textFill="#fffcfc">
                                                             <font>
                                                                 <Font size="14.0" />
                                                             </font>
@@ -157,7 +160,7 @@
                                                                         <Image url="@../resources/Images/dollar.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label layoutX="25.0" layoutY="106.0" text="Total Income" textAlignment="CENTER" textFill="#fffcfc">
+                                                                <Label fx:id="totalIncome_label" layoutX="25.0" layoutY="106.0" text="Total Income" textAlignment="CENTER" textFill="#fffcfc">
                                                                     <font>
                                                                         <Font size="14.0" />
                                                                     </font>
@@ -180,7 +183,7 @@
                                                                         <Image url="@../resources/Images/users.png" />
                                                                     </image>
                                                                 </ImageView>
-                                                                <Label layoutX="25.0" layoutY="106.0" text="Total Customers" textAlignment="CENTER" textFill="#fffcfc">
+                                                                <Label fx:id="totalCustomers_label" layoutX="25.0" layoutY="106.0" text="Total Customers" textAlignment="CENTER" textFill="#fffcfc">
                                                                     <font>
                                                                         <Font size="14.0" />
                                                                     </font>

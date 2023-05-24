@@ -29,12 +29,12 @@
                     <left>
                         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../resources/Images/user.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
+                                <Label fx:id="welcome_label" layoutX="67.0" layoutY="195.0" text="Welcome" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

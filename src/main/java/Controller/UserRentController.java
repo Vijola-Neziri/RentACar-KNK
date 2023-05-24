@@ -718,11 +718,8 @@ public class UserRentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DBHandler DBHandler = new DBHandler();
-        changeLanguage();
-
         data = loadDataFromDatabase();
         String loggedInUsername = LoginFormController.getLoggedInUsername();
-
         displayUsername(loggedInUsername);
         fillTable();
         rentCarCarId();
@@ -731,6 +728,7 @@ public class UserRentController implements Initializable {
         rentCarGender();
         rentCarListData();
         rentCarShowListData();
+        changeLanguage();
     }
 
 
