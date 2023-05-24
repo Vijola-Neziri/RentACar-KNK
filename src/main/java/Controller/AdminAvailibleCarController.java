@@ -93,15 +93,12 @@ public class AdminAvailibleCarController  implements Initializable {
     @FXML
     private Button close;
 
-    //    @FXML
-//    private ImageView home_availableCars;
     @FXML
     private Label home_availableCars;
 
 
     @FXML
     private Button home_btn;
-
 
     @FXML
     private AnchorPane main_form;

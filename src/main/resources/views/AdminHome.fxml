@@ -164,7 +164,7 @@
                                     </Label>
                                     <ImageView fitHeight="56.0" fitWidth="120.0" layoutX="24.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@/resources/Images/users.png" />
+                                          <Image url="@../resources/Images/users.png" />
                                        </image>
                                     </ImageView>
                                     <Label fx:id="home_totalCustomers" alignment="CENTER_RIGHT" layoutX="256.0" layoutY="32.0" prefHeight="18.0" prefWidth="87.0" text="0" textAlignment="CENTER" textFill="#fffcfc">

@@ -7,9 +7,6 @@ public class Rent {
     private int id;
     private int klient_id;
     private int makina_id;
-//    private LocalDate data_e_rezervimit;
-//    private LocalDate data_e_fillimit_te_qirase;
-//    private LocalDate data_e_mbarimit_te_qirase;
     private Date data_e_rezervimit;
     private Date data_e_fillimit_te_qirase;
     private Date data_e_mbarimit_te_qirase;

@@ -46,7 +46,12 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: #000000;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Images/Car-Login.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -58,7 +63,12 @@
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
                                     </image>
                                 </ImageView>
-                        <Label fx:id="usrLabel" layoutX="76.0" layoutY="241.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
+                                <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="26.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Images/carlogo1.jpg" />
+                                    </image>
+                                </ImageView>
+                        <Label fx:id="usrLabel" layoutX="76.0" layoutY="241.0" prefHeight="25.0" prefWidth="48.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
