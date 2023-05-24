@@ -28,6 +28,8 @@ public class UserRentController implements Initializable {
 
     @FXML
     private RadioButton alButton;
+    @FXML
+    private Label welcome_label;
 
     @FXML
     private RadioButton enButton;
@@ -217,6 +219,7 @@ public class UserRentController implements Initializable {
                 columnPrice.setText(bundle.getString("Price.col"));
                 columnStatus.setText(bundle.getString("Status.col"));
                 columnPhoto.setText(bundle.getString("Photo.col"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
             }else if(newToggle == enButton)  {
                 Locale currentLocale = new Locale("en", "US");
                 ResourceBundle bundle = ResourceBundle.getBundle("translations.US_EN", currentLocale);
@@ -238,6 +241,7 @@ public class UserRentController implements Initializable {
                 columnPrice.setText(bundle.getString("Price.col"));
                 columnStatus.setText(bundle.getString("Status.col"));
                 columnPhoto.setText(bundle.getString("Photo.col"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
 
             }
 

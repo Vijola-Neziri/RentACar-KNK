@@ -24,12 +24,12 @@
                     <left>
                         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="136.0" fitWidth="150.0" layoutX="25.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="136.0" fitWidth="150.0" layoutX="25.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../resources/Images/user.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
+                                <Label fx:id="welcome_label" layoutX="52.0" layoutY="188.0" text="Welcome" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -53,7 +53,7 @@
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
                                     </image>
                                 </ImageView>
-                                <Label fx:id="usrLabel" layoutX="68.0" layoutY="209.0" prefHeight="27.0" prefWidth="69.0" textFill="#fcfcfc">
+                                <Label fx:id="usrLabel" layoutX="58.0" layoutY="224.0" prefHeight="27.0" prefWidth="69.0" textFill="#fcfcfc">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

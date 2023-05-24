@@ -33,7 +33,7 @@
                                         <Image url="@../resources/Images/usersignup.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
+                                <Label fx:id="welcome_label" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -52,7 +52,7 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="26.0" layoutY="372.0" mnemonicParsing="false" onAction="#RentCar" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <Label fx:id="usrLabel" layoutX="75.0" layoutY="211.0" prefHeight="27.0" prefWidth="78.0" textFill="#fff7f7">
+                                <Label fx:id="usrLabel" layoutX="59.0" layoutY="211.0" prefHeight="27.0" prefWidth="78.0" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

@@ -24,12 +24,12 @@
                     <left>
                         <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/dashboard.css" BorderPane.alignment="CENTER">
                             <children>
-                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="31.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../resources/Images/user.png" />
                                     </image>
                                 </ImageView>
-                                <Label fx:id="user" layoutX="60.0" layoutY="176.0" text="Welcome" textFill="#fff7f7">
+                                <Label fx:id="welcome_label" layoutX="60.0" layoutY="197.0" text="Welcome" textFill="#fff7f7">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>
@@ -48,7 +48,7 @@
                                     </styleClass>
                                 </Button>
                                 <Button fx:id="rentCar_btn" layoutX="29.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Rent a Car" />
-                                <Label fx:id="usrLabel" layoutX="80.0" layoutY="210.0" prefHeight="27.0" prefWidth="66.0" textFill="#fcfcfc">
+                                <Label fx:id="usrLabel" layoutX="67.0" layoutY="225.0" prefHeight="27.0" prefWidth="66.0" textFill="#fcfcfc">
                                     <font>
                                         <Font name="System Bold" size="18.0" />
                                     </font>

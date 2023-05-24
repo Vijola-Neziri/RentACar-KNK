@@ -82,6 +82,8 @@ public class HelpController implements Initializable {
     @FXML
     private Label usrLabel;
     @FXML
+    private Label welcome_label;
+    @FXML
     private Label user;
     private DBHandler handler;
 
@@ -209,6 +211,8 @@ public class HelpController implements Initializable {
                 emailid.setPromptText(bundle.getString("Type.your.email.placeholder"));
                 textfieldid.setText(bundle.getString("Type.your.question.placeholder"));
                 submitid.setText(bundle.getString("Submit.button"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
+
 
 
 
@@ -222,6 +226,7 @@ public class HelpController implements Initializable {
                 emailid.setPromptText(bundle.getString("Type.your.email.placeholder"));
                 textfieldid.setText(bundle.getString("Type.your.question.placeholder"));
                 submitid.setText(bundle.getString("Submit.button"));
+                welcome_label.setText(bundle.getString("Welcome.label"));
 
             }
 
