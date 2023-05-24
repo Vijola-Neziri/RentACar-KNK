@@ -365,18 +365,18 @@ public class UserRentController implements Initializable {
             rent_amount.setText("");
         }else
             amount = Double.parseDouble(rent_amount.getText());
-            if(amount >= totalP){
-                balance = (amount - totalP);
-                rent_balance.setText("$" + String.valueOf(balance));
-            }else{
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Invalid :3");
-                alert.showAndWait();
-                rent_amount.setText("");
-            }
+        if(amount >= totalP){
+            balance = (amount - totalP);
+            rent_balance.setText("$" + String.valueOf(balance));
+        }else{
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Invalid :3");
+            alert.showAndWait();
+            rent_amount.setText("");
         }
+    }
 
 
     private int countDate;
@@ -622,6 +622,8 @@ public class UserRentController implements Initializable {
         }
         return listData;
     }
+
+
 
 
     @Override
