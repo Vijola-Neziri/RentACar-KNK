@@ -40,7 +40,7 @@
                                 <Line endX="74.99998474121094" layoutX="125.0" layoutY="294.0" startX="-125.00001525878906" stroke="WHITE" />
                                 <Button fx:id="home_btn" layoutX="26.0" layoutY="347.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="33.0" prefWidth="147.0" styleClass="nav-btn" stylesheets="@../css/dashboard.css" text="Home">
                            <font>
-                              <Font name="System Bold" size="12.0" />
+                              <Font name="System Bold Italic" size="12.0" />
                            </font></Button>
                                 <Label layoutX="60.0" layoutY="516.0" textFill="WHITE">
                                     <font>
@@ -52,7 +52,7 @@
                                         <Image url="@../resources/Images/Car-Login.png" />
                                     </image>
                                 </ImageView>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <Button fx:id="logoutBtn" layoutX="72.0" layoutY="486.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: black;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -122,7 +122,7 @@
                                         </Button>
                                     </children>
                                     <styleClass>
-                                        <String fx:value="top-form" />
+                                        <String fx:value="nav-form" />
                                         <String fx:value="shadow" />
                                     </styleClass>
                                     <stylesheets>

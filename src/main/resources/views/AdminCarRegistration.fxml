@@ -99,11 +99,6 @@
                                  <children>
                                     <ImageView fx:id="availableCars_imageView" fitHeight="184.0" fitWidth="140.0" layoutX="-13.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" />
                                  </children></AnchorPane>
-                              <Button layoutX="76.0" layoutY="487.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="143.0" text="Button" textFill="#ece5e5">
-                                 <styleClass>
-                                    <String fx:value="nav-form" />
-                                    <String fx:value="shadow" />
-                                 </styleClass></Button>
                               <Button fx:id="availableCars_deleteBtn" layoutX="255.0" layoutY="439.0" mnemonicParsing="false" onAction="#availableCarDelete" prefHeight="38.0" prefWidth="108.0" text="Delete" textFill="#f4f2f2">
                                  <styleClass>
                                     <String fx:value="nav-form" />
