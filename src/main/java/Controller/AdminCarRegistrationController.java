@@ -25,7 +25,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.*;
 
@@ -440,8 +439,8 @@ public class AdminCarRegistrationController implements Initializable {
         availableCars_brand.setText(carD.getBrand_makina());
         availableCars_model.setText(carD.getModel_makina());
         availableCars_price.setText(String.valueOf(carD.getModel_makina()));
-        getData.path = carD.getFoto_makina();
-        String uri = "file:" + carD.getFoto_makina();
+        getData.path = carD.getImage();
+        String uri = "file:" + carD.getImage();
         image = new Image(uri, 116, 153, false, true);
         availableCars_imageView.setImage(image);
     }

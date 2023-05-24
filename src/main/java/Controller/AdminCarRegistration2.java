@@ -1,4 +1,5 @@
 package Controller;
+
 import ConnectionMysql.DBHandler;
 import app.AdminHomeForm;
 import app.LoginForm;
@@ -17,21 +18,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import models.makinaa;
+import models.getData;
+import models.makina;
 import org.w3c.dom.events.MouseEvent;
 import repository.CarRepository;
 
-import java.io.IOException;
-import java.util.*;
-
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import models.getData;
+import java.util.*;
 
 public class AdminCarRegistration2 implements Initializable {
     @FXML
@@ -80,25 +79,25 @@ public class AdminCarRegistration2 implements Initializable {
     private Button close;
 
     @FXML
-    private TableColumn<makinaa, ?> columnBrand;
+    private TableColumn<makina, ?> columnBrand;
 
     @FXML
-    private TableColumn<makinaa, String> columnCarId;
+    private TableColumn<makina, String> columnCarId;
 
     @FXML
-    private TableColumn<makinaa, String> columnDate;
+    private TableColumn<makina, String> columnDate;
 
     @FXML
-    private TableColumn<makinaa, String> columnModel;
+    private TableColumn<makina, String> columnModel;
 
     @FXML
-    private TableColumn<makinaa, String> columnPhoto;
+    private TableColumn<makina, String> columnPhoto;
 
     @FXML
-    private TableColumn<makinaa,String> columnPrice;
+    private TableColumn<makina,String> columnPrice;
 
     @FXML
-    private TableColumn<makinaa, String> columnStatus;
+    private TableColumn<makina, String> columnStatus;
 
     @FXML
     private Button customersBtn;
@@ -117,7 +116,7 @@ public class AdminCarRegistration2 implements Initializable {
     @FXML
     private Button carRentBtn;
     @FXML
-    private TableView<makinaa> tableCarsRegistration;
+    private TableView<makina> tableCarsRegistration;
     private CarRepository carRepository;
     private DBHandler handler;
     private Connection connection;
@@ -329,9 +328,9 @@ public class AdminCarRegistration2 implements Initializable {
         }
 
     }
-    public ObservableList<makinaa> availableCarListData() {
+    public ObservableList<makina> availableCarListData() {
 
-        ObservableList<makinaa> listData = FXCollections.observableArrayList();
+        ObservableList<makina> listData = FXCollections.observableArrayList();
 
         String sql = "SELECT * FROM makinaa";
 
@@ -341,10 +340,10 @@ public class AdminCarRegistration2 implements Initializable {
             pst = connection.prepareStatement(sql);
             rs = pst.executeQuery();
 
-            makinaa carD;
+            makina carD;
 
             while (rs.next()) {
-                carD = new makinaa(rs.getInt("makina_id"),
+                carD = new makina(rs.getInt("makina_id"),
                         rs.getString("brand_makina"),
                         rs.getString("model_makina"),
                         rs.getDouble("cmimi_makina"),
@@ -360,7 +359,7 @@ public class AdminCarRegistration2 implements Initializable {
         }
         return listData;
     }
-    private ObservableList<makinaa> availableCarList;
+    private ObservableList<makina> availableCarList;
     public void availableCarShowListData() {
         availableCarList = availableCarListData();
 
@@ -374,7 +373,7 @@ public class AdminCarRegistration2 implements Initializable {
     }
 
     public void availableCarSelect() {
-        makinaa carD = tableCarsRegistration.getSelectionModel().getSelectedItem();
+        makina carD = tableCarsRegistration.getSelectionModel().getSelectedItem();
         int num = tableCarsRegistration.getSelectionModel().getSelectedIndex();
 
         if ((num - 1) < - 1) {
@@ -496,10 +495,6 @@ public class AdminCarRegistration2 implements Initializable {
         availableCarShowListData();
         availableCarStatusList();
     }
-
-
-
-
 
 
     @FXML
