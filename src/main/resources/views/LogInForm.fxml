@@ -15,7 +15,7 @@
 
 <AnchorPane prefHeight="496.0" prefWidth="770.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LoginFormController">
    <children>
-      <TextField fx:id="usernameid" layoutX="459.0" layoutY="132.0" prefHeight="38.0" prefWidth="218.0" promptText="Enter your username" />
+      <TextField fx:id="usernameid" layoutX="459.0" layoutY="132.0" onKeyPressed="#showKeyword" prefHeight="38.0" prefWidth="218.0" promptText="Enter your username" />
       <Label fx:id="label_usernameid" layoutX="324.0" layoutY="137.0" prefHeight="27.0" prefWidth="127.0" text="Username">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -26,13 +26,13 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="loginid" layoutX="476.0" layoutY="343.0" mnemonicParsing="false" onAction="#loginaction" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Log in" textFill="WHITE">
+      <Button fx:id="loginid" layoutX="476.0" layoutY="343.0" mnemonicParsing="false" onAction="#loginaction" onKeyPressed="#showKeyword" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #000000;" text="Log in" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
       <Button fx:id="signupid" layoutX="632.0" layoutY="437.0" mnemonicParsing="false" onAction="#signupaction" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="Sign up" textFill="WHITE" />
-      <PasswordField fx:id="passwordid" layoutX="459.0" layoutY="206.0" prefHeight="38.0" prefWidth="218.0" promptText="Enter your password" />
+      <PasswordField fx:id="passwordid" layoutX="459.0" layoutY="206.0" onKeyPressed="#showKeyword" prefHeight="38.0" prefWidth="218.0" promptText="Enter your password" />
       <Label fx:id="label_clickSignupToRegisterid" layoutX="400.0" layoutY="440.0" prefHeight="20.0" prefWidth="218.0" text="Click sign up to register" textFill="#e7ebfc">
          <font>
             <Font size="14.0" />

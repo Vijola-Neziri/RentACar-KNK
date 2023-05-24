@@ -76,6 +76,7 @@ public class HelpController implements Initializable {
 
     private Connection connection;
     private KomentetRepository komentetRepository;
+
     @FXML
     public  void HelpBtn(ActionEvent event) throws IOException {
         Help.getScene().getWindow().hide();

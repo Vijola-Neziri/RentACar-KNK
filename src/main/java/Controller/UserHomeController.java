@@ -26,21 +26,18 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class UserHomeController implements Initializable {
-    @FXML
-    private Button availableCars_btn;
+
     @FXML
     private MenuBar Help;
-    private static String loggedInUsername;
-    @FXML
-    private Button close;
+
+
     @FXML
     private Button carlist;
 
     @FXML
     private Label home_availableCars;
 
-    @FXML
-    private Button home_btn;
+
 
 
 
@@ -92,7 +89,7 @@ public class UserHomeController implements Initializable {
         try {
             pst = connection.prepareStatement(sql);
             ResultSet result = pst.executeQuery();
-            while (result.next()) {
+            while(result.next()) {
                 countAC = result.getInt("count");
             }
             home_availableCars.setText(String.valueOf(countAC));
@@ -100,6 +97,7 @@ public class UserHomeController implements Initializable {
             e.printStackTrace();
         }
     }
+
 
     public void homeTotalIncome() {
         String sql = "SELECT SUM(total) AS totalIncome FROM klientet";
@@ -117,34 +115,14 @@ public class UserHomeController implements Initializable {
         }
     }
 
-    @FXML
-    void signOut(ActionEvent event) {
-        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmation.setTitle("Logout Confirmation");
-        confirmation.setHeaderText("Are you sure you want to logout?");
-        confirmation.setContentText("Press OK to confirm.");
-
-        // Customize the button types
-        ButtonType buttonTypeOK = new ButtonType("OK");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel");
-
-        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
-
-        // Wait for the user's response
-        Optional<ButtonType> result = confirmation.showAndWait();
-
-        if (result.isPresent() && result.get() == buttonTypeOK) {
-            // User clicked OK, perform logout actions
-            Platform.exit(); // Close all windows and exit the application
-        }
-    }
 
 
     @FXML
     private MenuItem help;
-  @FXML
-  public  void HelpBtn(ActionEvent event) throws IOException {
-      Help.getScene().getWindow().hide();
+
+    @FXML
+    public void HelpBtn(ActionEvent event) throws IOException {
+        Help.getScene().getWindow().hide();
         Stage signup = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(LoginForm.class.getResource("/views/Help.fxml"));
         Pane pane = fxmlLoader.load();
@@ -170,13 +148,12 @@ public class UserHomeController implements Initializable {
         }
     }
 
-
     public void homeIncomeChart() {
         home_incomeChart.getData().clear();
         String sql = "SELECT date_rented, SUM(total) AS total FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 6";
         connection = handler.getConnection();
         try {
-            XYChart.Series<String, Number> chart = new XYChart.Series<>(); // Specify the generic types explicitly
+            XYChart.Series<String, Number> chart = new XYChart.Series<>();
             pst = connection.prepareStatement(sql);
             ResultSet result = pst.executeQuery();
             while (result.next()) {
@@ -186,7 +163,7 @@ public class UserHomeController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+  }
     public void homeCustomerChart() {
         home_customerChart.getData().clear();
         String sql = "SELECT date_rented, COUNT(klient_id) AS count FROM klientet GROUP BY date_rented ORDER BY TIMESTAMP(date_rented) ASC LIMIT 4";
@@ -203,13 +180,32 @@ public class UserHomeController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    void signOut(ActionEvent event) {
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout Confirmation");
+        confirmation.setHeaderText("Are you sure you want to logout?");
+        confirmation.setContentText("Press OK to confirm.");
 
 
+        ButtonType buttonTypeOK = new ButtonType("OK");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel");
+
+        confirmation.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
+
+
+        Optional<ButtonType> result = confirmation.showAndWait();
+
+        if (result.isPresent() && result.get() == buttonTypeOK) {
+            Platform.exit();
+        }
+    }
 
     @FXML
     void close(ActionEvent event) {
         System.exit(0);
     }
+
     @FXML
     void minimize(ActionEvent event) {
         Stage stage = (Stage)main_form.getScene().getWindow();
@@ -239,7 +235,6 @@ public class UserHomeController implements Initializable {
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
-
     }
 
     @FXML
@@ -252,8 +247,8 @@ public class UserHomeController implements Initializable {
         signup.setScene(scene);
         signup.show();
         signup.setResizable(false);
-
     }
+
 
 
     private void displayUsername(String username) {
@@ -273,8 +268,6 @@ public class UserHomeController implements Initializable {
         }
     }
 
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         handler = new DBHandler();
@@ -288,4 +281,5 @@ public class UserHomeController implements Initializable {
         homeIncomeChart();
         homeCustomerChart();
     }
+
 }
