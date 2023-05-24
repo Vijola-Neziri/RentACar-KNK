@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -46,7 +47,12 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" style="-fx-background-color: #000000;" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
+                                <ImageView fitHeight="22.0" fitWidth="20.0" layoutX="50.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Images/Car-Login.png" />
+                                    </image>
+                                </ImageView>
+                                <Button fx:id="logoutBtn" layoutX="14.0" layoutY="501.0" mnemonicParsing="false" onAction="#signOut" prefHeight="29.0" prefWidth="64.0" stylesheets="@../css/dashboard.css" text="Sign out" textFill="WHITE">
                                     <styleClass>
                                         <String fx:value="logout-btn" />
                                         <String fx:value="logout-btn" />
@@ -58,7 +64,12 @@
                                         <!--                              <Image url="@../../../../../OneDrive/Desktop/done.jpg" />-->
                                     </image>
                                 </ImageView>
-                        <Label fx:id="usrLabel" layoutX="76.0" layoutY="241.0" prefHeight="25.0" prefWidth="64.0" textFill="WHITE">
+                                <ImageView fitHeight="20.0" fitWidth="24.0" layoutX="26.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Images/carlogo1.jpg" />
+                                    </image>
+                                </ImageView>
+                        <Label fx:id="usrLabel" layoutX="76.0" layoutY="241.0" prefHeight="25.0" prefWidth="48.0" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
@@ -127,28 +138,30 @@
                             <children>
                                 <AnchorPane fx:id="availableCars_form" prefHeight="556.0" prefWidth="896.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="56.0" layoutY="107.0" prefHeight="20.0" prefWidth="146.0" text="Type your name:">
+                              <Label fx:id="tybeYourName_label" layoutX="56.0" layoutY="107.0" prefHeight="20.0" prefWidth="146.0" text="Type your name:">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font></Label>
                               <TextField fx:id="nameid" layoutX="222.0" layoutY="100.0" prefHeight="34.0" prefWidth="178.0" promptText="Type your name..." />
-                              <Label layoutX="55.0" layoutY="181.0" prefHeight="20.0" prefWidth="151.0" text="Type your email">
+                              <Label fx:id="tybeYourEmail_label" layoutX="55.0" layoutY="181.0" prefHeight="20.0" prefWidth="151.0" text="Type your email">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font></Label>
                               <TextField fx:id="emailid" layoutX="223.0" layoutY="167.0" prefHeight="38.0" prefWidth="179.0" promptText="Type your email...." />
-                              <Label layoutX="58.0" layoutY="258.0" text="Type your question">
+                              <Label fx:id="tybeYourQuestion_label" layoutX="58.0" layoutY="258.0" text="Type your question">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font></Label>
-                              <TextArea fx:id="textfieldid" layoutX="230.0" layoutY="237.0" prefHeight="104.0" prefWidth="290.0" promptText="Type here..." />
+                              <TextArea fx:id="textfieldid" layoutX="223.0" layoutY="242.0" prefHeight="104.0" prefWidth="290.0" promptText="Type here..." />
                               <Button fx:id="submitid" layoutX="170.0" layoutY="392.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="141.0" style="-fx-background-color: #000000;" text="Submit" textFill="WHITE" />
-                              <Label layoutX="58.0" layoutY="471.0" prefHeight="18.0" prefWidth="199.0" text="To connect directly with us">
+                              <Label fx:id="connect_label" layoutX="58.0" layoutY="471.0" prefHeight="18.0" prefWidth="199.0" text="To connect directly with us">
                                  <font>
                                     <Font name="System Bold Italic" size="12.0" />
                                  </font>
                               </Label>
                               <Hyperlink layoutX="283.0" layoutY="469.0" prefHeight="24.0" prefWidth="303.0" text="www.facebook/PrimeDrive" />
+                              <RadioButton fx:id="alButton" layoutX="543.0" layoutY="472.0" mnemonicParsing="false" text="AL" />
+                              <RadioButton fx:id="enButton" layoutX="603.0" layoutY="472.0" mnemonicParsing="false" text="EN" />
                            </children>
                                 </AnchorPane>
                             </children>

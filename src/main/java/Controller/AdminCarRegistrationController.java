@@ -25,14 +25,16 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.*;
 
 public class AdminCarRegistrationController implements Initializable {
     @FXML
     private Button DashboardBtn;
-    @FXML
-    private Button availableCarImport;
+
+     @FXML
+    private Button availableCars_importBtn;
 
     @FXML
     private TextField availableCars_carid;
@@ -126,7 +128,7 @@ public class AdminCarRegistrationController implements Initializable {
     private String[] listStatus = {"Available", "Not Available"};
 
 
-    public void availableCarImportImage() {
+    public void availableCarImport() {
 
         FileChooser open = new FileChooser();
         open.setTitle("Open Image File");
@@ -159,67 +161,65 @@ public class AdminCarRegistrationController implements Initializable {
     }
 
 
-    @FXML
-    void availableCarAdd(ActionEvent event) {
-        String sql = "INSERT INTO makina (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try {
-            Alert alert;
+//    public void availableCarAdd(ActionEvent event) {
+//        String sql = "INSERT INTO makina (makina_id, brand_makina, model_makina, cmimi_makina, statusiMakina, foto_makina, date) "
+//                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+//
+//        try {
+//            Alert alert;
+//
+//            if (availableCars_carid.getText().isEmpty()
+//                    || availableCars_brand.getText().isEmpty()
+//                    || availableCars_model.getText().isEmpty()
+//                    || availableCars_status.getSelectionModel().getSelectedItem() == null
+//                    || availableCars_price.getText().isEmpty()
+//                    || getData.path == null || getData.path.isEmpty()) {
+//                alert = new Alert(Alert.AlertType.ERROR);
+//                alert.setTitle("Error Message");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Please fill in all required fields");
+//                alert.showAndWait();
+//            } else {
+//                Connection connection = null;
+//                PreparedStatement pst = null;
+//                try {
+//                    connection = DBHandler.getConnection();
+//                    pst = connection.prepareStatement(sql);
+//                    pst.setInt(1, Integer.parseInt(availableCars_carid.getText()));
+//                    pst.setString(2, availableCars_brand.getText());
+//                    pst.setString(3, availableCars_model.getText());
+//                    pst.setFloat(4, Float.parseFloat(availableCars_price.getText()));
+//                    pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
+//                    pst.setString(6, getData.path); // Set the 6th parameter to the path value
+//
+//                    // Set the 7th parameter to the current date/time
+//                    pst.setString(7, LocalDateTime.now().toString());
+//
+//                    pst.executeUpdate();
+//
+//                    alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Information Message");
+//                    alert.setHeaderText(null);
+//                    alert.setContentText("Successfully Added!");
+//                    alert.showAndWait();
+//
+//                    fillTable();
+//                    availableCarClear();
+//                } finally {
+//                    if (pst != null) {
+//                        pst.close();
+//                    }
+//                    if (connection != null) {
+//                        connection.close();
+//                    }
+//                }
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-            if (availableCars_carid.getText().isEmpty()
-                    || availableCars_brand.getText().isEmpty()
-                    || availableCars_model.getText().isEmpty()
-                    || availableCars_status.getSelectionModel().getSelectedItem() == null
-                    || availableCars_price.getText().isEmpty()
-                    || getData.path == null || getData.path.isEmpty()) {
-                alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
-                alert.setHeaderText(null);
-                alert.setContentText("Please fill in all required fields");
-                alert.showAndWait();
-            } else {
-                Connection connection = null;
-                PreparedStatement pst = null;
-                try {
-                    connection = DBHandler.getConnection();
-                    pst = connection.prepareStatement(sql);
-                    pst.setInt(1, Integer.parseInt(availableCars_carid.getText()));
-                    pst.setString(2, availableCars_brand.getText());
-                    pst.setString(3, availableCars_model.getText());
-                    pst.setFloat(4, Float.parseFloat(availableCars_price.getText()));
-                    pst.setString(5, (String) availableCars_status.getSelectionModel().getSelectedItem());
-                    pst.setString(6, availableCarImport.getText());
-
-                    String uri = getData.path;
-                    uri = uri.replace("\\", "\\\\");
-
-                    pst.setString(6, uri);
-
-
-                    pst.executeUpdate();
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully Added!");
-                    alert.showAndWait();
-
-                    fillTable();
-                    availableCarClear();
-                } finally {
-                    if (pst != null) {
-                        pst.close();
-                    }
-                    if (connection != null) {
-                        connection.close();
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     @FXML
     void availableCarDelete(ActionEvent event) {
@@ -268,7 +268,7 @@ public class AdminCarRegistrationController implements Initializable {
 
     }
 
-    public void availableCarAdd() {
+    public void availableCarAdd(ActionEvent e) {
         String sql = "INSERT INTO makina (makina_id , brand_makina, model_makina , cmimi_makina , statusiMakina , foto_makina, date) "
                 + "VALUES(?,?,?,?,?,?,?)";
         connection = DBHandler.getConnection();
@@ -306,8 +306,8 @@ public class AdminCarRegistrationController implements Initializable {
                 alert.showAndWait();
                 availableCarClear();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
     }
 

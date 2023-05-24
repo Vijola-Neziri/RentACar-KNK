@@ -87,7 +87,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="304.0" layoutY="24.0" stylesheets="@../css/dashboard.css" text="Car List">
+                        <Label layoutX="246.0" layoutY="22.0" stylesheets="@../css/dashboard.css" text="Car List">
                            <font>
                               <Font size="35.0" />
                            </font>
@@ -100,12 +100,12 @@
                            <children>
                               <TableView fx:id="tableCarList" layoutX="-118.0" layoutY="-37.0" prefHeight="429.0" prefWidth="482.0">
                                  <columns>
-                                    <TableColumn fx:id="columnCarId" prefWidth="93.333251953125" text="Car ID" />
-                                    <TableColumn fx:id="columnBrand" prefWidth="97.3333740234375" text="Brand" />
-                                    <TableColumn fx:id="columnModel" prefWidth="78.66668701171875" text="Model" />
-                                    <TableColumn fx:id="columnPrice" prefWidth="85.33331298828125" text="Price" />
-                                    <TableColumn fx:id="columnStatus" prefWidth="60.0" text="Status" />
-                                    <TableColumn fx:id="columnDate" prefWidth="75.0" text="Date" />
+                                    <TableColumn fx:id="columnCarId" prefWidth="69.59996795654297" text="Car ID" />
+                                    <TableColumn fx:id="columnBrand" prefWidth="80.800048828125" text="Brand" />
+                                    <TableColumn fx:id="columnModel" text="Model" />
+                                    <TableColumn fx:id="columnPrice" prefWidth="70.39996337890625" text="Price" />
+                                    <TableColumn fx:id="columnStatus" prefWidth="81.5999755859375" text="Status" />
+                                    <TableColumn fx:id="columnDate" prefWidth="100.00009155273438" text="Date" />
                                  </columns>
                               </TableView>
                            </children></AnchorPane>
