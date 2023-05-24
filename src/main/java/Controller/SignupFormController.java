@@ -165,6 +165,7 @@ public class SignupFormController implements Initializable {
         }
     }
 
+
     @FXML
     public void signupaction(ActionEvent event) {
         if (usernameid.getText().isEmpty() || name.getText().isEmpty() || phoneid.getText().isEmpty()
@@ -181,6 +182,16 @@ public class SignupFormController implements Initializable {
             String address = addressid.getText();
             String password = passwordid.getText();
             String gender = getGender();
+
+            // Password validation
+            if (password.length() < 8 || !password.matches(".*[A-Z].*")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Password Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Password must be at least 8 characters long and contain an uppercase letter.");
+                alert.showAndWait();
+                return;
+            }
 
             boolean registrationSuccessful = userRepository.signup(username, name, phone, address, password, gender);
 
@@ -216,6 +227,7 @@ public class SignupFormController implements Initializable {
             }
         }
     }
+
 
     private String getGender() {
         if (Male.isSelected()) {
